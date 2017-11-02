@@ -32,7 +32,13 @@ public class Prefixes {
     final static List<String> PREFIXES = Arrays.asList("edge", "property", "value");
 
     final static String PREFIX_DEFINITIONS;
-
+    
+    public final static String NODE = "n";
+    public final static String EDGE = "e";
+    public final static String NODE_PROPERTY = "np";
+    public final static String EDGE_PROPERTY = "ep";
+    public final static String METAPROPERTY = "meta";
+    
     static {
         final StringBuilder builder = new StringBuilder();
         for (final String prefix : PREFIXES) {

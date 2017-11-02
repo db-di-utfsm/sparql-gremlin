@@ -19,6 +19,7 @@
 
 package com.datastax.sparql.gremlin;
 
+import java.util.ArrayList;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
@@ -36,7 +37,15 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.List;
+import org.apache.jena.graph.Node;
+import org.apache.jena.sparql.core.TriplePath;
+import org.apache.jena.sparql.syntax.ElementPathBlock;
+import org.apache.jena.sparql.syntax.ElementVisitorBase;
+import org.apache.jena.sparql.syntax.ElementWalker;
 
 /**
  * @author Daniel Kuppitz (http://gremlin.guru)
@@ -55,6 +64,89 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
     }
 
     GraphTraversal<Vertex, ?> convertToGremlinTraversal(final Query query) {
+        HashMap<String,VariableType> variableTypesMap = new HashMap<>();
+        ArrayList<Triple> unknowTriples = new ArrayList();
+        String testQueryString =
+                ""
+                + ""
+        Query testQuery QueryFactory.create(testQueryString, Syntax.syntaxSPARQL);
+        ElementWalker.walk(query.getQueryPattern(),
+                // For each element...
+                new ElementVisitorBase() {
+                    // ...when it's a block of triples...
+                    public void visit(ElementPathBlock el) {
+                        // ...go through all the triples...
+                        Iterator<TriplePath> triples = el.patternElts();
+                        while (triples.hasNext()) {
+                            // ...and grab the subjec
+                            Triple triple = triples.next().asTriple();
+                            Node s, p, o;
+                            s = triple.getSubject();
+                            p = triple.getPredicate();
+                            o = triple.getObject();
+                            if (s.isVariable()){
+                                if(p.isVariable()){
+                                    if(o.isVariable()){
+                                        // TODO this case is something to worry about
+                                    }
+                                    else{
+                                        // lot of opcions, 
+                                        //o must be value
+                                        unknowTriples.add(triple);
+                                    }
+                                }
+                                else{
+                                    if(o.isVariable()){
+                                        // check p to know both types
+                                        VariableType[] types = VariableType.getSOTypesFromP(p);
+                                        variableTypesMap.put(s.toString(), types[0]);
+                                        variableTypesMap.put(o.toString(), types[1]);
+                                    }
+                                    else{
+                                        VariableType type = VariableType.getSTypeFromP(p);
+                                        variableTypesMap.put(s.toString(), type);
+                                    }
+                                }
+                            }
+                            else{ // TODO erase all this
+                                if(p.isVariable()){
+                                    if(o.isVariable()){
+                                        // IMPOSSIBLE
+                                    }
+                                    else{
+                                        // IMPOSSIBLE
+                                    }
+                                }
+                                else{
+                                    if(o.isVariable()){
+                                        // IMPOSSIBLE
+                                    }
+                                    else{
+                                        // USELESS
+                                    }
+                                }
+                            }
+                            
+                        }
+                        
+                    }
+                }
+        );
+        // This assumes that there are not triples with just variables
+        // TODO add isVariable and check Object if triples with 3 variable are going to be considered
+        for(Triple uTriple : unknowTriples){
+            Node unknowS = uTriple.getSubject();
+            Node unknowP = uTriple.getPredicate();
+            if(!variableTypesMap.containsKey(unknowS.toString())){
+                variableTypesMap.put(unknowS.toString(), VariableType.UNKNOW_S);
+
+            }
+            if(!variableTypesMap.containsKey(unknowP.toString())){
+                variableTypesMap.put(unknowP.toString(), VariableType.UNKNOW_P);
+            }
+        } 
+        printMap(variableTypesMap);
+        
         final Op op = Algebra.compile(query);
         OpWalker.walk(op, this);
         if (!query.isQueryResultStar()) {
@@ -92,6 +184,11 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
         return traversal;
     }
 
+    private static void printMap(HashMap<String, VariableType> map){
+        for(Map.Entry<String, VariableType> kv : map.entrySet()){
+            System.out.println(kv.getKey() + " : " + kv.getValue().name());
+        }
+    }
     private static GraphTraversal<Vertex, ?> convertToGremlinTraversal(final GraphTraversalSource g, final Query query) {
         return new SparqlToGremlinCompiler(g).convertToGremlinTraversal(query);
     }

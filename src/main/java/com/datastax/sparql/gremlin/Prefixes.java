@@ -20,6 +20,7 @@
 package com.datastax.sparql.gremlin;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -38,14 +39,45 @@ public class Prefixes {
     public final static String NODE_PROPERTY = "np";
     public final static String EDGE_PROPERTY = "ep";
     public final static String METAPROPERTY = "meta";
+    public final static String NODE_URI = BASE_URI + "node";
+    public final static String EDGE_URI= BASE_URI + "edge";
+    public final static String NODE_PROPERTY_URI = NODE_URI + "/property";
+    public final static String EDGE_PROPERTY_URI = EDGE_URI + "/property";
+    public final static String METAPROPERTY_URI = NODE_URI + "/metaproperty";
+    final static String PREFIXES_PREAMBLE;
     
     static {
         final StringBuilder builder = new StringBuilder();
-        for (final String prefix : PREFIXES) {
+        PREFIXES.forEach((prefix) -> {
             builder.append("PREFIX ").append(prefix.substring(0, 1)).append(": <").append(getURI(prefix)).
                     append(">").append(System.lineSeparator());
-        }
+        });
         PREFIX_DEFINITIONS = builder.toString();
+    }
+    
+    static{ //new prefixes
+        HashMap<String, String> prefixesMap = new HashMap<>();
+        prefixesMap.put(NODE, NODE_URI);
+        prefixesMap.put(EDGE, EDGE_URI);
+        prefixesMap.put(NODE_PROPERTY, NODE_PROPERTY_URI);
+        prefixesMap.put(EDGE_PROPERTY, EDGE_PROPERTY_URI);
+        prefixesMap.put(METAPROPERTY, METAPROPERTY_URI);
+        final StringBuilder builder = new StringBuilder();
+        prefixesMap.entrySet().forEach((kv) -> {
+            builder.append("PREFIX ")
+                    .append(kv.getKey())
+                    .append(": <")
+                    .append(kv.getValue())
+                    .append("#")
+                    .append(">")
+                    .append(System.lineSeparator());
+        });
+        PREFIXES_PREAMBLE = builder.toString();
+        System.out.println(PREFIXES_PREAMBLE);
+    }
+    
+    public static String preamblePrepend(String query){
+        return PREFIXES_PREAMBLE + query;
     }
 
     public static String getURI(final String prefix) {

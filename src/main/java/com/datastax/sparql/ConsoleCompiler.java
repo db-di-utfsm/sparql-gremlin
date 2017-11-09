@@ -53,11 +53,14 @@ class ConsoleCompiler {
         options.addOption("g", "graph", true, "the graph that's used to execute the query [classic|modern|crew|kryo file]");
         // TODO: add an OLAP option (perhaps: "--olap spark"?)
 
+        // this is awful
+        // TODO make better use of maven args
+        String[] hardcodedArgs = {"-f", "examples/modern1.sparql"};
         final CommandLineParser parser = new DefaultParser();
         final CommandLine commandLine;
 
         try {
-            commandLine = parser.parse(options, args);
+            commandLine = parser.parse(options, hardcodedArgs);
         } catch (ParseException e) {
             System.out.println(e.getMessage());
             printHelp(1);

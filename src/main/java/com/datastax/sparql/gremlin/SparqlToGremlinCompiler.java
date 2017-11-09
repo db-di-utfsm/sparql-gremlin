@@ -64,13 +64,12 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
     }
 
     GraphTraversal<Vertex, ?> convertToGremlinTraversal(final Query query) {
-        HashMap<String,VariableType> variableTypesMap = new HashMap<>();
+        // TEST -----------------------
+        HashMap<String,Variable.Type> variableTypesMap = new HashMap<>();
         ArrayList<Triple> unknowTriples = new ArrayList();
-        String testQueryString =
-                ""
-                + ""
-        Query testQuery QueryFactory.create(testQueryString, Syntax.syntaxSPARQL);
-        ElementWalker.walk(query.getQueryPattern(),
+        String testQueryString = TestQueries.test1;
+        Query testQuery = QueryFactory.create(Prefixes.preamblePrepend(testQueryString), Syntax.syntaxSPARQL);
+        ElementWalker.walk(testQuery.getQueryPattern(),
                 // For each element...
                 new ElementVisitorBase() {
                     // ...when it's a block of triples...
@@ -98,13 +97,16 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
                                 else{
                                     if(o.isVariable()){
                                         // check p to know both types
-                                        VariableType[] types = VariableType.getSOTypesFromP(p);
-                                        variableTypesMap.put(s.toString(), types[0]);
-                                        variableTypesMap.put(o.toString(), types[1]);
+                                        Variable.Type[] types = Variable.getSOTypesFromP(p);
+                                        variableTypesMap.putIfAbsent(s.toString(), types[0]);
+                                        variableTypesMap.putIfAbsent(o.toString(), types[1]);
                                     }
                                     else{
-                                        VariableType type = VariableType.getSTypeFromP(p);
-                                        variableTypesMap.put(s.toString(), type);
+                                        if(!variableTypesMap.containsKey(s.toString())){
+                                            Variable.Type type = Variable.getSTypeFromP(p);
+                                            variableTypesMap.put(s.toString(), type);
+                                        }
+                                        
                                     }
                                 }
                             }
@@ -134,19 +136,19 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
         );
         // This assumes that there are not triples with just variables
         // TODO add isVariable and check Object if triples with 3 variable are going to be considered
-        for(Triple uTriple : unknowTriples){
+        unknowTriples.forEach((uTriple) -> {
             Node unknowS = uTriple.getSubject();
             Node unknowP = uTriple.getPredicate();
             if(!variableTypesMap.containsKey(unknowS.toString())){
-                variableTypesMap.put(unknowS.toString(), VariableType.UNKNOW_S);
+                variableTypesMap.put(unknowS.toString(), Variable.Type.UNKNOW_S);
 
             }
-            if(!variableTypesMap.containsKey(unknowP.toString())){
-                variableTypesMap.put(unknowP.toString(), VariableType.UNKNOW_P);
+            if (!variableTypesMap.containsKey(unknowP.toString())) {
+                variableTypesMap.put(unknowP.toString(), Variable.Type.UNKNOW_P);
             }
-        } 
+        }); 
         printMap(variableTypesMap);
-        
+        // END TEST --------------------------------
         final Op op = Algebra.compile(query);
         OpWalker.walk(op, this);
         if (!query.isQueryResultStar()) {
@@ -184,8 +186,8 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
         return traversal;
     }
 
-    private static void printMap(HashMap<String, VariableType> map){
-        for(Map.Entry<String, VariableType> kv : map.entrySet()){
+    private static void printMap(HashMap<String, Variable.Type> map){
+        for(Map.Entry<String, Variable.Type> kv : map.entrySet()){
             System.out.println(kv.getKey() + " : " + kv.getValue().name());
         }
     }

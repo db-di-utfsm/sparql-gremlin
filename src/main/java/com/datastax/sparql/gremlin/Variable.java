@@ -11,52 +11,55 @@ import org.apache.jena.graph.Node;
  *
  * @author edmolten
  */
-public enum VariableType {
-    NODE, 
-    EDGE,
-    PROPERTY,
-    VALUE,
-    METAPROPERTY,
-    UNKNOW_S,
-    UNKNOW_P;
+public abstract class Variable {
     
-    public static VariableType[] getSOTypesFromP(Node p){
-        VariableType[] types = new VariableType[2];
+    public static enum Type {
+        NODE, 
+        EDGE,
+        PROPERTY,
+        VALUE,
+        METAPROPERTY,
+        UNKNOW_S,
+        UNKNOW_P;
+    }
+    
+    public static Type[] getSOTypesFromP(Node p){
+        Type[] types = new Type[2];
         if(PredicateCheck.isValue(p) ||
                 PredicateCheck.isMeta(p)){
-            types[0] = PROPERTY;
-            types[1] = VALUE;
+            types[0] = Type.PROPERTY;
+            types[1] = Type.VALUE;
         }
         else if(PredicateCheck.isNodeProperty(p)){
-            types[0] = NODE;
-            types[1] = PROPERTY;
+            types[0] = Type.NODE;
+            types[1] = Type.PROPERTY;
         }
         else if(PredicateCheck.isNodeLabel(p) ||
                 PredicateCheck.isNodeId(p)){
-            types[0] = NODE;
-            types[1] = VALUE;
+            types[0] = Type.NODE;
+            types[1] = Type.VALUE;
         }
         else if(PredicateCheck.isEdgeIn(p)){
-            types[0] = EDGE;
-            types[1] = NODE;
+            types[0] = Type.EDGE;
+            types[1] = Type.NODE;
         }
         else if(PredicateCheck.isEdgeOut(p)){
-            types[0] = NODE;
-            types[1] = EDGE;
+            types[0] = Type.NODE;
+            types[1] = Type.EDGE;
         }
         else if(PredicateCheck.isEdgeId(p) ||
                 PredicateCheck.isEdgeLabel(p)){
-            types[0] = EDGE;
-            types[1] = VALUE;
+            types[0] = Type.EDGE;
+            types[1] = Type.VALUE;
         }
         else if(PredicateCheck.isEdgeProperty(p)){
-            types[0] = EDGE;
-            types[1] = PROPERTY;
+            types[0] = Type.EDGE;
+            types[1] = Type.PROPERTY;
         }
         return types;
     }
     
-    public static VariableType getSTypeFromP(Node p){
+    public static Type getSTypeFromP(Node p){
         return getSOTypesFromP(p)[0];
     } 
 }

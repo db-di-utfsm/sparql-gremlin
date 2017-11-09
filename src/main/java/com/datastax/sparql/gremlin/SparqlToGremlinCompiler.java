@@ -67,7 +67,7 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
         // TEST -----------------------
         HashMap<String,Variable.Type> variableTypesMap = new HashMap<>();
         ArrayList<Triple> unknowTriples = new ArrayList();
-        String testQueryString = TestQueries.test1;
+        String testQueryString = TestQueries.test;
         Query testQuery = QueryFactory.create(Prefixes.preamblePrepend(testQueryString), Syntax.syntaxSPARQL);
         ElementWalker.walk(testQuery.getQueryPattern(),
                 // For each element...
@@ -76,60 +76,86 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
                     public void visit(ElementPathBlock el) {
                         // ...go through all the triples...
                         Iterator<TriplePath> triples = el.patternElts();
-                        while (triples.hasNext()) {
-                            // ...and grab the subjec
-                            Triple triple = triples.next().asTriple();
-                            Node s, p, o;
-                            s = triple.getSubject();
-                            p = triple.getPredicate();
-                            o = triple.getObject();
-                            if (s.isVariable()){
-                                if(p.isVariable()){
-                                    if(o.isVariable()){
-                                        // TODO this case is something to worry about
-                                    }
-                                    else{
-                                        // lot of opcions, 
-                                        //o must be value
-                                        unknowTriples.add(triple);
-                                    }
-                                }
-                                else{
-                                    if(o.isVariable()){
-                                        // check p to know both types
-                                        Variable.Type[] types = Variable.getSOTypesFromP(p);
-                                        variableTypesMap.putIfAbsent(s.toString(), types[0]);
-                                        variableTypesMap.putIfAbsent(o.toString(), types[1]);
-                                    }
-                                    else{
-                                        if(!variableTypesMap.containsKey(s.toString())){
-                                            Variable.Type type = Variable.getSTypeFromP(p);
-                                            variableTypesMap.put(s.toString(), type);
+                        ArrayList<String> newAddedVariables = new ArrayList<>();
+                        do {
+                            newAddedVariables.clear();
+                            while (triples.hasNext()) {
+                                // ...and grab the subjec
+                                Triple triple = triples.next().asTriple();
+                                Node s, p, o;
+                                String sStr, pStr, oStr;
+                                s = triple.getSubject();
+                                sStr = s.toString();
+                                p = triple.getPredicate();
+                                pStr = p.toString();
+                                o = triple.getObject();
+                                oStr = o.toString();
+                                if (s.isVariable()) {
+                                    if (p.isVariable()) {
+                                        if (o.isVariable()) {
+                                            // TODO this case is something to worry about
+                                        } else {
+                                            if (!variableTypesMap.containsKey(sStr)) {
+                                                if (!variableTypesMap.containsKey(pStr)) {
+                                                    continue;
+                                                } else {
+                                                    Variable.Type sType = Variable.getSTypeFromPType(variableTypesMap, pStr);
+                                                    variableTypesMap.put(sStr,sType);
+                                                    newAddedVariables.add(sStr);
+                                                }
+                                            } else {
+                                                if (!variableTypesMap.containsKey(pStr)) {
+                                                    Variable.Type pType = Variable.getPTypeFromSType(variableTypesMap,sStr);
+                                                    variableTypesMap.put(pStr, pType);
+                                                    newAddedVariables.add(pStr);
+                                                } else {
+                                                    continue;
+                                                }
+                                            }
                                         }
-                                        
+                                    } else {
+                                        if (o.isVariable()) {
+                                            // check p to know both types
+                                            if (!variableTypesMap.containsKey(sStr)) {
+                                                if (!variableTypesMap.containsKey(oStr)) {
+                                                    Variable.Type[] types = Variable.getSOTypesFromP(p);
+                                                    variableTypesMap.put(sStr, types[0]);
+                                                    variableTypesMap.put(oStr, types[1]);
+                                                    newAddedVariables.add(sStr);
+                                                    newAddedVariables.add(oStr);
+                                                } else {
+                                                    Variable.Type sType = Variable.getSTypeFromP(p);
+                                                    variableTypesMap.put(sStr, sType);
+                                                    newAddedVariables.add(sStr);
+                                                }
+                                            }
+                                        } else {
+                                            if (!variableTypesMap.containsKey(sStr)) {
+                                                Variable.Type type = Variable.getSTypeFromP(p);
+                                                variableTypesMap.put(sStr, type);
+                                                newAddedVariables.add(sStr);
+                                            }
+
+                                        }
                                     }
-                                }
+                                }/* else { // TODO erase all this
+                                    if (p.isVariable()) {
+                                        if (o.isVariable()) {
+                                            // IMPOSSIBLE
+                                        } else {
+                                            // IMPOSSIBLE
+                                        }
+                                    } else {
+                                        if (o.isVariable()) {
+                                            // IMPOSSIBLE
+                                        } else {
+                                            // USELESS
+                                        }
+                                    }
+                                }*/
+
                             }
-                            else{ // TODO erase all this
-                                if(p.isVariable()){
-                                    if(o.isVariable()){
-                                        // IMPOSSIBLE
-                                    }
-                                    else{
-                                        // IMPOSSIBLE
-                                    }
-                                }
-                                else{
-                                    if(o.isVariable()){
-                                        // IMPOSSIBLE
-                                    }
-                                    else{
-                                        // USELESS
-                                    }
-                                }
-                            }
-                            
-                        }
+                        } while(!newAddedVariables.isEmpty());
                         
                     }
                 }

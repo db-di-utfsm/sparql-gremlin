@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/sparql-gremlin.iml" filepath="$PROJECT_DIR$/sparql-gremlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sparql-gremlin.iml" filepath="$PROJECT_DIR$/sparql-gremlin.iml" />
     </modules>
   </component>
 </project>

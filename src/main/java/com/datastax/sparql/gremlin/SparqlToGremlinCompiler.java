@@ -65,22 +65,22 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
 
     GraphTraversal<Vertex, ?> convertToGremlinTraversal(final Query query) {
         // TEST -----------------------
-        HashMap<String,Variable.Type> variableTypesMap = new HashMap<>();
-        ArrayList<Triple> unknowTriples = new ArrayList();
+        //HashMap<String,Variable.Type> typesMap = new HashMap<>();
+
         String testQueryString = TestQueries.test;
         Query testQuery = QueryFactory.create(Prefixes.preamblePrepend(testQueryString), Syntax.syntaxSPARQL);
+        final Typifier typifier = new Typifier();
         ElementWalker.walk(testQuery.getQueryPattern(),
-                // For each element...
                 new ElementVisitorBase() {
                     // ...when it's a block of triples...
                     public void visit(ElementPathBlock el) {
-                        // ...go through all the triples...
-                        Iterator<TriplePath> triples = el.patternElts();
-                        ArrayList<String> newAddedVariables = new ArrayList<>();
+                        typifier.exec(el.patternElts());
+                        /*
+                        ArrayList<String> newAddedVariables;
                         do {
-                            newAddedVariables.clear();
+                            Iterator<TriplePath> triples = el.patternElts();
+                            newAddedVariables = new ArrayList<>();
                             while (triples.hasNext()) {
-                                // ...and grab the subjec
                                 Triple triple = triples.next().asTriple();
                                 Node s, p, o;
                                 String sStr, pStr, oStr;
@@ -92,21 +92,64 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
                                 oStr = o.toString();
                                 if (s.isVariable()) {
                                     if (p.isVariable()) {
-                                        if (o.isVariable()) {
+                                        if (o.isVariable()) { // var var var
+
                                             // TODO this case is something to worry about
-                                        } else {
-                                            if (!variableTypesMap.containsKey(sStr)) {
-                                                if (!variableTypesMap.containsKey(pStr)) {
+                                            if (!typesMap.containsKey(sStr)) {
+                                                if (!typesMap.containsKey(pStr)) {
+                                                    if (!typesMap.containsKey(oStr)){ // unknow unknow unknow
+                                                        continue;   // if this happens always until the analysis ends,
+                                                                    // then this triple will match ALL
+                                                    }
+                                                    else{ // unknow unknow know
+                                                        //Variable.Type oType = typesMap.get(oStr);
+                                                        Variable.Type types[] = Variable.getSPTypeFromOType(typesMap, oStr);
+
+
+                                                    }
+
+                                                } else {
+                                                    if (!typesMap.containsKey(oStr)){ // unknow know unknow
+                                                        continue;   // if this happens always until the analysis ends,
+                                                        // then this triple will match ALL
+                                                    }
+                                                    else{ // unknow know know
+
+                                                    }
+                                                }
+                                            } else {
+                                                if (!typesMap.containsKey(pStr)) {
+                                                    if (!typesMap.containsKey(oStr)){ // know unknow unknow
+                                                        continue;   // if this happens always until the analysis ends,
+                                                        // then this triple will match ALL
+                                                    }
+                                                    else{ // know unknow know
+
+                                                    }
+
+                                                } else {
+                                                    if (!typesMap.containsKey(oStr)){ // know know unknow
+                                                        continue;   // if this happens always until the analysis ends,
+                                                        // then this triple will match ALL
+                                                    }
+                                                    else{ // know know know
+                                                        continue;
+                                                    }
+                                                }
+                                            }
+                                        } else { // var var uri
+                                            if (!typesMap.containsKey(sStr)) {
+                                                if (!typesMap.containsKey(pStr)) {
                                                     continue;
                                                 } else {
-                                                    Variable.Type sType = Variable.getSTypeFromPType(variableTypesMap, pStr);
-                                                    variableTypesMap.put(sStr,sType);
+                                                    Variable.Type sType = Variable.getSTypeFromPType(typesMap, pStr);
+                                                    typesMap.put(sStr,sType);
                                                     newAddedVariables.add(sStr);
                                                 }
                                             } else {
-                                                if (!variableTypesMap.containsKey(pStr)) {
-                                                    Variable.Type pType = Variable.getPTypeFromSType(variableTypesMap,sStr);
-                                                    variableTypesMap.put(pStr, pType);
+                                                if (!typesMap.containsKey(pStr)) {
+                                                    Variable.Type pType = Variable.getPTypeFromSType(typesMap,sStr);
+                                                    typesMap.put(pStr, pType);
                                                     newAddedVariables.add(pStr);
                                                 } else {
                                                     continue;
@@ -114,25 +157,25 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
                                             }
                                         }
                                     } else {
-                                        if (o.isVariable()) {
-                                            // check p to know both types
-                                            if (!variableTypesMap.containsKey(sStr)) {
-                                                if (!variableTypesMap.containsKey(oStr)) {
+                                        if (o.isVariable()) { // var uri var
+                                            // check p to know both typesMap
+                                            if (!typesMap.containsKey(sStr)) {
+                                                if (!typesMap.containsKey(oStr)) {
                                                     Variable.Type[] types = Variable.getSOTypesFromP(p);
-                                                    variableTypesMap.put(sStr, types[0]);
-                                                    variableTypesMap.put(oStr, types[1]);
+                                                    typesMap.put(sStr, types[0]);
+                                                    typesMap.put(oStr, types[1]);
                                                     newAddedVariables.add(sStr);
                                                     newAddedVariables.add(oStr);
                                                 } else {
                                                     Variable.Type sType = Variable.getSTypeFromP(p);
-                                                    variableTypesMap.put(sStr, sType);
+                                                    typesMap.put(sStr, sType);
                                                     newAddedVariables.add(sStr);
                                                 }
                                             }
-                                        } else {
-                                            if (!variableTypesMap.containsKey(sStr)) {
+                                        } else { // var uri uri
+                                            if (!typesMap.containsKey(sStr)) {
                                                 Variable.Type type = Variable.getSTypeFromP(p);
-                                                variableTypesMap.put(sStr, type);
+                                                typesMap.put(sStr, type);
                                                 newAddedVariables.add(sStr);
                                             }
 
@@ -140,40 +183,41 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
                                     }
                                 }/* else { // TODO erase all this
                                     if (p.isVariable()) {
-                                        if (o.isVariable()) {
+                                        if (o.isVariable()) { uri var var
                                             // IMPOSSIBLE
-                                        } else {
+                                        } else { uri var uri
                                             // IMPOSSIBLE
                                         }
                                     } else {
-                                        if (o.isVariable()) {
+                                        if (o.isVariable()) { uri uri var
                                             // IMPOSSIBLE
-                                        } else {
+                                        } else { uri uri uri
                                             // USELESS
                                         }
                                     }
-                                }*/
+                                }
 
                             }
                         } while(!newAddedVariables.isEmpty());
-                        
+                        */
                     }
                 }
         );
         // This assumes that there are not triples with just variables
         // TODO add isVariable and check Object if triples with 3 variable are going to be considered
+        /*
         unknowTriples.forEach((uTriple) -> {
             Node unknowS = uTriple.getSubject();
             Node unknowP = uTriple.getPredicate();
-            if(!variableTypesMap.containsKey(unknowS.toString())){
-                variableTypesMap.put(unknowS.toString(), Variable.Type.UNKNOW_S);
+            if(!typesMap.containsKey(unknowS.toString())){
+                typesMap.put(unknowS.toString(), Variable.Type.UNKNOW_S);
 
             }
-            if (!variableTypesMap.containsKey(unknowP.toString())) {
-                variableTypesMap.put(unknowP.toString(), Variable.Type.UNKNOW_P);
+            if (!typesMap.containsKey(unknowP.toString())) {
+                typesMap.put(unknowP.toString(), Variable.Type.UNKNOW_P);
             }
-        }); 
-        printMap(variableTypesMap);
+        });*/
+        printMap(typifier);
         // END TEST --------------------------------
         final Op op = Algebra.compile(query);
         OpWalker.walk(op, this);
@@ -242,6 +286,7 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
 
     @Override
     public void visit(final OpFilter opFilter) {
+        //noinspection ResultOfMethodCallIgnored
         opFilter.getExprs().getList().stream().
                 map(WhereTraversalBuilder::transform).
                 reduce(traversal, GraphTraversal::where);

@@ -25,11 +25,21 @@ public abstract class TestQueries {
             + "?x np:name ?p ."
             + "?p ?what 3 ."
             + "}";
+
     static public String test3 =
+            "SELECT ?x WHERE {" +
+                    "?p ?what 3 ." +
+                    "?p ?np ?n ." +
+                    "?n2 e:in ?n ."
+                    + "}";
+
+    static public String test7 =
             "SELECT ?x WHERE {"
                     + "?x np:name ?p ."
                     + "?p ?what ?what2 ."
+                    + "?p2 meta:src ?asd ." +
+                    " ?"
                     + "}";
 
-    static public String test = test2;
+    static public String test = test7;
 }

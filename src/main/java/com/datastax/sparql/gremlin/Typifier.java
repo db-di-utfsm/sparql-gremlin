@@ -80,7 +80,7 @@ class Typifier extends HashMap<String,Variable.Type> {
             assingTypeForVuu(container);
             assingTypeForVuv(container);
             assingTypeForVvu(container);
-            assingTypeForVvv(container);
+            // TODO assingTypeForVvv(container);
     }
 
 
@@ -146,7 +146,7 @@ class Typifier extends HashMap<String,Variable.Type> {
                 if (!containsKey(pStr)) {
                     if (containsKey(oStr)) { // unknow unknow know
                         //Variable.Type oType = typesMap.get(oStr);
-                        Variable.Type types[] = Variable.getSPTypeFromOType(typesMap, oStr);
+                        //Variable.Type types[] = Variable.getSPTypeFromOType(typesMap, oStr);
                     }
                 } else { // if p is known, p and o are known
                     if (!containsKey(oStr)) { // unknow know unknow

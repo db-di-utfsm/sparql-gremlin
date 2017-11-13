@@ -19,7 +19,6 @@
 
 package com.datastax.sparql.gremlin;
 
-import java.util.ArrayList;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
@@ -30,6 +29,9 @@ import org.apache.jena.sparql.algebra.OpVisitorBase;
 import org.apache.jena.sparql.algebra.OpWalker;
 import org.apache.jena.sparql.algebra.op.OpBGP;
 import org.apache.jena.sparql.algebra.op.OpFilter;
+import org.apache.jena.sparql.syntax.ElementPathBlock;
+import org.apache.jena.sparql.syntax.ElementVisitorBase;
+import org.apache.jena.sparql.syntax.ElementWalker;
 import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
@@ -38,14 +40,7 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.List;
-import org.apache.jena.graph.Node;
-import org.apache.jena.sparql.core.TriplePath;
-import org.apache.jena.sparql.syntax.ElementPathBlock;
-import org.apache.jena.sparql.syntax.ElementVisitorBase;
-import org.apache.jena.sparql.syntax.ElementWalker;
 
 /**
  * @author Daniel Kuppitz (http://gremlin.guru)
@@ -257,9 +252,7 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
     }
 
     private static void printMap(HashMap<String, Variable.Type> map){
-        for(Map.Entry<String, Variable.Type> kv : map.entrySet()){
-            System.out.println(kv.getKey() + " : " + kv.getValue().name());
-        }
+        map.forEach((key, value) -> System.out.println(key + " : " + value.name()));
     }
     private static GraphTraversal<Vertex, ?> convertToGremlinTraversal(final GraphTraversalSource g, final Query query) {
         return new SparqlToGremlinCompiler(g).convertToGremlinTraversal(query);

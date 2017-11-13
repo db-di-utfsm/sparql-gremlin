@@ -34,16 +34,16 @@ public class Prefixes {
 
     final static String PREFIX_DEFINITIONS;
     
-    public final static String NODE = "n";
-    public final static String EDGE = "e";
-    public final static String NODE_PROPERTY = "np";
-    public final static String EDGE_PROPERTY = "ep";
-    public final static String METAPROPERTY = "meta";
-    public final static String NODE_URI = BASE_URI + "node";
-    public final static String EDGE_URI= BASE_URI + "edge";
+    public final static String NODE              = "n";
+    public final static String EDGE              = "e";
+    public final static String NODE_PROPERTY     = "np";
+    public final static String EDGE_PROPERTY     = "ep";
+    public final static String METAPROPERTY      = "meta";
+    public final static String NODE_URI          = BASE_URI + "node";
+    public final static String EDGE_URI          = BASE_URI + "edge";
     public final static String NODE_PROPERTY_URI = NODE_URI + "/property";
     public final static String EDGE_PROPERTY_URI = EDGE_URI + "/property";
-    public final static String METAPROPERTY_URI = NODE_URI + "/metaproperty";
+    public final static String METAPROPERTY_URI  = NODE_URI + "/metaproperty";
     final static String PREFIXES_PREAMBLE;
     
     static {
@@ -73,7 +73,6 @@ public class Prefixes {
                     .append(System.lineSeparator());
         });
         PREFIXES_PREAMBLE = builder.toString();
-        System.out.println(PREFIXES_PREAMBLE);
     }
     
     public static String preamblePrepend(String query){

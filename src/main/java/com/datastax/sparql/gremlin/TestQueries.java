@@ -56,6 +56,20 @@ public abstract class TestQueries {
                     "<< ?varw e:to ?asd>> ;" +
                     "e:label 'asd' ." +
                     "?asd ?y ." +
-                    "<< ?x e:to ?p>> .";
-    static public String test = starQuery3;
+                    "<< ?x e:to ?p>> ;";
+
+    static public String starQuery4 =
+            "SELECT ?p WHERE {" +
+                    "<<   ?x np:name 'asdasdas' >>." +
+                    "<<?x np:name 'asdas'>>;" +
+                    " meta:asdasd 'asasda' ;" +
+                    " meta:as 'a'   ." +
+                    "?x ?p ?t ." +
+                    "<< ?a np:this ?b >> ;" +
+                    "meta:asd 'ASD' ." +
+                    "<< ?x e:to ?y >> ;" +
+                    " ep:cssssss ?p ." +
+                    "}"  ;
+
+    static public String test = starQuery4;
 }

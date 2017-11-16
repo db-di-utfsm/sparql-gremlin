@@ -21,17 +21,7 @@ package com.datastax.sparql.gremlin;
 
 import org.apache.jena.graph.Triple;
 import org.apache.jena.sparql.algebra.op.OpBGP;
-import org.apache.jena.sparql.expr.E_Equals;
-import org.apache.jena.sparql.expr.E_Exists;
-import org.apache.jena.sparql.expr.E_GreaterThan;
-import org.apache.jena.sparql.expr.E_GreaterThanOrEqual;
-import org.apache.jena.sparql.expr.E_LessThan;
-import org.apache.jena.sparql.expr.E_LessThanOrEqual;
-import org.apache.jena.sparql.expr.E_LogicalAnd;
-import org.apache.jena.sparql.expr.E_LogicalOr;
-import org.apache.jena.sparql.expr.E_NotEquals;
-import org.apache.jena.sparql.expr.E_NotExists;
-import org.apache.jena.sparql.expr.Expr;
+import org.apache.jena.sparql.expr.*;
 import org.apache.tinkerpop.gremlin.process.traversal.P;
 import org.apache.tinkerpop.gremlin.process.traversal.Step;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;

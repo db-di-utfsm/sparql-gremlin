@@ -1,22 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.datastax.sparql.gremlin;
-
-import org.apache.jena.graph.Node;
 
 import java.util.HashMap;
 
-/**
- *
- * @author edmolten
- */
 public abstract class Variable {
-
-
-
 
     public enum Type {
         // RDF NODES

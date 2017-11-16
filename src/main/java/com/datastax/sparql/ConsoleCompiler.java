@@ -19,16 +19,20 @@
 
 package com.datastax.sparql;
 
-import com.datastax.sparql.gremlin.SPARQLStarTranslator;
+import com.datastax.sparql.gremlin.Compiler;
 import com.datastax.sparql.gremlin.TestQueries;
+import com.datastax.sparql.star.SPARQLStarTranslator;
 import org.apache.commons.cli.*;
+import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 import org.apache.tinkerpop.gremlin.structure.Graph;
+import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.apache.tinkerpop.gremlin.structure.io.IoCore;
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerFactory;
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
 
 import java.io.*;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Daniel Kuppitz (http://gremlin.guru)
@@ -70,7 +74,7 @@ class ConsoleCompiler {
             queryBuilder.append(System.lineSeparator()).append(line);
         }
 
-        final String queryString = TestQueries.test;//= queryBuilder.toString();
+        String queryString = TestQueries.test;//= queryBuilder.toString();
         final Graph graph;
 
         if (commandLine.hasOption("graph")) {
@@ -95,8 +99,8 @@ class ConsoleCompiler {
 
         //Dummies.add(graph);
 
-        SPARQLStarTranslator.translate(queryString);
-        /*
+        queryString = SPARQLStarTranslator.translate(queryString);
+
         Compiler compiler = new Compiler(graph, queryString);
         final Traversal<Vertex, ?> traversal = compiler.convertToGremlinTraversal();
         printWithHeadline("SPARQL Query", queryString);        
@@ -104,7 +108,7 @@ class ConsoleCompiler {
         printWithHeadline("Result", String.join(System.lineSeparator(),
                 traversal.toStream().map(Object::toString).collect(Collectors.toList())));
         printWithHeadline("Traversal (after execution)", traversal);
-        */
+
     }
 
     private static void printHelp(final int exitCode) throws IOException {

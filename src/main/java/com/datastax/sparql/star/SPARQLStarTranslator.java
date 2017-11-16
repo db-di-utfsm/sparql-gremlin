@@ -1,4 +1,4 @@
-package com.datastax.sparql.gremlin;
+package com.datastax.sparql.star;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,6 +11,7 @@ public class SPARQLStarTranslator {
 
     final static private String SPARQL_STAR_LEFT_DELIMITER = "<<";
     final static private String SPARQL_STAR_RIGHT_DELIMITER = ">>";
+    // TODO can variables have underscore?
     final static private String NODE_PROPERTY_VALUE_PATTERN_STRING =
             SPARQL_STAR_LEFT_DELIMITER + "\\s*?\\?\\w*?\\s*?np:\\w*?\\s*?[^.;>]*?\\s*?" + SPARQL_STAR_RIGHT_DELIMITER +
                     "\\s*?(\\.|;\\s*?(meta:.*?\\s*?;)*\\s*?meta:.*?\\s*?\\.)";
@@ -28,7 +29,7 @@ public class SPARQLStarTranslator {
         usedVarNames = new HashSet<>();
     }
 
-    private static String getRandomVarName(){
+    static String getRandomVarName(){
         int randomNum;
         do {
             randomNum = ThreadLocalRandom.current().nextInt(0, 99999 + 1); // collision almost imposible?
@@ -44,15 +45,8 @@ public class SPARQLStarTranslator {
         ArrayList<SPARQLStarSubstring> substrings = new ArrayList<>();
         substrings.addAll(SPARQLStarNPVSubstring.getSubstrings(npvMatcher));
         substrings.addAll(SPARQLStarNENSubstring.getSubstrings(nenMatcher));
-        substrings.forEach((substring) -> replace(queryBuffer, substring));
+        substrings.forEach((substring) -> substring.replace(queryBuffer));
         return queryBuffer.toString();
     }
 
-    private static void replace(StringBuffer queryBuffer, SPARQLStarSubstring substring) {
-        ArrayList<String> triples = new ArrayList<>();
-        triples.addAll(substring.getSPARQLTriples());
-        StringBuilder builder = new StringBuilder();
-        triples.forEach(builder::append);
-        queryBuffer.replace(substring.startIndex, substring.finalIndex,builder.toString());
-    }
 }

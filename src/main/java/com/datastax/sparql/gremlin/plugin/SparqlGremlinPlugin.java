@@ -19,11 +19,7 @@
 
 package com.datastax.sparql.gremlin.plugin;
 
-import org.apache.tinkerpop.gremlin.groovy.plugin.AbstractGremlinPlugin;
-import org.apache.tinkerpop.gremlin.groovy.plugin.IllegalEnvironmentException;
-import org.apache.tinkerpop.gremlin.groovy.plugin.PluginAcceptor;
-import org.apache.tinkerpop.gremlin.groovy.plugin.PluginInitializationException;
-import org.apache.tinkerpop.gremlin.groovy.plugin.RemoteAcceptor;
+import org.apache.tinkerpop.gremlin.groovy.plugin.*;
 
 import java.util.Optional;
 

@@ -163,23 +163,6 @@ public class Builder {
                 }
             }
         }
-        /*
-        si p es variable:
-            si o es variable:
-                TODO
-            si no:
-                ver tpo de p
-                operacion segun tipo
-        si no:
-            ver tipo de p
-            si o es variable:
-                hacer operación y ligar a variable
-            si no
-                hacer operación segun tipos
-
-
-         */
-        return null;
-
+        return null; // TODO this
     }
 }

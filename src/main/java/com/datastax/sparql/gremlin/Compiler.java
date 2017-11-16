@@ -44,7 +44,7 @@ public class Compiler extends OpVisitorBase {
         printMap(typifier);
         final Op op = Algebra.compile(query);
         OpWalker.walk(op, this);
-        // COPIED AS IS FROM ORIGINAL CLASS
+        // TODO COPIED AS IS FROM ORIGINAL CLASS
         if (!query.isQueryResultStar()) {
             final List<String> vars = query.getResultVars();
             switch (vars.size()) {

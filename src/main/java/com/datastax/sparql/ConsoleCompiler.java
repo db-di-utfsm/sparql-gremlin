@@ -19,19 +19,16 @@
 
 package com.datastax.sparql;
 
-import com.datastax.sparql.gremlin.Compiler;
+import com.datastax.sparql.gremlin.SPARQLStarTranslator;
 import com.datastax.sparql.gremlin.TestQueries;
 import org.apache.commons.cli.*;
-import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 import org.apache.tinkerpop.gremlin.structure.Graph;
-import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.apache.tinkerpop.gremlin.structure.io.IoCore;
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerFactory;
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
 
 import java.io.*;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @author Daniel Kuppitz (http://gremlin.guru)
@@ -43,7 +40,6 @@ class ConsoleCompiler {
         final Options options = new Options();
         options.addOption("f", "file", true, "a file that contains a SPARQL query");
         options.addOption("g", "graph", true, "the graph that's used to execute the query [classic|modern|crew|kryo file]");
-        // TODO: add an OLAP option (perhaps: "--olap spark"?)
 
         // this is awful
         // TODO make better use of maven args
@@ -98,14 +94,17 @@ class ConsoleCompiler {
         }
 
         //Dummies.add(graph);
+
+        SPARQLStarTranslator.translate(queryString);
+        /*
         Compiler compiler = new Compiler(graph, queryString);
         final Traversal<Vertex, ?> traversal = compiler.convertToGremlinTraversal();
-        
         printWithHeadline("SPARQL Query", queryString);        
         printWithHeadline("Traversal (prior execution)", traversal);
         printWithHeadline("Result", String.join(System.lineSeparator(),
                 traversal.toStream().map(Object::toString).collect(Collectors.toList())));
         printWithHeadline("Traversal (after execution)", traversal);
+        */
     }
 
     private static void printHelp(final int exitCode) throws IOException {

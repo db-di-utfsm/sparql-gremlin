@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.datastax.sparql.gremlin;
 
-/**
- *
- * @author edmolten
- */
 public abstract class TestQueries {
+
     static public String test1 = "SELECT ?x WHERE {"
                 + "?x np:name ?p ."
                 + "?p n:value ?name ."
@@ -20,6 +12,7 @@ public abstract class TestQueries {
                 + "?software np:name ?name ."
                 + "?name n:value 'tinkergraph' ."
                 + "}";
+
     static public String test2 =
             "SELECT ?x WHERE {"
             + "?x np:name ?p ."
@@ -45,5 +38,24 @@ public abstract class TestQueries {
                     "?x np:name ?p . " +
                     "?p n:value 'marko' . " +
                     "}";
-    static public String test = simpleTest1;
+
+    static public String starQuery =
+            "sfsf as asda sda SELECT ?p WHERE {" +
+                    "<<   ?x np:name 'asdasdas' >>   . }";
+    static public String starQuery2 =
+            "sfsf as asda sda SELECT ?p WHERE {" +
+                    "<<   ?x np:name 'asdasdas' >>   . }" +
+                    "<<?x np:name 'asdas'>>.";
+    static public String starQuery3 =
+            "sfsf as asda sda SELECT ?p WHERE {" +
+                    "<<   ?x np:name 'asdasdas' >>   . }" +
+                    "<<?x np:name 'asdas'>>;" +
+                    " meta:asdasd 'asasda' ;" +
+                    " meta:as 'a'   ." +
+                    "?x ?p ?t ." +
+                    "<< ?varw e:to ?asd>> ;" +
+                    "e:label 'asd' ." +
+                    "?asd ?y ." +
+                    "<< ?x e:to ?p>> .";
+    static public String test = starQuery3;
 }

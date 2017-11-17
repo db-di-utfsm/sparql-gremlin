@@ -41,7 +41,7 @@ public abstract class TestQueries {
 
     static public String simpleTestStar = // OK
             "SELECT ?x WHERE {" +
-                    "<<?x np:name 'asd' >>. }";
+                    "<<?x np:name 'marko' >>. }";
 
 
     static public String starQuery =
@@ -76,5 +76,34 @@ public abstract class TestQueries {
                     " ep:cssssss ?p ." +
                     "}"  ;
 
-    static public String test = simpleTestStar;
+    static public String metaTest = // ok
+            "SELECT ?startTime WHERE {" +
+                    "<< ?x np:name 'daniel' >> ." +
+                    "<<?x np:location 'aachen'>> ;" +
+                    "meta:startTime ?startTime ." +
+                    "}";
+
+    static public String labelTest = // ok
+            "SELECT ?label WHERE {" +
+                    "?x n:label ?label ." +
+                    "}";
+
+    static public String idTest = //ok
+            "SELECT ?x WHERE {" +
+                    "?x n:id 1 ." +
+                    "}";
+
+    static public String idVarTest = //ok
+            "SELECT ?id WHERE {" +
+                    "?x n:id ?id ." +
+                    "}";
+
+
+    static public String edgesTest =
+
+            "SELECT ?x WHERE {" +
+                    "?x e:out ?e ." +
+                    "?e e:in ?y ." +
+                    "?e e:id 17 .}";
+    static public String test = edgesTest;
 }

@@ -93,21 +93,21 @@ public class Builder {
                 String oName = o.getName();
                 String pStr = p.toString();
                 if (PredicateCheck.isValue(pStr)){
-                    result.add(traversal.value().as(oName));
+                    result.add(traversal.value().as(oName)); // ok
                     return result;
                 }
-                else if (PredicateCheck.isMeta(pStr)) {
+                else if (PredicateCheck.isMeta(pStr)) { // ok
                     String metaProperty = pStr.split("#")[1];
                     result.add(traversal.values(metaProperty).as(oName));
                     return result;
-                } else if (PredicateCheck.isNodeProperty(pStr)) {
+                } else if (PredicateCheck.isNodeProperty(pStr)) { // ok
                     String property = pStr.split("#")[1];
                     result.add(traversal.properties(property).as(oName));
                     return result;
-                } else if (PredicateCheck.isNodeLabel(pStr)){
+                } else if (PredicateCheck.isNodeLabel(pStr)){ // ok
                     result.add(traversal.label().as(oName));
                     return  result;
-                } else if (PredicateCheck.isNodeId(pStr)) {
+                } else if (PredicateCheck.isNodeId(pStr)) { // ok
                     result.add(traversal.id().as(oName));
                     return  result;
                 } else if (PredicateCheck.isEdgeIn(pStr)) {
@@ -132,7 +132,7 @@ public class Builder {
                 String oStr = o.toString();
                 String pStr = p.toString();
                 if (PredicateCheck.isValue(pStr)){
-                    result.add(traversal.hasValue(o.getLiteralValue()));
+                    result.add(traversal.hasValue(o.getLiteralValue())); // OK
                     return result;
                 } else if (PredicateCheck.isMeta(pStr)) {
                     String metaProperty = pStr.split("#")[1];
@@ -143,7 +143,7 @@ public class Builder {
                 } else if (PredicateCheck.isNodeLabel(pStr)){
                     result.add(traversal.hasLabel(o.getLiteralValue().toString()));
                     return  result;
-                } else if (PredicateCheck.isNodeId(pStr)) {
+                } else if (PredicateCheck.isNodeId(pStr)) { // ok
                     result.add(traversal.hasId(o.getLiteralValue()));
                     return  result;
                 } else if (PredicateCheck.isEdgeIn(pStr)) {

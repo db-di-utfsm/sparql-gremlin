@@ -26,9 +26,7 @@ import org.apache.commons.cli.*;
 import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
-import org.apache.tinkerpop.gremlin.structure.io.IoCore;
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerFactory;
-import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
 
 import java.io.*;
 import java.util.Map;
@@ -74,9 +72,9 @@ class ConsoleCompiler {
             queryBuilder.append(System.lineSeparator()).append(line);
         }
 
-        String queryString = TestQueries.test;//= queryBuilder.toString();
+        String originalQuery = TestQueries.test;//= queryBuilder.toString();
         final Graph graph;
-
+        /*
         if (commandLine.hasOption("graph")) {
             switch (commandLine.getOptionValue("graph").toLowerCase()) {
                 case "classic":
@@ -96,14 +94,19 @@ class ConsoleCompiler {
         } else {
             graph = TinkerFactory.createModern();
         }
-
+        */
         //Dummies.add(graph);
-
-        queryString = SPARQLStarTranslator.translate(queryString);
-
-        Compiler compiler = new Compiler(graph, queryString);
+        graph = TinkerFactory.createTheCrew();
+        String translatedQuery = SPARQLStarTranslator.translate(originalQuery);
+        Compiler compiler = new Compiler(graph, translatedQuery);
         final Traversal<Vertex, ?> traversal = compiler.convertToGremlinTraversal();
-        printWithHeadline("SPARQL Query", queryString);        
+        if(!translatedQuery.equals(originalQuery)){
+            printWithHeadline("SPARQL* Query", originalQuery);
+            printWithHeadline("SPARQL Query", translatedQuery);
+        }
+        else {
+            printWithHeadline("SPARQL Query", originalQuery);
+        }
         printWithHeadline("Traversal (prior execution)", traversal);
         printWithHeadline("Result", String.join(System.lineSeparator(),
                 traversal.toStream().map(Object::toString).collect(Collectors.toList())));

@@ -3,6 +3,7 @@ package com.datastax.sparql.gremlin;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryFactory;
+import org.apache.jena.query.QueryParseException;
 import org.apache.jena.query.Syntax;
 import org.apache.jena.sparql.algebra.Algebra;
 import org.apache.jena.sparql.algebra.Op;
@@ -30,7 +31,13 @@ public class Compiler extends OpVisitorBase {
     public Compiler(Graph g, String query) {
         this.traversal = g.traversal().V();
         this.builder = new Builder();
-        this.query =  QueryFactory.create(Prefixes.preamblePrepend(query), Syntax.syntaxSPARQL);
+        try {
+            this.query = QueryFactory.create(Prefixes.preamblePrepend(query), Syntax.syntaxSPARQL);
+        } catch (QueryParseException e){
+            System.out.println("La consulta no cumple con la sintaxis SPARQL. Mensaje de error:");
+            System.out.println(e.getMessage());
+            System.exit(0);
+        }
     }
 
     public GraphTraversal<Vertex, ?> convertToGremlinTraversal() {

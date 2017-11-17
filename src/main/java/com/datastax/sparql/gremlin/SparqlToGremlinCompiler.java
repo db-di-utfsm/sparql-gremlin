@@ -39,7 +39,6 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -212,7 +211,6 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
                 typesMap.put(unknowP.toString(), Variable.Type.UNKNOW_P);
             }
         });*/
-        printMap(typifier);
         // END TEST --------------------------------
         final Op op = Algebra.compile(query);
         OpWalker.walk(op, this);
@@ -251,9 +249,6 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
         return traversal;
     }
 
-    private static void printMap(HashMap<String, Variable.Type> map){
-        map.forEach((key, value) -> System.out.println(key + " : " + value.name()));
-    }
     private static GraphTraversal<Vertex, ?> convertToGremlinTraversal(final GraphTraversalSource g, final Query query) {
         return new SparqlToGremlinCompiler(g).convertToGremlinTraversal(query);
     }

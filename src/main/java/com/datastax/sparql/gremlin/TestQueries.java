@@ -33,11 +33,16 @@ public abstract class TestQueries {
                     + "?p2 meta:src ?asd ."
                     + "}";
 
-    static public String simpleTest1 =
-            "SELECT ?p WHERE {" +
+    static public String simpleTest1 = // OK
+            "SELECT ?x WHERE {" +
                     "?x np:name ?p . " +
                     "?p n:value 'marko' . " +
                     "}";
+
+    static public String simpleTestStar = // OK
+            "SELECT ?x WHERE {" +
+                    "<<?x np:name 'asd' >>. }";
+
 
     static public String starQuery =
             "sfsf as asda sda SELECT ?p WHERE {" +
@@ -71,5 +76,5 @@ public abstract class TestQueries {
                     " ep:cssssss ?p ." +
                     "}"  ;
 
-    static public String test = starQuery4;
+    static public String test = simpleTestStar;
 }

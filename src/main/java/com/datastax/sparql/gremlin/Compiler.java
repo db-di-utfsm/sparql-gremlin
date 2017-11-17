@@ -96,7 +96,7 @@ public class Compiler extends OpVisitorBase {
         }
         int size = matchTraversalsList.size();
         final Traversal[] matchTraversalsArray = new Traversal[size];
-        for( int i = 0; i < size ; i++){ // this is needed because match needs an array
+        for( int i = 0; i < size ; i++){ // because match needs an array
             matchTraversalsArray[i] = matchTraversalsList.get(i);
         }
         // TODO this asummes just one bgp in query

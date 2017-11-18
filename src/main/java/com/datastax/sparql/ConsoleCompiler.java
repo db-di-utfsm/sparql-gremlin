@@ -23,9 +23,8 @@ import com.datastax.sparql.gremlin.Compiler;
 import com.datastax.sparql.gremlin.TestQueries;
 import com.datastax.sparql.star.SPARQLStarTranslator;
 import org.apache.commons.cli.*;
-import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.structure.Graph;
-import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerFactory;
 
 import java.io.*;
@@ -99,7 +98,7 @@ class ConsoleCompiler {
         graph = TinkerFactory.createTheCrew();
         String translatedQuery = SPARQLStarTranslator.translate(originalQuery);
         Compiler compiler = new Compiler(graph, translatedQuery);
-        final Traversal<Vertex, ?> traversal = compiler.convertToGremlinTraversal();
+        final GraphTraversal<?, ?> traversal = compiler.convertToGremlinTraversal();
         if(!translatedQuery.equals(originalQuery)){
             printWithHeadline("SPARQL* Query", originalQuery);
             printWithHeadline("SPARQL Query", translatedQuery);
@@ -108,8 +107,12 @@ class ConsoleCompiler {
             printWithHeadline("SPARQL Query", originalQuery);
         }
         printWithHeadline("Traversal (prior execution)", traversal);
-        printWithHeadline("Result", String.join(System.lineSeparator(),
-                traversal.toStream().map(Object::toString).collect(Collectors.toList())));
+        //traversal.values().sideEffect(System.out::println).iterate();
+        //System.out.println(traversal.getClass());
+        //ArrayList<?> stream = (ArrayList<?>) traversal.toList();
+        //stream = stream.map(Object::toString);
+        //Object o = stream.collect(Collectors.toList());
+        printWithHeadline("Result", String.join(System.lineSeparator(), traversal.toStream().map(Object::toString).collect(Collectors.toList())));
         printWithHeadline("Traversal (after execution)", traversal);
 
     }

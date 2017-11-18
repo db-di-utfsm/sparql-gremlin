@@ -111,10 +111,10 @@ public class Builder {
                     result.add(traversal.id().as(oName));
                     return  result;
                 } else if (PredicateCheck.isEdgeIn(pStr)) {
-                    result.add(traversal.outV().as(oName));
+                    result.add(traversal.inV().as(oName));
                     return  result;
                 } else if (PredicateCheck.isEdgeOut(pStr)) {
-                    result.add(traversal.inV().as(oName));
+                    result.add(traversal.outE().as(oName));
                     return  result;
                 } else if (PredicateCheck.isEdgeId(pStr)){
                     result.add(traversal.id().as(oName));
@@ -146,15 +146,15 @@ public class Builder {
                 } else if (PredicateCheck.isNodeId(pStr)) { // ok
                     result.add(traversal.hasId(o.getLiteralValue()));
                     return  result;
-                } else if (PredicateCheck.isEdgeIn(pStr)) {
+                } else if (PredicateCheck.isEdgeIn(pStr)) { // -
                     // imposible
-                } else if (PredicateCheck.isEdgeOut(pStr)) {
+                } else if (PredicateCheck.isEdgeOut(pStr)) { // -
                     // imposible
-                } else if (PredicateCheck.isEdgeId(pStr)){
+                } else if (PredicateCheck.isEdgeId(pStr)){ // ok
                     result.add(traversal.hasId(o.getLiteralValue()));
                     return  result;
                 } else if (PredicateCheck.isEdgeLabel(pStr)) {
-                    result.add(traversal.hasLabel(oStr));
+                    result.add(traversal.hasLabel(o.getLiteralValue().toString()));
                     return  result;
                 } else if (PredicateCheck.isEdgeProperty(pStr)) {
                     String property = pStr.split("#")[1];

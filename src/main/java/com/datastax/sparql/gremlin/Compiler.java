@@ -17,13 +17,12 @@ import org.apache.jena.sparql.syntax.ElementWalker;
 import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.structure.Graph;
-import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 import java.util.*;
 
 public class Compiler extends OpVisitorBase {
 
-    private GraphTraversal<Vertex, ?> traversal;
+    private GraphTraversal<?, ?> traversal;
     private Builder builder;
     private Query query;
     Typifier typifier;
@@ -40,7 +39,7 @@ public class Compiler extends OpVisitorBase {
         }
     }
 
-    public GraphTraversal<Vertex, ?> convertToGremlinTraversal() {
+    public GraphTraversal<?, ?> convertToGremlinTraversal() {
         typifier = new Typifier();
         ElementWalker.walk(query.getQueryPattern(),
                 new ElementVisitorBase() {

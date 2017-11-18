@@ -94,16 +94,25 @@ public abstract class TestQueries {
                     "}";
 
     static public String idVarTest = //ok
-            "SELECT ?id WHERE {" +
+            "SELECT ?id ?x WHERE {" +
                     "?x n:id ?id ." +
                     "}";
 
 
-    static public String edgesTest =
+    static public String edgesTest = //OK
 
             "SELECT ?x WHERE {" +
                     "?x e:out ?e ." +
                     "?e e:in ?y ." +
                     "?e e:id 17 .}";
-    static public String test = edgesTest;
+
+    static public  String edgesTest2 = // ok
+            "SELECT ?y WHERE {" +
+                    "<<?x e:to ?y >>.}";
+
+    static public  String edgesTest3 = // ok
+            "SELECT ?y WHERE {" +
+                    "<<?x e:to ?y >> ;" +
+                    " e:label 'develops' .}";
+    static public String test = edgesTest3;
 }

@@ -110,55 +110,56 @@ public class Builder {
                 } else if (PredicateCheck.isNodeId(pStr)) { // ok
                     result.add(traversal.id().as(oName));
                     return  result;
-                } else if (PredicateCheck.isEdgeIn(pStr)) {
+                } else if (PredicateCheck.isEdgeIn(pStr)) { // ok
                     result.add(traversal.inV().as(oName));
                     return  result;
-                } else if (PredicateCheck.isEdgeOut(pStr)) {
+                } else if (PredicateCheck.isEdgeOut(pStr)) { // ok
                     result.add(traversal.outE().as(oName));
                     return  result;
-                } else if (PredicateCheck.isEdgeId(pStr)){
+                } else if (PredicateCheck.isEdgeId(pStr)){ // ok
                     result.add(traversal.id().as(oName));
                     return  result;
-                } else if (PredicateCheck.isEdgeLabel(pStr)) {
+                } else if (PredicateCheck.isEdgeLabel(pStr)) { // ok
                     result.add(traversal.label().as(oName));
                     return  result;
-                } else if (PredicateCheck.isEdgeProperty(pStr)) {
+                } else if (PredicateCheck.isEdgeProperty(pStr)) { // ok
                     String property = pStr.split("#")[1];
                     result.add(traversal.values(property).as(oName));
                     return result;
                 }
             }
             else { // v u u
-                String oStr = o.toString();
+                Object oLit = o.getLiteralValue();
+                String oStr = oLit.toString();
                 String pStr = p.toString();
-                if (PredicateCheck.isValue(pStr)){
-                    result.add(traversal.hasValue(o.getLiteralValue())); // OK
+                if (PredicateCheck.isValue(pStr)){ // ok
+                    result.add(traversal.hasValue(oLit));
                     return result;
-                } else if (PredicateCheck.isMeta(pStr)) {
+                } else if (PredicateCheck.isMeta(pStr)) { // ok
                     String metaProperty = pStr.split("#")[1];
-                    result.add(traversal.values(metaProperty).is(o.getLiteralValue()));
+                    result.add(traversal.values(metaProperty).is(oLit));
                     return result;
-                } else if (PredicateCheck.isNodeProperty(pStr)) {
+                } else if (PredicateCheck.isNodeProperty(pStr)) { // -
                     // imposible
                 } else if (PredicateCheck.isNodeLabel(pStr)){
-                    result.add(traversal.hasLabel(o.getLiteralValue().toString()));
+                    result.add(traversal.hasLabel(oStr)); // ok
                     return  result;
                 } else if (PredicateCheck.isNodeId(pStr)) { // ok
-                    result.add(traversal.hasId(o.getLiteralValue()));
+                    result.add(traversal.hasId(oLit));
                     return  result;
                 } else if (PredicateCheck.isEdgeIn(pStr)) { // -
                     // imposible
                 } else if (PredicateCheck.isEdgeOut(pStr)) { // -
                     // imposible
                 } else if (PredicateCheck.isEdgeId(pStr)){ // ok
-                    result.add(traversal.hasId(o.getLiteralValue()));
+                    result.add(traversal.hasId(oLit));
                     return  result;
-                } else if (PredicateCheck.isEdgeLabel(pStr)) {
-                    result.add(traversal.hasLabel(o.getLiteralValue().toString()));
+                } else if (PredicateCheck.isEdgeLabel(pStr)) { // ok
+                    result.add(traversal.hasLabel(oStr));
                     return  result;
-                } else if (PredicateCheck.isEdgeProperty(pStr)) {
+                } else if (PredicateCheck.isEdgeProperty(pStr)) { // ok
                     String property = pStr.split("#")[1];
-                    result.add(traversal.values(property).is(oStr));
+                    result.add(traversal.values(property).is(oLit));
                     return result;
                 }
             }

@@ -28,6 +28,7 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerFactory;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -107,14 +108,9 @@ class ConsoleCompiler {
             printWithHeadline("SPARQL Query", originalQuery);
         }
         printWithHeadline("Traversal (prior execution)", traversal);
-        //traversal.values().sideEffect(System.out::println).iterate();
-        //System.out.println(traversal.getClass());
-        //ArrayList<?> stream = (ArrayList<?>) traversal.toList();
-        //stream = stream.map(Object::toString);
-        //Object o = stream.collect(Collectors.toList());
-        printWithHeadline("Result", String.join(System.lineSeparator(), traversal.toStream().map(Object::toString).collect(Collectors.toList())));
+        ArrayList<String> l = (ArrayList<String>) traversal.toStream().map(Object::toString).collect(Collectors.toList());
+        printWithHeadline("Result", l);
         printWithHeadline("Traversal (after execution)", traversal);
-
     }
 
     private static void printHelp(final int exitCode) throws IOException {

@@ -88,6 +88,11 @@ public abstract class TestQueries {
                     "?x n:label ?label ." +
                     "}";
 
+    static public String labelTest2 = // ok
+            "SELECT ?x WHERE {" +
+                    "?x n:label 'person' ." +
+                    "}";
+
     static public String idTest = //ok
             "SELECT ?x WHERE {" +
                     "?x n:id 1 ." +
@@ -114,5 +119,33 @@ public abstract class TestQueries {
             "SELECT ?y WHERE {" +
                     "<<?x e:to ?y >> ;" +
                     " e:label 'develops' .}";
-    static public String test = edgesTest3;
+
+
+    static public  String edgesTest4 = // ok
+            "SELECT ?x WHERE {" +
+                    "<<?x e:to ?y >> ;" +
+                    " ep:since 2011 .}";
+
+    static public String edgesTest5 = //OK
+
+            "SELECT ?c WHERE {" +
+                    "?x e:out ?e ." +
+                    "?e e:in ?y ." +
+                    "?e e:id ?c .}";
+
+    static public String edgesTest6 = //OK
+
+            "SELECT ?s WHERE {" +
+                    "<< ?x e:to ?y>> ;" +
+                    "e:label ?s ." +
+                    "}";
+
+    static public String edgesTest7 = //OK
+
+            "SELECT ?s WHERE {" +
+                    "<< ?x e:to ?y>> ;" +
+                    "ep:skill ?s ." +
+                    "}";
+
+    static public String test = labelTest2;
 }

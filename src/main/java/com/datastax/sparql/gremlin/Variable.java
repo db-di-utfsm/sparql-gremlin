@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 public abstract class Variable {
 
+
+
     public enum Type {
         // RDF NODES
         NODE,
@@ -60,6 +62,11 @@ public abstract class Variable {
     public static Type getSTypeFromP(String p) {
         return getSOTypesFromP(p)[0];
     }
+
+    public static Type getOTypeFromP(String p) {
+        return getSOTypesFromP(p)[1];
+    }
+
 
     public static Type getSTypeFromPType(HashMap<String, Type> variableTypesMap, String pStr) {
         Type pType = variableTypesMap.get(pStr);

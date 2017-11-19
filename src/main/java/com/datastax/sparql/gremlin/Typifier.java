@@ -111,6 +111,13 @@ class Typifier extends HashMap<String,Variable.Type> {
                     Variable.Type sType = Variable.getSTypeFromP(pStr);
                     put(sStr, sType);
                 }
+            } else{
+                if (!containsKey(oStr)) {
+                    Variable.Type oType = Variable.getOTypeFromP(pStr);
+                    put(oStr, oType);
+                } else {
+                    // everything is known
+                }
             }
         }
 
@@ -128,7 +135,7 @@ class Typifier extends HashMap<String,Variable.Type> {
                 }
             } else {
                 if (!containsKey(pStr)) {
-                    Variable.Type pType = Variable.getPTypeFromSType(this,sStr);
+                    Variable.Type pType = Variable.getPTypeFromSType(this, sStr);
                     put(pStr, pType);
                 }
             }

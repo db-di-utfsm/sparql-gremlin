@@ -43,7 +43,7 @@ public class Compiler extends OpVisitorBase {
         typifier = new Typifier();
         ElementWalker.walk(query.getQueryPattern(),
                 new ElementVisitorBase() {
-                    public void visit(ElementPathBlock el) {
+                    public void visit(ElementPathBlock el){
                         typifier.exec(el.patternElts());
                     }
                 });
@@ -108,6 +108,7 @@ public class Compiler extends OpVisitorBase {
         // TODO this asummes just one bgp in query
         traversal = traversal.match(matchTraversalsArray);
     }
+
 
     @Override
     public void visit(final OpFilter opFilter) {

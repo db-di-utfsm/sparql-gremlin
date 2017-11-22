@@ -26,7 +26,10 @@ public abstract class Variable {
         // multiples posible EDGES
         N_LABEL_ID, // n:label or n:id
         E_ID_LABEL_PROPERTY, // e:label or e:id or ep:property
-        N_VALUE_META, // n:value or meta:something
+        N_VALUE_META,
+
+
+        P_FROM_PROPERTY, P_FROM_NODE, P_FROM_EDGE, // n:value or meta:something
     }
 
     public static Type[] getSOTypesFromP(String p) {
@@ -86,13 +89,13 @@ public abstract class Variable {
     public static Type getPTypeFromSType(HashMap<String, Type> variableTypesMap, String sStr) {
         Type sType = variableTypesMap.get(sStr);
         if( sType == Type.PROPERTY){
-            return Type.N_VALUE_META;
+            return Type.P_FROM_PROPERTY;
         }
         else if (sType == Type.NODE){
-            return Type.N_LABEL_ID;
+            return Type.P_FROM_NODE;
         }
         else if (sType == Type.EDGE){
-            return Type.E_ID_LABEL_PROPERTY;
+            return Type.P_FROM_EDGE;
         }
         else{
             return null; // TODO again not good

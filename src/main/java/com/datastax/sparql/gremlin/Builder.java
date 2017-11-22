@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class Builder {
 
-
     public ArrayList<GraphTraversal<Vertex, ?>> transform(Triple triple, Typifier typifier) {
         Node s, p, o;
         ArrayList<GraphTraversal<Vertex,?>> result =  new ArrayList<>();
@@ -20,8 +19,7 @@ public class Builder {
         final GraphTraversal<Vertex, ?> traversal = __.as(s.getName());
         if(p.isVariable()){
             if(o.isVariable()){ // v v v
-                //TODO
-                return null;
+
             }
             else{ // v v u
                 Object oLit = o.getLiteralValue();
@@ -29,6 +27,20 @@ public class Builder {
                 String pName = p.getName();
                 Variable.Type pType = typifier.get(p.toString());
                 switch (pType){
+                    case P_FROM_NODE:
+                        result.add(traversal.or(__.hasLabel(oStr),
+                                __.hasId(oLit)));
+                        break;
+                    case P_FROM_EDGE:
+                        result.add(traversal.or(__.hasLabel(oStr),
+                                __.hasId(oLit),
+                                __.properties().value().is(oLit)));
+                        break;
+                    case P_FROM_PROPERTY:
+
+
+                        break;
+                    /*
                     case N_VALUE:
                         result.add(traversal.properties().as(pName));
                         GraphTraversal<Vertex, ?> as = __.as(pName);
@@ -37,7 +49,7 @@ public class Builder {
                     case NP:
                         // imposible
                         break;
-                    case META:
+                    case ANY_META_PROP:
                         result.add(traversal.properties().as(pName));
                         GraphTraversal<Vertex, ?> as2 = __.as(pName);
                         result.add(as2.hasValue(oStr));
@@ -75,16 +87,17 @@ public class Builder {
                         return result;
                     case N_LABEL_ID:
                         break;
-                        /*String pName = p.getName();
+                        String pName = p.getName();
 
 
-                        __.as(pName + "ID").*/
+                        __.as(pName + "ID").
 
 
                     case E_ID_LABEL_PROPERTY:
                         break;
                     case N_VALUE_META:
                         break;
+                        */
                 }
             }
         }
@@ -94,38 +107,27 @@ public class Builder {
                 String pStr = p.toString();
                 if (PredicateCheck.isValue(pStr)){
                     result.add(traversal.value().as(oName)); // ok
-                    return result;
-                }
-                else if (PredicateCheck.isMeta(pStr)) { // ok
+                } else if (PredicateCheck.isMeta(pStr)) { // ok
                     String metaProperty = pStr.split("#")[1];
                     result.add(traversal.values(metaProperty).as(oName));
-                    return result;
                 } else if (PredicateCheck.isNodeProperty(pStr)) { // ok
                     String property = pStr.split("#")[1];
                     result.add(traversal.properties(property).as(oName));
-                    return result;
                 } else if (PredicateCheck.isNodeLabel(pStr)){ // ok
                     result.add(traversal.label().as(oName));
-                    return  result;
                 } else if (PredicateCheck.isNodeId(pStr)) { // ok
                     result.add(traversal.id().as(oName));
-                    return  result;
                 } else if (PredicateCheck.isEdgeIn(pStr)) { // ok
                     result.add(traversal.inV().as(oName));
-                    return  result;
                 } else if (PredicateCheck.isEdgeOut(pStr)) { // ok
                     result.add(traversal.outE().as(oName));
-                    return  result;
                 } else if (PredicateCheck.isEdgeId(pStr)){ // ok
                     result.add(traversal.id().as(oName));
-                    return  result;
                 } else if (PredicateCheck.isEdgeLabel(pStr)) { // ok
                     result.add(traversal.label().as(oName));
-                    return  result;
                 } else if (PredicateCheck.isEdgeProperty(pStr)) { // ok
                     String property = pStr.split("#")[1];
                     result.add(traversal.values(property).as(oName));
-                    return result;
                 }
             }
             else { // v u u
@@ -134,36 +136,29 @@ public class Builder {
                 String pStr = p.toString();
                 if (PredicateCheck.isValue(pStr)){ // ok
                     result.add(traversal.hasValue(oLit));
-                    return result;
                 } else if (PredicateCheck.isMeta(pStr)) { // ok
                     String metaProperty = pStr.split("#")[1];
                     result.add(traversal.values(metaProperty).is(oLit));
-                    return result;
                 } else if (PredicateCheck.isNodeProperty(pStr)) { // -
                     // imposible
                 } else if (PredicateCheck.isNodeLabel(pStr)){
                     result.add(traversal.hasLabel(oStr)); // ok
-                    return  result;
                 } else if (PredicateCheck.isNodeId(pStr)) { // ok
                     result.add(traversal.hasId(oLit));
-                    return  result;
                 } else if (PredicateCheck.isEdgeIn(pStr)) { // -
                     // imposible
                 } else if (PredicateCheck.isEdgeOut(pStr)) { // -
                     // imposible
                 } else if (PredicateCheck.isEdgeId(pStr)){ // ok
                     result.add(traversal.hasId(oLit));
-                    return  result;
                 } else if (PredicateCheck.isEdgeLabel(pStr)) { // ok
                     result.add(traversal.hasLabel(oStr));
-                    return  result;
                 } else if (PredicateCheck.isEdgeProperty(pStr)) { // ok
                     String property = pStr.split("#")[1];
                     result.add(traversal.values(property).is(oLit));
-                    return result;
                 }
             }
         }
-        return null; // TODO this
+        return result;
     }
 }

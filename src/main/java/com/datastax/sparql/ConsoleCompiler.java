@@ -98,6 +98,7 @@ class ConsoleCompiler {
         //Dummies.add(graph);
         graph = TinkerFactory.createTheCrew();
         String translatedQuery = SPARQLStarTranslator.translate(originalQuery);
+        System.out.println(translatedQuery);
         Compiler compiler = new Compiler(graph, translatedQuery);
         final GraphTraversal<?, ?> traversal = compiler.convertToGremlinTraversal();
         if(!translatedQuery.equals(originalQuery)){

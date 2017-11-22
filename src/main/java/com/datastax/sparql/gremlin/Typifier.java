@@ -41,14 +41,13 @@ class Typifier extends HashMap<String,Variable.Type> {
             if (s.isVariable()) {
                 if (p.isVariable()) {
                     if (o.isVariable()) { // var var var
-                        vvv.add(triple);
+                        // vvv.add(triple);
                     } else { // var var uri
                         vvu.add(triple);
                     }
                 } else {
                     if (o.isVariable()) { // var uri var
                         vuv.add(triple);
-
                     } else { // var uri uri
                         vuu.add(triple);
                     }
@@ -80,7 +79,7 @@ class Typifier extends HashMap<String,Variable.Type> {
             assingTypeForVuu(container);
             assingTypeForVuv(container);
             assingTypeForVvu(container);
-            // TODO assingTypeForVvv(container);
+            assingTypeForVvv(container);
     }
 
 
@@ -129,18 +128,14 @@ class Typifier extends HashMap<String,Variable.Type> {
             sStr = triple.getSubject().toString();
             pStr = triple.getPredicate().toString();
             if (!containsKey(sStr)) {
-                if (containsKey(pStr)) {
-                    Variable.Type sType = Variable.getSTypeFromPType(this, pStr);
-                    put(sStr,sType);
-                }
+                // TODO ?
             } else {
-                if (!containsKey(pStr)) {
-                    Variable.Type pType = Variable.getPTypeFromSType(this, sStr);
-                    put(pStr, pType);
-                }
+                Variable.Type pType = Variable.getPTypeFromSType(this, sStr);
+                put(pStr, pType);
             }
         }
     }
+
 
     private void assingTypeForVvv(TripleContainer container){
         String sStr, pStr, oStr;
@@ -148,7 +143,6 @@ class Typifier extends HashMap<String,Variable.Type> {
             sStr = triple.getSubject().toString();
             pStr = triple.getPredicate().toString();
             oStr = triple.getObject().toString();
-            // TODO this case is something to worry about
             if (!containsKey(sStr)) {
                 if (!containsKey(pStr)) {
                     if (containsKey(oStr)) { // unknow unknow know
@@ -164,24 +158,11 @@ class Typifier extends HashMap<String,Variable.Type> {
                     }
                 }
             } else {
-                if (!containsKey(pStr)) {
-                    if (!containsKey(oStr)) { // know unknow unknow
-                        continue;   // if this happens always until the analysis ends,
-                        // then this triple will match ALL
-                    } else { // know unknow know
-
-                    }
-
-                } else {
-                    if (!containsKey(oStr)) { // know know unknow
-                        continue;   // if this happens always until the analysis ends,
-                        // then this triple will match ALL
-                    } else { // know know know
-                        continue;
-                    }
-                }
+                Variable.Type pType = Variable.getPTypeFromSType(this, sStr);
+                put(pStr, pType);
             }
         }
     }
+
 
 }

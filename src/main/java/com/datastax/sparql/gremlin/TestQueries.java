@@ -44,14 +44,14 @@ public abstract class TestQueries {
                     "<<?x np:name 'marko' >>. }";
 
 
-    static public String starQuery =
+    static public String starQuery = // OK TRANSLATING
             "sfsf as asda sda SELECT ?p WHERE {" +
                     "<<   ?x np:name 'asdasdas' >>   . }";
-    static public String starQuery2 =
+    static public String starQuery2 = // OK TRANSALTING
             "sfsf as asda sda SELECT ?p WHERE {" +
                     "<<   ?x np:name 'asdasdas' >>   . }" +
                     "<<?x np:name 'asdas'>>.";
-    static public String starQuery3 =
+    static public String starQuery3 = // OK TRANSALTING
             "sfsf as asda sda SELECT ?p WHERE {" +
                     "<<   ?x np:name 'asdasdas' >>   . }" +
                     "<<?x np:name 'asdas'>>;" +
@@ -59,11 +59,11 @@ public abstract class TestQueries {
                     " meta:as 'a'   ." +
                     "?x ?p ?t ." +
                     "<< ?varw e:to ?asd>> ;" +
-                    "e:label 'asd' ." +
+                    "e:label 'asd' ;" +
                     "?asd ?y ." +
-                    "<< ?x e:to ?p>> ;";
+                    "<< ?x e:to ?p>> .";
 
-    static public String starQuery4 =
+    static public String starQuery4 = // OK
             "SELECT ?p WHERE {" +
                     "<<   ?x np:name 'asdasdas' >>." +
                     "<<?x np:name 'asdas'>>;" +
@@ -147,5 +147,34 @@ public abstract class TestQueries {
                     "ep:skill ?s ." +
                     "}";
 
-    static public String test = labelTest2;
+    static public String vvuTest = // ok
+            "SELECT ?x WHERE {" +
+                    "<< ?x e:to ?y>> ." +
+                    "?y ?p 11 ." +
+                    "}";
+
+    static public String vvuTest2 = // ok
+            "SELECT ?y WHERE {" +
+                    "?x n:label 'person' ." +
+                    "<< ?x e:to ?y>> ." +
+                    "?y ?p 11 ." +
+                    "}";
+
+    static public String vvuTest3 = // ok
+            "SELECT ?x WHERE {" +
+                    "?x n:label 'person' ." +
+                    "<< ?x e:to ?y>> ;" +
+                    "?p 4 ." +
+                    "}";
+
+    static String manyBlocks =
+            "SELECT ?s WHERE {" +
+                    "{<< ?x e:to ?y>> ;" +
+                    "ep:skill ?s ." +
+                    "} UNION {" +
+                    "?x ?y ?z ." +
+                    "FILTER (?z > 3)" +
+                    "}}";
+
+    static public String test = vvuTest3;
 }

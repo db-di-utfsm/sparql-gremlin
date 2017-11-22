@@ -1,7 +1,7 @@
 package com.datastax.sparql.star;
 
 import java.util.regex.Matcher;
-
+// TODO use RE contants
 abstract class SPARQLStarSubstring {
 
     String s;

@@ -45,6 +45,7 @@ class ConsoleCompiler {
 
         // this is awful
         // TODO make better use of maven args
+        // TODO write good tests
         String[] hardcodedArgs = {"-f", "examples/modern1.sparql"};
         final CommandLineParser parser = new DefaultParser();
         final CommandLine commandLine;

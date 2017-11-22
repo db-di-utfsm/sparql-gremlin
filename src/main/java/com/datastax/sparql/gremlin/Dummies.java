@@ -4,6 +4,6 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 
 public class Dummies {
     public static void add(Graph graph) {
-        // TODO duumie nodes
+        // TODO duumie nodes ?
     }
 }

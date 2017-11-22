@@ -18,7 +18,7 @@ public class SPARQLStarTranslator {
         String VAR = "\\?"+ NAME;
         String ANY_NODE_PROP = Prefixes.NODE_PROPERTY + ":" + NAME;
         String ANY_META_PROP = Prefixes.METAPROPERTY + ":" + NAME;
-        String VALUE = "[^<.;>]*?"; // depends on delimeters
+        String VALUE = "[^<.;>]+"; // depends on delimeters
         String NODE_PROP_COMPLIMENT = "(" + ANY_META_PROP + "|" + VAR + ")" + ONE_OR_MORE_SPACES + "(" + VAR + "|" + VALUE + ")";
         String SPARQL_STAR_LEFT_DELIMITER = "<<";
         String SPARQL_STAR_RIGHT_DELIMITER = ">>";
@@ -41,6 +41,9 @@ public class SPARQLStarTranslator {
     // << >> SINTAX WILL NOT ALLOW SOMETHING DIFERENT IN PREDICATE THAN NP:_ AND E:TO,
     // EVERYTHING ELSE WITH LEAD TO PARSING ERROR IN JENA
     // super ad-hoc
+    // TODO allow use of variables in predicate
+
+
     final static private String NODE_PROPERTY_VALUE_PATTERN_STRING = RE.SPARQL_STAR_LEFT_DELIMITER + "\\s*?\\?\\w*?\\s*?np:\\w*?\\s*?[^.;>]*?\\s*?" + RE.SPARQL_STAR_RIGHT_DELIMITER +
                     "\\s*?(\\.|;\\s*?((meta:.*?|\\?\\w*?)\\s*?;)*\\s*(meta:.*?|\\?\\w*?)\\s*?\\.)";
     final static private String NODE_EDGE_NODE_PATTERN_STRING = RE.SPARQL_STAR_LEFT_DELIMITER + "\\s*?\\?\\w*?\\s*?e:to\\s*?\\?\\w*?\\s*?" + RE.SPARQL_STAR_RIGHT_DELIMITER +
@@ -59,8 +62,8 @@ public class SPARQLStarTranslator {
     static String getRandomVarName(){
         int randomNum;
         do {
-            randomNum = ThreadLocalRandom.current().nextInt(0, 99999 + 1); // collision almost imposible?
-        } while (usedVarNames.contains(randomNum));
+            randomNum = ThreadLocalRandom.current().nextInt(0, 99999 + 1);
+        } while (usedVarNames.contains(randomNum)); // fast lookup, to ensure not collisions
         usedVarNames.add(randomNum);
         return "?r" + String.valueOf(randomNum);
     }

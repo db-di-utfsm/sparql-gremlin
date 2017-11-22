@@ -17,6 +17,8 @@ class SPARQLStarNENSubstring extends SPARQLStarSubstring {
         return list;
     }
 
+    // TODO constants!!
+
     @Override
     void buildMainTriples(String main, StringBuilder builder, String newVariable){
         String[] splitted = splitStarTriple(main);

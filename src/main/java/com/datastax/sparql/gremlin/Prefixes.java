@@ -27,7 +27,7 @@ import java.util.List;
  * @author Daniel Kuppitz (http://gremlin.guru)
  */
 public class Prefixes {
-
+    // TODO erase everything that's not being used
     public final static String BASE_URI = "http://www.tinkerpop.com/traversal/";
 
     final static List<String> PREFIXES = Arrays.asList("edge", "property", "value");

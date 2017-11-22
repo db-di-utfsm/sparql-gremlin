@@ -41,6 +41,7 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 import java.util.Arrays;
 import java.util.List;
 
+@Deprecated
 /**
  * @author Daniel Kuppitz (http://gremlin.guru)
  */

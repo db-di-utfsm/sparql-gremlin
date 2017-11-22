@@ -1,7 +1,8 @@
 package com.datastax.sparql.gremlin;
 
 public abstract class PredicateCheck {
-    
+
+    // TODO use constants for this values, extract them in another class or interface
     private static final String VALUE_P = Prefixes.NODE_URI + "#value";
     private static final String NODE_LABEL_P = Prefixes.NODE_URI + "#label";
     private static final String NODE_ID_P = Prefixes.NODE_URI + "#id"; 

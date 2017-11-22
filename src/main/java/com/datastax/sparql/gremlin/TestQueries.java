@@ -167,6 +167,14 @@ public abstract class TestQueries {
                     "?p 4 ." +
                     "}";
 
+    static public String vvuTest4 = // ok
+            "SELECT ?x WHERE {" +
+                    "<< ?x np:location 'san diego'>> ;" +
+                    "?p 'santa cruz' ." +
+                    "}";
+
+
+
     static String manyBlocks =
             "SELECT ?s WHERE {" +
                     "{<< ?x e:to ?y>> ;" +
@@ -176,5 +184,5 @@ public abstract class TestQueries {
                     "FILTER (?z > 3)" +
                     "}}";
 
-    static public String test = vvuTest3;
+    static public String test = vvuTest4;
 }

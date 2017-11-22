@@ -4,8 +4,6 @@ import java.util.HashMap;
 
 public abstract class Variable {
 
-
-
     public enum Type {
         // RDF NODES
         NODE,

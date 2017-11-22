@@ -26,7 +26,7 @@ import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
 import org.apache.tinkerpop.gremlin.structure.PropertyType;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
-
+@Deprecated
 /**
  * @author Daniel Kuppitz (http://gremlin.guru)
  */

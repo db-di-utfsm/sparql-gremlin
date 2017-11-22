@@ -112,7 +112,6 @@ public class Compiler extends OpVisitorBase {
 
     @Override
     public void visit(final OpFilter opFilter) {
-        //noinspection ResultOfMethodCallIgnored
         opFilter.getExprs().getList().stream().
                 map(WhereTraversalBuilder::transform).
                 reduce(traversal, GraphTraversal::where);

@@ -37,7 +37,7 @@ public class Builder {
                                 __.properties().value().is(oLit)));
                         break;
                     case P_FROM_PROPERTY:
-                        result.add(traversal.or(__.hasValue(oStr),
+                        result.add(traversal.or(__.hasValue(oLit),
                                 __.properties().value().is(oLit)));
                         break;
                     /*

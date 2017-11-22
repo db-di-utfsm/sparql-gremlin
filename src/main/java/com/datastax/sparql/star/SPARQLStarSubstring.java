@@ -1,6 +1,8 @@
 package com.datastax.sparql.star;
 
 import java.util.regex.Matcher;
+
+
 // TODO use RE contants
 abstract class SPARQLStarSubstring {
 
@@ -24,7 +26,6 @@ abstract class SPARQLStarSubstring {
         deltaLenght = deltaLenght + lenghtAfter - lengthBefore;
     }
 
-
     String getSPARQLTriples() {
         StringBuilder builder = new StringBuilder();
         String newVariable = SPARQLStarTranslator.getRandomVarName();
@@ -33,15 +34,11 @@ abstract class SPARQLStarSubstring {
             String main = parts[0].trim();
             buildMainTriples(main, builder, newVariable);
             for(int i = 1; i < parts.length; i++){
-                String[] propsStringParts;
-                if (i != parts.length -1) {
-                    propsStringParts = parts[i].trim().split("\\s+");
-                }
-                else{
-                    propsStringParts = parts[i].trim().split("\\s*\\.")[0].split("\\s+");
-                }
-                String propP = propsStringParts[0];
-                String propO = propsStringParts[1];
+                String nestedTriple = parts[i];
+                Matcher capturing = SPARQLStarTranslator.nestedTripleCapture.matcher(nestedTriple);
+                capturing.find();
+                String propP = capturing.group("p");
+                String propO = capturing.group("o");
                 builder.append(newVariable).append(" ").append(propP).append(" ").append(propO).append(" .")
                         .append(System.lineSeparator());
             }
@@ -52,7 +49,13 @@ abstract class SPARQLStarSubstring {
     }
 
     String[] splitStarTriple(String starTriple){
-        return starTriple.split("<<\\s*")[1].split("\\s*>>")[0].split("\\s+");
+        Matcher capturing = SPARQLStarTranslator.starTripleCapture.matcher(starTriple);
+        capturing.find();
+        String[] result = new String[3];
+        result[0] = capturing.group("s");
+        result[1] = capturing.group("p");
+        result[2] = capturing.group("o");
+        return result;
     }
 
     boolean isMultiple() {

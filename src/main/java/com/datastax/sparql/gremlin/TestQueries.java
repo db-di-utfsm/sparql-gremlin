@@ -170,7 +170,7 @@ public abstract class TestQueries {
     static public String vvuTest4 = // ok
             "SELECT ?x WHERE {" +
                     "<< ?x np:location 'san diego'>> ;" +
-                    "?p 'santa cruz' ." +
+                    "?p 2001 ." +
                     "}";
 
 

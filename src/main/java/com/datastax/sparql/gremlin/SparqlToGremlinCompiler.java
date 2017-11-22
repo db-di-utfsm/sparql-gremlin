@@ -44,8 +44,7 @@ import java.util.List;
 @Deprecated
 /**
  * @author Daniel Kuppitz (http://gremlin.guru)
- */
-// TODO: implement OpVisitor, don't extend OpVisitorBase
+ **/
 public class SparqlToGremlinCompiler extends OpVisitorBase {
 
     private GraphTraversal<Vertex, ?> traversal;

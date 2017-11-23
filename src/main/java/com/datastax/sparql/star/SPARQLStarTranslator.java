@@ -40,7 +40,7 @@ public class SPARQLStarTranslator {
                 "(?<p>" + ANY_NODE_PROP + "|"+ TO +")" + ONE_OR_MORE_SPACES + "(?<o>" + VALUE + ")" + ANY_SPACES + SPARQL_STAR_RIGHT_DELIMITER;
         String NESTED_TRIPLE_CAPTURING = ANY_SPACES + "(?<p>" +  ANY_META_PROP + "|" + EDGE_ID + "|" + EDGE_LABEL + "|"
                 + ANY_EDGE_PROP + "|" + VAR + ")" + ONE_OR_MORE_SPACES + "(?<o>" + VAR + "|"
-                + VALUE +")" + ANY_SPACES + "("+ DOT + "|" + ";)";
+                + VALUE +")" + ANY_SPACES + DOT + "?";
     }
 
     // << >> SINTAX WILL NOT ALLOW SOMETHING DIFERENT IN PREDICATE THAN NP:_ AND E:TO,
@@ -65,7 +65,7 @@ public class SPARQLStarTranslator {
     static String getRandomVarName(){
         int randomNum;
         do {
-            randomNum = ThreadLocalRandom.current().nextInt(0, 99999 + 1);
+            randomNum = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
         } while (usedVarNames.contains(randomNum)); // fast lookup, to ensure not collisions
         usedVarNames.add(randomNum);
         return "?r" + String.valueOf(randomNum);

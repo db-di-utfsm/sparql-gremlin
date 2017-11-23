@@ -11,9 +11,6 @@ import org.apache.jena.sparql.algebra.OpVisitorBase;
 import org.apache.jena.sparql.algebra.OpWalker;
 import org.apache.jena.sparql.algebra.op.OpBGP;
 import org.apache.jena.sparql.algebra.op.OpFilter;
-import org.apache.jena.sparql.syntax.ElementPathBlock;
-import org.apache.jena.sparql.syntax.ElementVisitorBase;
-import org.apache.jena.sparql.syntax.ElementWalker;
 import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.structure.Graph;
@@ -25,7 +22,7 @@ public class Compiler extends OpVisitorBase {
     private GraphTraversal<?, ?> traversal;
     private Builder builder;
     private Query query;
-    Typifier typifier;
+    Typifier2 typifier2;
 
     public Compiler(Graph g, String query) {
         this.traversal = g.traversal().V();
@@ -40,14 +37,9 @@ public class Compiler extends OpVisitorBase {
     }
 
     public GraphTraversal<?, ?> convertToGremlinTraversal() {
-        typifier = new Typifier();
-        ElementWalker.walk(query.getQueryPattern(),
-                new ElementVisitorBase() {
-                    public void visit(ElementPathBlock el){
-                        typifier.exec(el.patternElts());
-                    }
-                });
-        printMap(typifier);
+        typifier2 = new Typifier2(query);
+        typifier2.exec();
+        printMap(typifier2);
         final Op op = Algebra.compile(query);
         OpWalker.walk(op, this);
         // TODO COPIED AS IS FROM ORIGINAL CLASS
@@ -86,19 +78,18 @@ public class Compiler extends OpVisitorBase {
         return traversal;
     }
 
-
-
     private static void printMap(HashMap<String, Variable.Type> map){
         for(Map.Entry<String, Variable.Type> kv : map.entrySet()){
             System.out.println(kv.getKey() + " : " + kv.getValue().name());
         }
     }
+
     @Override
     public void visit(final OpBGP opBGP) {
         final List<Triple> triples = opBGP.getPattern().getList();
         final ArrayList<Traversal> matchTraversalsList = new ArrayList<>();
         for (final Triple triple : triples) {
-            matchTraversalsList.addAll(builder.transform(triple, typifier));
+            matchTraversalsList.addAll(builder.transform(triple, typifier2));
         }
         int size = matchTraversalsList.size();
         final Traversal[] matchTraversalsArray = new Traversal[size];

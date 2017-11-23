@@ -183,5 +183,5 @@ public abstract class TestQueries {
                     "FILTER (?z > 3)" +
                     "}}";
 
-    static public String test = vvuTest5;
+    static public String test = vvuTest3;
 }

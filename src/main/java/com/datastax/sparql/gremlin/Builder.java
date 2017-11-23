@@ -105,28 +105,28 @@ public class Builder {
     }
 
     GraphTraversal<Vertex, ?> getVVVFromSOTypes(GraphTraversal<Vertex, ?> traversal, Variable.Type sType, Variable.Type oType, String oName) {
-            switch (sType){
-                case NODE:
-                    switch (oType) {
-                        case EDGE:
-                            return traversal.outE().as(oName);
-                        case PROPERTY:
-                            return traversal.properties().as(oName);
-                        case VALUE:
-                            return traversal.union(__.label(), __.id()).as
-                    }
-                case EDGE:
-                    switch (oType) {
-                        case NODE:
-                            return traversal.inV().as(oName);
-                        case VALUE:
-                            return traversal.union(__.label(), __.id()).as
-                    }
+        switch (sType){
+            case NODE:
+                switch (oType) {
+                    case EDGE:
+                        return traversal.outE().as(oName);
+                    case PROPERTY:
+                        return traversal.properties().as(oName);
+                    case VALUE:
+                        //return traversal.union(__.label(), __.id()).as
+                }
+            case EDGE:
+                switch (oType) {
+                    case NODE:
+                        return traversal.inV().as(oName);
+                    case VALUE:
+                        //return traversal.union(__.label(), __.id()).as
+                }
 
-                case PROPERTY:
-                    return traversal.union(__.value(),__.properties().value()).as(oName);
+            default: //case PROPERTY:
+                return traversal.union(__.value(),__.properties().value()).as(oName);
 
-            }
+        }
 
     }
 

@@ -114,12 +114,9 @@ class Typifier extends HashMap<String,Variable.Type> {
                 if (!containsKey(oStr)) {
                     Variable.Type oType = Variable.getOTypeFromP(pStr);
                     put(oStr, oType);
-                } else {
-                    // everything is known
                 }
             }
         }
-
     }
 
     private void assingTypeForVvu(TripleContainer container){
@@ -145,11 +142,14 @@ class Typifier extends HashMap<String,Variable.Type> {
             oStr = triple.getObject().toString();
             if (!containsKey(sStr)) {
                 if (!containsKey(pStr)) {
-                    if (containsKey(oStr)) { // unknow unknow know
+                    if (!containsKey(oStr)) { // unknow unknow unknow
                         //Variable.Type oType = typesMap.get(oStr);
                         //Variable.Type types[] = Variable.getSPTypeFromOType(typesMap, oStr);
+                    } else{ // unknow unknow know
+
+
                     }
-                } else { // if p is known, p and o are known
+                } else {
                     if (!containsKey(oStr)) { // unknow know unknow
                         continue;   // if this happens always until the analysis ends,
                         // then this triple will match ALL
@@ -158,6 +158,21 @@ class Typifier extends HashMap<String,Variable.Type> {
                     }
                 }
             } else {
+                if (!containsKey(pStr)) {
+                    if (!containsKey(oStr)) { // know unknow unknow
+                        //Variable.Type oType = typesMap.get(oStr);
+                        //Variable.Type types[] = Variable.getSPTypeFromOType(typesMap, oStr);
+                    } else{ // know unknow know
+
+                    }
+                } else {
+                    if (!containsKey(oStr)) { // know know unknow
+                        continue;   // if this happens always until the analysis ends,
+                        // then this triple will match ALL
+                    } else { // know know know
+
+                    }
+                }
                 Variable.Type pType = Variable.getPTypeFromSType(this, sStr);
                 put(pStr, pType);
             }

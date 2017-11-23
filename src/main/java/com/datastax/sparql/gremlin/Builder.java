@@ -24,7 +24,6 @@ public class Builder {
             else{ // v v u
                 Object oLit = o.getLiteralValue();
                 String oStr = oLit.toString();
-                String pName = p.getName();
                 Variable.Type pType = typifier.get(p.toString());
                 switch (pType){
                     case P_FROM_NODE:
@@ -40,64 +39,6 @@ public class Builder {
                         result.add(traversal.or(__.hasValue(oLit),
                                 __.properties().value().is(oLit)));
                         break;
-                    /*
-                    case N_VALUE:
-                        result.add(traversal.properties().as(pName));
-                        GraphTraversal<Vertex, ?> as = __.as(pName);
-                        result.add(as.hasValue(oStr));
-                        return result;
-                    case NP:
-                        // imposible
-                        break;
-                    case ANY_META_PROP:
-                        result.add(traversal.properties().as(pName));
-                        GraphTraversal<Vertex, ?> as2 = __.as(pName);
-                        result.add(as2.hasValue(oStr));
-                        return result;
-                    case N_ID:
-                        result.add(traversal.id().as(pName)); // TODO check this, dont know if works
-                        GraphTraversal<Vertex, ?> as3 = __.as(pName);
-                        result.add(as3.hasValue(oStr));
-                        return result;
-                    case N_LABEL:
-                        result.add(traversal.label().as(pName)); // TODO check this, dont know if works
-                        GraphTraversal<Vertex, ?> as4 = __.as(pName);
-                        result.add(as4.hasValue(oStr));
-                        return result;
-                    case E_IN:
-                        // imposible
-                        break;
-                    case E_OUT:
-                        // imposible
-                        break;
-                    case E_ID:
-                        result.add(traversal.id().as(pName)); // TODO check this, dont know if works
-                        GraphTraversal<Vertex, ?> as5 = __.as(pName);
-                        result.add(as5.hasValue(oStr));
-                        return result;
-                    case E_LABEL:
-                        result.add(traversal.label().as(pName)); // TODO check this, dont know if works
-                        GraphTraversal<Vertex, ?> as6 = __.as(pName);
-                        result.add(as6.hasValue(oStr));
-                        return result;
-                    case EP:
-                        result.add(traversal.properties().as(pName));
-                        GraphTraversal<Vertex, ?> as7 = __.as(pName);
-                        result.add(as7.hasValue(oStr));
-                        return result;
-                    case N_LABEL_ID:
-                        break;
-                        String pName = p.getName();
-
-
-                        __.as(pName + "ID").
-
-
-                    case E_ID_LABEL_PROPERTY:
-                        break;
-                    case N_VALUE_META:
-                        break;
-                        */
                 }
             }
         }

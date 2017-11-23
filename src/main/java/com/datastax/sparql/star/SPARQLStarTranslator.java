@@ -38,7 +38,8 @@ public class SPARQLStarTranslator {
                 NESTED_EDGE_PROP + ANY_SPACES + DOT + ")";
         String STAR_TRIPLE_CAPTURING = SPARQL_STAR_LEFT_DELIMITER + ANY_SPACES + "(?<s>" + VAR + ")" + ONE_OR_MORE_SPACES +
                 "(?<p>" + ANY_NODE_PROP + "|"+ TO +")" + ONE_OR_MORE_SPACES + "(?<o>" + VALUE + ")" + ANY_SPACES + SPARQL_STAR_RIGHT_DELIMITER;
-        String NESTED_TRIPLE_CAPTURING = ANY_SPACES + "(?<p>" + VAR + ")" + ONE_OR_MORE_SPACES + "(?<o>" + VAR + "|"
+        String NESTED_TRIPLE_CAPTURING = ANY_SPACES + "(?<p>" +  ANY_META_PROP + "|" + EDGE_ID + "|" + EDGE_LABEL + "|"
+                + ANY_EDGE_PROP + "|" + VAR + ")" + ONE_OR_MORE_SPACES + "(?<o>" + VAR + "|"
                 + VALUE +")" + ANY_SPACES + "("+ DOT + "|" + ";)";
     }
 

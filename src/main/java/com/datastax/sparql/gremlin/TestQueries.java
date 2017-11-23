@@ -184,5 +184,5 @@ public abstract class TestQueries {
                     "FILTER (?z > 3)" +
                     "}}";
 
-    static public String test = vvuTest4;
+    static public String test = manyBlocks;
 }

@@ -60,7 +60,7 @@ public class SparqlToGremlinCompiler extends OpVisitorBase {
 
         String testQueryString = TestQueries.test;
         Query testQuery = QueryFactory.create(Prefixes.preamblePrepend(testQueryString), Syntax.syntaxSPARQL);
-        final Typifier2 typifier = new Typifier2(testQuery);
+        final Typifier typifier = new Typifier(testQuery);
 
         // This assumes that there are not triples with just variables
         // TODO add isVariable and check Object if triples with 3 variable are going to be considered

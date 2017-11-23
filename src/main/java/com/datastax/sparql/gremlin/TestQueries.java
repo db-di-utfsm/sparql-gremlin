@@ -169,6 +169,11 @@ public abstract class TestQueries {
                     "?p 2001 ." +
                     "}";
 
+    static public String vvuTest5 =
+            "SELECT ?v WHERE {" +
+                    "?v ?p 16 ." +
+                    "}";
+
     static String manyBlocks =
             "SELECT ?s WHERE {" +
                     "{<< ?x e:to ?y>> ;" +
@@ -178,5 +183,5 @@ public abstract class TestQueries {
                     "FILTER (?z > 3)" +
                     "}}";
 
-    static public String test = vvuTest4;
+    static public String test = vvuTest5;
 }

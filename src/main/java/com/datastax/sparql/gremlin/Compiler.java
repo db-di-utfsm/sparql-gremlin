@@ -22,7 +22,7 @@ public class Compiler extends OpVisitorBase {
     private GraphTraversal<?, ?> traversal;
     private Builder builder;
     private Query query;
-    Typifier2 typifier2;
+    Typifier typifier;
 
     public Compiler(Graph g, String query) {
         this.traversal = g.traversal().V();
@@ -37,9 +37,9 @@ public class Compiler extends OpVisitorBase {
     }
 
     public GraphTraversal<?, ?> convertToGremlinTraversal() {
-        typifier2 = new Typifier2(query);
-        typifier2.exec();
-        printMap(typifier2);
+        typifier = new Typifier(query);
+        typifier.exec();
+        printMap(typifier);
         final Op op = Algebra.compile(query);
         OpWalker.walk(op, this);
         // TODO COPIED AS IS FROM ORIGINAL CLASS
@@ -89,7 +89,7 @@ public class Compiler extends OpVisitorBase {
         final List<Triple> triples = opBGP.getPattern().getList();
         final ArrayList<Traversal> matchTraversalsList = new ArrayList<>();
         for (final Triple triple : triples) {
-            matchTraversalsList.addAll(builder.transform(triple, typifier2));
+            matchTraversalsList.addAll(builder.transform(triple, typifier));
         }
         int size = matchTraversalsList.size();
         final Traversal[] matchTraversalsArray = new Traversal[size];

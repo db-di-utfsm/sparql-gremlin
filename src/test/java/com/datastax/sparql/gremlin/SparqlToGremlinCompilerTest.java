@@ -36,9 +36,7 @@ import static com.datastax.sparql.gremlin.SparqlToGremlinCompiler.convertToGreml
 import static org.apache.tinkerpop.gremlin.process.traversal.P.gt;
 import static org.apache.tinkerpop.gremlin.process.traversal.P.lt;
 import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource.computer;
-import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.and;
-import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.as;
-import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.or;
+import static org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__.*;
 import static org.junit.Assert.assertEquals;
 
 public class SparqlToGremlinCompilerTest {

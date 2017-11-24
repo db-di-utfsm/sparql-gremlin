@@ -3,19 +3,19 @@ package com.datastax.sparql.gremlin;
 public abstract class TestQueries {
 
     static public String test1 = "SELECT ?x WHERE {" // ok  [v[8], v[9]]
-                + "?x e:out ?e ."
-                + "?e e:label 'uses' ."
-                + "?e ep:skill 3 ."
-                + "?e e:in ?software ."
-                + "?software np:name ?n ."
-                + "?n n:value 'tinkergraph' ."
-                + "}";
+            + "?x e:out ?e ."
+            + "?e e:label 'uses' ."
+            + "?e ep:skill 3 ."
+            + "?e e:in ?software ."
+            + "?software np:name ?n ."
+            + "?n n:value 'tinkergraph' ."
+            + "}";
 
     static public String test2 = // ok [v[10]]
             "SELECT ?x WHERE {"
-            + "?x np:name ?p ."
-            + "?p ?what 'gremlin' ."
-            + "}";
+                    + "?x np:name ?p ."
+                    + "?p ?what 'gremlin' ."
+                    + "}";
 
     static public String test3 =
             "SELECT ?x WHERE {" +
@@ -31,13 +31,13 @@ public abstract class TestQueries {
                     + "?p meta:startTime ?s ."
                     + "}";
 
-    static public String simpleTest1 = // OK [v[1]]
+    static public String simpleTest1 = // OK [v[test1]]
             "SELECT ?x WHERE {" +
                     "?x np:name ?p . " +
                     "?p n:value 'marko' . " +
                     "}";
 
-    static public String simpleTestStar = // OK [v[1]]
+    static public String simpleTestStar = // OK [v[test1]]
             "SELECT ?x WHERE {" +
                     "<<?x np:name 'marko' >>. }";
 
@@ -72,7 +72,7 @@ public abstract class TestQueries {
                     "meta:asd 'ASD' ." +
                     "<< ?x e:to ?y >> ;" +
                     " ep:cssssss ?p ." +
-                    "}"  ;
+                    "}";
 
     static public String metaTest = // ok [2009]
             "SELECT ?startTime WHERE {" +
@@ -86,17 +86,17 @@ public abstract class TestQueries {
                     "?x n:label ?label ." +
                     "}";
 
-    static public String labelTest2 = // ok  [v[1], v[7], v[8], v[9]]
+    static public String labelTest2 = // ok  [v[test1], v[7], v[8], v[9]]
             "SELECT ?x WHERE {" +
                     "?x n:label 'person' ." +
                     "}";
 
-    static public String idTest = //ok [v[1]]
+    static public String idTest = //ok [v[test1]]
             "SELECT ?x WHERE {" +
-                    "?x n:id 1 ." +
+                    "?x n:id test1 ." +
                     "}";
 
-    static public String idVarTest = //ok [{id=1, x=v[1]}, {id=7, x=v[7]}, {id=8, x=v[8]}, {id=9, x=v[9]}, {id=10, x=v[10]}, {id=11, x=v[11]}]
+    static public String idVarTest = //ok [{id=test1, x=v[test1]}, {id=7, x=v[7]}, {id=8, x=v[8]}, {id=9, x=v[9]}, {id=10, x=v[10]}, {id=11, x=v[11]}]
             "SELECT ?id ?x WHERE {" +
                     "?x n:id ?id ." +
                     "}";
@@ -109,18 +109,18 @@ public abstract class TestQueries {
                     "?e e:in ?y ." +
                     "?e e:id 17 .}";
 
-    static public  String edgesTest2 = // ok [v[11], v[10], v[10], v[11], v[10], v[11], v[10],
+    static public String edgesTest2 = // ok [v[11], v[10], v[10], v[11], v[10], v[11], v[10],
             // v[11], v[10], v[11], v[10], v[10], v[11], v[11]]
             "SELECT ?y WHERE {" +
                     "<<?x e:to ?y >>.}";
 
-    static public  String edgesTest3 = // ok [v[10], v[11], v[10], v[11], v[10]]
+    static public String edgesTest3 = // ok [v[10], v[11], v[10], v[11], v[10]]
             "SELECT ?y WHERE {" +
                     "<<?x e:to ?y >> ;" +
                     " e:label 'develops' .}";
 
 
-    static public  String edgesTest4 = // ok [v[7]]
+    static public String edgesTest4 = // ok [v[7]]
             "SELECT ?x WHERE {" +
                     "<<?x e:to ?y >> ;" +
                     " ep:since 2011 .}";
@@ -143,7 +143,7 @@ public abstract class TestQueries {
                     "ep:skill ?s ." +
                     "}";
 
-    static public String vvuTest = // ok [v[1], v[1], v[7], v[7], v[8], v[9], v[10]]
+    static public String vvuTest = // ok [v[test1], v[test1], v[7], v[7], v[8], v[9], v[10]]
             "SELECT ?x WHERE {" +
                     "<< ?x e:to ?y>> ." +
                     "?y ?p 11 ." +
@@ -156,14 +156,14 @@ public abstract class TestQueries {
                     "?y ?p 11 ." +
                     "}";
 
-    static public String vvuTest3 = // ok [v[1], v[7]]
+    static public String vvuTest3 = // ok [v[test1], v[7]]
             "SELECT ?x WHERE {" +
                     "?x n:label 'person' ." +
                     "<< ?x e:to ?y>> ;" +
                     "?p 4 ." +
                     "}";
 
-    static public String vvuTest4 = // ok [v[1]]
+    static public String vvuTest4 = // ok [v[test1]]
             "SELECT ?x WHERE {" +
                     "<< ?x np:location 'san diego'>> ;" +
                     "?p 2001 ." +
@@ -174,6 +174,13 @@ public abstract class TestQueries {
                     "?v ?p 16 ." +
                     "}";
 
+    static String vvv1 =
+            "select ?p where{" +
+                    "?x n:label 'person' ." +
+                    "<< ?x e:to ?y >> ." +
+                    "?x np:name ?p ." +
+                    "?y ?bla ?p " +
+                    "}";
     static String manyBlocks =
             "SELECT ?s WHERE {" +
                     "{<< ?x e:to ?y>> ;" +
@@ -183,5 +190,5 @@ public abstract class TestQueries {
                     "FILTER (?z > 3)" +
                     "}}";
 
-    static public String test = vvuTest3;
+    static public String test = vvv1;
 }

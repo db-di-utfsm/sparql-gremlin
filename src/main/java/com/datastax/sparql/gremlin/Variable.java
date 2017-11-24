@@ -12,7 +12,7 @@ public abstract class Variable {
     private static Table<Type, Type, Type> SPtoO;
     private static Table<Type, Type, Type> SOtoP;
 
-    static{
+    static {
         PtoSO = new HashMap<>();
         PtoSO.put(Type.N_VALUE, new Type[]{Type.PROPERTY, Type.VALUE});
         PtoSO.put(Type.META, new Type[]{Type.PROPERTY, Type.VALUE});
@@ -74,7 +74,7 @@ public abstract class Variable {
     }
 
     public static Type getSTypeFromPType(HashMap<String, Type> variableTypesMap, String pStr) {
-        return getSOTypesFromPType( variableTypesMap, pStr)[0];
+        return getSOTypesFromPType(variableTypesMap, pStr)[0];
     }
 
     public static Type[] getSPTypeFromOType(HashMap<String, Type> typesMap, String oStr) {
@@ -91,12 +91,12 @@ public abstract class Variable {
     public static Type getOTypeFromSPTypes(HashMap<String, Type> typesMap, String sStr, String pStr) {
         Type sType = typesMap.get(sStr);
         Type pType = typesMap.get(pStr);
-        return  SPtoO.get(sType, pType);
+        return SPtoO.get(sType, pType);
     }
 
     public static Type[] getSOTypesFromPType(HashMap<String, Type> typesMap, String pStr) {
         Type pType = typesMap.get(pStr);
-        return  PtoSO.get(pType);
+        return PtoSO.get(pType);
     }
 
 

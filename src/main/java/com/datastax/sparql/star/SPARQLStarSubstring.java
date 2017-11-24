@@ -12,8 +12,8 @@ abstract class SPARQLStarSubstring {
 
     static int deltaLenght = 0;
 
-    SPARQLStarSubstring(Matcher matcher){
-       this.startIndex = matcher.start();
+    SPARQLStarSubstring(Matcher matcher) {
+        this.startIndex = matcher.start();
         this.finalIndex = matcher.end();
         this.s = matcher.group().trim();
     }
@@ -21,7 +21,7 @@ abstract class SPARQLStarSubstring {
     void replace(StringBuffer queryBuffer) {
         int lengthBefore = queryBuffer.length();
         queryBuffer.replace(startIndex + deltaLenght,
-                finalIndex + deltaLenght,getSPARQLTriples());
+                finalIndex + deltaLenght, getSPARQLTriples());
         int lenghtAfter = queryBuffer.length();
         deltaLenght = deltaLenght + lenghtAfter - lengthBefore;
     }
@@ -33,7 +33,7 @@ abstract class SPARQLStarSubstring {
             String[] parts = s.split(";");
             String main = parts[0].trim();
             buildMainTriples(main, builder, newVariable);
-            for(int i = 1; i < parts.length; i++){
+            for (int i = 1; i < parts.length; i++) {
                 String nestedTriple = parts[i];
                 Matcher capturing = SPARQLStarTranslator.nestedTripleCapture.matcher(nestedTriple);
                 capturing.find();
@@ -48,7 +48,7 @@ abstract class SPARQLStarSubstring {
         return builder.toString();
     }
 
-    String[] splitStarTriple(String starTriple){
+    String[] splitStarTriple(String starTriple) {
         Matcher capturing = SPARQLStarTranslator.starTripleCapture.matcher(starTriple);
         capturing.find();
         String[] result = new String[3];

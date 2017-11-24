@@ -1,0 +1,7 @@
+SELECT ?s WHERE {
+?x np:location ?p .
+?p ?what 'santa cruz' .
+?p meta:startTime ?s .
+}
+===
+2001

@@ -1,0 +1,11 @@
+SELECT ?x WHERE {
+?x e:out ?e .
+?e e:label 'uses' .
+?e ep:skill 3 .
+?e e:in ?software .
+?software np:name ?n .
+?n n:value 'tinkergraph' .
+}
+===
+v[8]
+v[9]

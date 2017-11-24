@@ -1,0 +1,6 @@
+SELECT ?x WHERE {
+?x np:name ?p .
+?p n:value 'marko' .
+}
+===
+v[1]

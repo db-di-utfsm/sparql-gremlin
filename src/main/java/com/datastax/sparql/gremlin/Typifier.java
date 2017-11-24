@@ -12,15 +12,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-class Typifier extends HashMap<String,Variable.Type> {
+class Typifier extends HashMap<String, Variable.Type> {
 
     private ArrayList<Triple> allTriples;
 
-    Typifier(Query query){
+    Typifier(Query query) {
         allTriples = new ArrayList<>();
         ElementWalker.walk(query.getQueryPattern(),
                 new ElementVisitorBase() {
-                    public void visit(ElementPathBlock el){
+                    public void visit(ElementPathBlock el) {
                         getTriples(el.patternElts());
                     }
                 });
@@ -33,7 +33,7 @@ class Typifier extends HashMap<String,Variable.Type> {
         }
     }
 
-    void exec(){
+    void exec() {
         boolean newVariableType;
         do { // try to assign all the possible specific types
             newVariableType = false;
@@ -63,12 +63,10 @@ class Typifier extends HashMap<String,Variable.Type> {
         } while (newVariableType);
 
 
-
-
     }
 
     private boolean assignUU(String sStr, String pStr) {
-        if(unknown(sStr)){
+        if (unknown(sStr)) {
             Variable.Type type = Variable.getSTypeFromP(pStr);
             put(sStr, type);
             return true;
@@ -77,20 +75,19 @@ class Typifier extends HashMap<String,Variable.Type> {
     }
 
     private boolean assignUV(String sStr, String pStr, String oStr) {
-        if(unknown(sStr)){
-            if(unknown(oStr)){
+        if (unknown(sStr)) {
+            if (unknown(oStr)) {
                 Variable.Type[] types = Variable.getSOTypesFromP(pStr);
                 put(sStr, types[0]);
                 put(oStr, types[1]);
                 return true;
-            }
-            else {
+            } else {
                 Variable.Type sType = Variable.getSTypeFromP(pStr);
                 put(sStr, sType);
                 return true;
             }
         } else {
-            if(unknown(oStr)){
+            if (unknown(oStr)) {
                 Variable.Type oType = Variable.getOTypeFromP(pStr);
                 put(oStr, oType);
                 return true;
@@ -100,17 +97,17 @@ class Typifier extends HashMap<String,Variable.Type> {
     }
 
     private boolean assignVU(String sStr, String pStr, String oStr) {
-        return  false;
+        //TODO ?????
+        return false;
     }
 
 
     private boolean assignVV(String sStr, String pStr, String oStr) {
-        if(unknown(sStr)){
-            if(unknown(pStr)){
-                if(unknown(oStr)){ // u u u
+        if (unknown(sStr)) {
+            if (unknown(pStr)) {
+                if (unknown(oStr)) { // u u u
                     // can't get specific type
-                }
-                else{ // u u k
+                } else { // u u k
                     Variable.Type[] types = Variable.getSPTypeFromOType(this, oStr);
                     if (types != null) {
                         put(sStr, types[0]);
@@ -118,35 +115,33 @@ class Typifier extends HashMap<String,Variable.Type> {
                         return true;
                     }
                 }
-            } else{
-                if(unknown(oStr)){ // u k u
+            } else {
+                if (unknown(oStr)) { // u k u
                     Variable.Type[] types = Variable.getSOTypesFromPType(this, pStr);
                     put(sStr, types[0]);
                     put(oStr, types[1]);
                     return true;
-                }
-                else{ // u k k
+                } else { // u k k
                     Variable.Type type = Variable.getSTypeFromPType(this, pStr);
                     put(sStr, type);
                     return true;
                 }
             }
-        } else{
-            if(unknown(pStr)){
-                if(unknown(oStr)){ // k u u
+        } else {
+            if (unknown(pStr)) {
+                if (unknown(oStr)) { // k u u
                     // can't get specific type
-                }
-                else{ // k u k
+                } else { // k u k
                     Variable.Type pType = Variable.getPTypeFromSOTypes(this, sStr, oStr);
-                    if(pType != null){
+                    if (pType != null) {
                         put(pStr, pType);
                         return true;
                     }
                 }
-            } else{
-                if(unknown(oStr)){ // k k u
+            } else {
+                if (unknown(oStr)) { // k k u
                     Variable.Type oType = Variable.getOTypeFromSPTypes(this, sStr, pStr);
-                    if(oType != null){
+                    if (oType != null) {
                         put(oStr, oType);
                         return true;
                     }
@@ -157,7 +152,7 @@ class Typifier extends HashMap<String,Variable.Type> {
     }
 
 
-    boolean unknown(String v){
+    boolean unknown(String v) {
         return !containsKey(v);
     }
 

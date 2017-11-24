@@ -22,15 +22,15 @@ public class Compiler extends OpVisitorBase {
     private GraphTraversal<?, ?> traversal;
     private Builder builder;
     private Query query;
-    Typifier typifier;
+    private Typifier typifier;
 
     public Compiler(Graph g, String query) {
         this.traversal = g.traversal().V();
         this.builder = new Builder();
         try {
             this.query = QueryFactory.create(Prefixes.preamblePrepend(query), Syntax.syntaxSPARQL);
-        } catch (QueryParseException e){
-            System.out.println("La consulta no cumple con la sintaxis SPARQL. Mensaje de error:");
+        } catch (QueryParseException e) {
+            System.out.println("Query doesn't match SPARQL syntax:");
             System.out.println(e.getMessage());
             System.exit(0);
         }
@@ -39,7 +39,7 @@ public class Compiler extends OpVisitorBase {
     public GraphTraversal<?, ?> convertToGremlinTraversal() {
         typifier = new Typifier(query);
         typifier.exec();
-        printMap(typifier);
+        // printMap(typifier);
         final Op op = Algebra.compile(query);
         OpWalker.walk(op, this);
         // TODO COPIED AS IS FROM ORIGINAL CLASS
@@ -78,8 +78,8 @@ public class Compiler extends OpVisitorBase {
         return traversal;
     }
 
-    private static void printMap(HashMap<String, Variable.Type> map){
-        for(Map.Entry<String, Variable.Type> kv : map.entrySet()){
+    private static void printMap(HashMap<String, Variable.Type> map) {
+        for (Map.Entry<String, Variable.Type> kv : map.entrySet()) {
             System.out.println(kv.getKey() + " : " + kv.getValue().name());
         }
     }
@@ -93,14 +93,14 @@ public class Compiler extends OpVisitorBase {
         }
         int size = matchTraversalsList.size();
         final Traversal[] matchTraversalsArray = new Traversal[size];
-        for( int i = 0; i < size ; i++){ // because match needs an array
+        for (int i = 0; i < size; i++) { // because match needs an array
             matchTraversalsArray[i] = matchTraversalsList.get(i);
         }
         // TODO this asummes just one bgp in query
         traversal = traversal.match(matchTraversalsArray);
     }
 
-
+    // TODO COPIED AS IS FROM ORIGINAL
     @Override
     public void visit(final OpFilter opFilter) {
         opFilter.getExprs().getList().stream().

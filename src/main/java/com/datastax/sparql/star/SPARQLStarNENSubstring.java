@@ -20,7 +20,7 @@ class SPARQLStarNENSubstring extends SPARQLStarSubstring {
     // TODO constants!!
 
     @Override
-    void buildMainTriples(String main, StringBuilder builder, String newVariable){
+    void buildMainTriples(String main, StringBuilder builder, String newVariable) {
         String[] splitted = splitStarTriple(main);
         String s = splitted[0];
         String o = splitted[2];

@@ -12,7 +12,7 @@ public class Builder {
 
     public ArrayList<GraphTraversal<Vertex, ?>> transform(Triple triple, Typifier typifier) {
 
-        ArrayList<GraphTraversal<Vertex,?>> result =  new ArrayList<>();
+        ArrayList<GraphTraversal<Vertex, ?>> result = new ArrayList<>();
         Node s, p, o;
         Object oLit;
         String sStr, pStr, oStr;
@@ -24,78 +24,72 @@ public class Builder {
         pStr = p.toString();
         oStr = o.toString();
         final GraphTraversal<Vertex, ?> traversal = __.as(s.getName());
-        if(p.isVariable()){
-            if(o.isVariable()){ // v v v
+        if (p.isVariable()) {
+            if (o.isVariable()) { // v v v
                 String oName = o.getName();
-                if(typifier.unknown(sStr)){
-                    if(typifier.unknown(pStr)) {
-                        if(typifier.unknown(oStr)) {
+                if (typifier.unknown(sStr)) {
+                    if (typifier.unknown(pStr)) {
+                        if (typifier.unknown(oStr)) {
 
-                        }else{
+                        } else {
 
                         }
-                    }else {
+                    } else {
                         if (typifier.unknown(oStr)) {
 
                         } else {
 
                         }
                     }
-                }else{
+                } else {
                     sType = typifier.get(sStr);
-                    if(typifier.unknown(pStr)){
-                        if(typifier.unknown(oStr)) { // k u u
+                    if (typifier.unknown(pStr)) {
+                        if (typifier.unknown(oStr)) { // k u u
 
-                        }else{ // k u k
+                        } else { // k u k
                             oType = typifier.get(oStr);
-                            result.add(getVVVFromSOTypes(traversal,sType,oType,oName));
+                            result.add(getVVVFromSOTypes(traversal, sType, oType, oName));
                         }
-
-                    }
-                    else{
+                    } else {
                         pType = typifier.get(pStr);
-                        if(typifier.unknown(oStr)) { // k k u
-                            result.add(getVVVFromPType(traversal,pStr,pType,oStr));
-                        }else{ // k k k
-                            result.add(getVVVFromPType(traversal,pStr,pType,oStr));
+                        if (typifier.unknown(oStr)) { // k k u
+                            result.add(getVVVFromPType(traversal, pType, oName));
+                        } else { // k k k
+                            result.add(getVVVFromPType(traversal, pType, oName));
                         }
                     }
                 }
-            }
-            else{ // v v u
+            } else { // v v u
                 oLit = o.getLiteralValue();
                 oStr = oLit.toString();
-                if(typifier.unknown(sStr)){
-                    if(typifier.unknown(pStr)) {
+                if (typifier.unknown(sStr)) {
+                    if (typifier.unknown(pStr)) {
                         // TODO - NOT WORKING, USSUME ONE OF THEM IS KNOWN? check again
                         result.add(traversal.or(
                                 __.hasId(oLit),
                                 __.hasLabel(oStr),
                                 __.properties().value().is(oLit),
                                 __.hasValue(oLit)));
-                    }else{
+                    } else {
                         pType = typifier.get(pStr);
-                        result.add(getVVUFromPType(traversal, pStr,  pType, oStr, oLit));
+                        result.add(getVVUFromPType(traversal, pStr, pType, oStr, oLit));
                     }
-                } else{
-                    if(typifier.unknown(pStr)){
+                } else {
+                    if (typifier.unknown(pStr)) {
                         sType = typifier.get(sStr);
                         result.add(getVVUFromSType(traversal, sType, oStr, oLit));
-                    }
-                    else{
+                    } else {
                         pType = typifier.get(pStr);
-                        result.add(getVVUFromPType(traversal, pStr, pType,oStr, oLit));
+                        result.add(getVVUFromPType(traversal, pStr, pType, oStr, oLit));
                     }
                 }
             }
-        }
-        else{
+        } else {
             pType = PredicateCheck.getType(pStr);
-            if(o.isVariable()){ // v u v
+            if (o.isVariable()) { // v u v
                 String oName = o.getName();
                 result.add(getVUVFromPType(traversal, pType, pStr, oName));
-            }
-            else { // v u u
+            } else { // v u u
                 oLit = o.getLiteralValue();
                 oStr = oLit.toString();
                 result.add(getVUUFromPType(traversal, pType, pStr, oLit, oStr));
@@ -105,7 +99,7 @@ public class Builder {
     }
 
     GraphTraversal<Vertex, ?> getVVVFromSOTypes(GraphTraversal<Vertex, ?> traversal, Variable.Type sType, Variable.Type oType, String oName) {
-        switch (sType){
+        switch (sType) {
             case NODE:
                 switch (oType) {
                     case EDGE:
@@ -124,20 +118,41 @@ public class Builder {
                 }
 
             default: //case PROPERTY:
-                return traversal.union(__.value(),__.properties().value()).as(oName);
+                return traversal.union(__.value(), __.properties().value()).as(oName);
 
         }
 
     }
 
-    GraphTraversal<Vertex, ?> getVVVFromPType(GraphTraversal<Vertex, ?> traversal, String pStr, Variable.Type pType, String oName) {
-        return getVUVFromPType(traversal,pType,pStr,oName);
+    GraphTraversal<Vertex, ?> getVVVFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String oName) {
+        switch (pType) {
+            case N_VALUE:
+                return traversal.value().as(oName);
+            case META:
+                return traversal.values().as(oName);
+            case N_ID:
+                return traversal.id().as(oName);
+            case E_ID:
+                return traversal.id().as(oName);
+            case N_LABEL:
+                return traversal.label().as(oName);
+            case E_LABEL:
+                return traversal.label().as(oName);
+            case NP:
+                return traversal.properties().as(oName);
+            case EP:
+                return traversal.values().as(oName);
+            case E_IN:
+                return traversal.inV().as(oName);
+            default: //case E_OUT:
+                return traversal.outE().as(oName);
+        }
     }
 
     GraphTraversal<Vertex, ?> getVUVFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String pStr,
                                               String oName) {
         String property;
-        switch (pType){
+        switch (pType) {
             case N_VALUE:
                 return traversal.value().as(oName);
             case META:
@@ -167,7 +182,7 @@ public class Builder {
     GraphTraversal<Vertex, ?> getVUUFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String pStr,
                                               Object oLit, String oStr) {
         String property;
-        switch (pType){
+        switch (pType) {
             case N_VALUE:
                 return traversal.hasValue(oLit);
             case META:
@@ -193,7 +208,7 @@ public class Builder {
 
     GraphTraversal<Vertex, ?> getVVUFromSType(GraphTraversal<Vertex, ?> traversal, Variable.Type sType,
                                               String oStr, Object oLit) {
-        switch (sType){
+        switch (sType) {
             case NODE:
                 return traversal.or(__.hasLabel(oStr),
                         __.hasId(oLit));
@@ -208,8 +223,8 @@ public class Builder {
     }
 
     GraphTraversal<Vertex, ?> getVVUFromPType(GraphTraversal<Vertex, ?> traversal, String pStr,
-                                              Variable.Type pType, String oStr, Object oLit){
-        switch (pType){
+                                              Variable.Type pType, String oStr, Object oLit) {
+        switch (pType) {
             case N_VALUE:
                 return traversal.hasValue(oLit);
             case META:

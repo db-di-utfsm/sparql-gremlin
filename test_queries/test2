@@ -1,0 +1,6 @@
+SELECT ?x WHERE {
+?x np:name ?p .
+?p ?what 'gremlin' .
+}
+===
+v[10]

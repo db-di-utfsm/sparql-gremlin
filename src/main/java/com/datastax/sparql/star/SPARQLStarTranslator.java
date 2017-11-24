@@ -10,12 +10,12 @@ import java.util.regex.Pattern;
 
 public class SPARQLStarTranslator {
 
-    interface RE{
+    interface RE {
         String DOT = "\\.";
         String ANY_SPACES = "\\s*?";
         String ONE_OR_MORE_SPACES = "\\s+?";
         String NAME = "(\\w|_)+";
-        String VAR = "\\?"+ NAME;
+        String VAR = "\\?" + NAME;
         String ANY_NODE_PROP = Prefixes.NODE_PROPERTY + ":" + NAME;
         String ANY_META_PROP = Prefixes.METAPROPERTY + ":" + NAME;
         String VALUE = "[^<.;>]+"; // depends on delimeters
@@ -30,17 +30,17 @@ public class SPARQLStarTranslator {
                 + ONE_OR_MORE_SPACES + "(" + VAR + "|" + VALUE + ")";
         String NPV_PATTERN = SPARQL_STAR_LEFT_DELIMITER + ANY_SPACES + VAR + ONE_OR_MORE_SPACES +
                 ANY_NODE_PROP + ONE_OR_MORE_SPACES + VALUE + ANY_SPACES + SPARQL_STAR_RIGHT_DELIMITER + ANY_SPACES +
-                "("+DOT+"|;"+ANY_SPACES+"(" + NESTED_NODE_PROP + ANY_SPACES + ";)*" + ANY_SPACES +
-                NESTED_NODE_PROP + ANY_SPACES + DOT +")";
+                "(" + DOT + "|;" + ANY_SPACES + "(" + NESTED_NODE_PROP + ANY_SPACES + ";)*" + ANY_SPACES +
+                NESTED_NODE_PROP + ANY_SPACES + DOT + ")";
         String NEN_PATTERN = SPARQL_STAR_LEFT_DELIMITER + ANY_SPACES + VAR + ONE_OR_MORE_SPACES +
                 TO + ONE_OR_MORE_SPACES + VAR + ANY_SPACES + SPARQL_STAR_RIGHT_DELIMITER + ANY_SPACES +
-                "("+DOT+"|;"+ANY_SPACES+"(" + NESTED_EDGE_PROP + ANY_SPACES + ";)*" + ANY_SPACES +
+                "(" + DOT + "|;" + ANY_SPACES + "(" + NESTED_EDGE_PROP + ANY_SPACES + ";)*" + ANY_SPACES +
                 NESTED_EDGE_PROP + ANY_SPACES + DOT + ")";
         String STAR_TRIPLE_CAPTURING = SPARQL_STAR_LEFT_DELIMITER + ANY_SPACES + "(?<s>" + VAR + ")" + ONE_OR_MORE_SPACES +
-                "(?<p>" + ANY_NODE_PROP + "|"+ TO +")" + ONE_OR_MORE_SPACES + "(?<o>" + VALUE + ")" + ANY_SPACES + SPARQL_STAR_RIGHT_DELIMITER;
-        String NESTED_TRIPLE_CAPTURING = ANY_SPACES + "(?<p>" +  ANY_META_PROP + "|" + EDGE_ID + "|" + EDGE_LABEL + "|"
+                "(?<p>" + ANY_NODE_PROP + "|" + TO + ")" + ONE_OR_MORE_SPACES + "(?<o>" + VALUE + ")" + ANY_SPACES + SPARQL_STAR_RIGHT_DELIMITER;
+        String NESTED_TRIPLE_CAPTURING = ANY_SPACES + "(?<p>" + ANY_META_PROP + "|" + EDGE_ID + "|" + EDGE_LABEL + "|"
                 + ANY_EDGE_PROP + "|" + VAR + ")" + ONE_OR_MORE_SPACES + "(?<o>" + VAR + "|"
-                + VALUE +")" + ANY_SPACES + DOT + "?";
+                + VALUE + ")" + ANY_SPACES + DOT + "?";
     }
 
     // << >> SINTAX WILL NOT ALLOW SOMETHING DIFERENT IN PREDICATE THAN NP:_ AND E:TO,
@@ -54,15 +54,15 @@ public class SPARQLStarTranslator {
     final private static HashSet<Integer> usedVarNames;
     final static Pattern nestedTripleCapture;
 
-    static{
-        nodePropertyValuePattern = Pattern.compile( RE.NPV_PATTERN);
+    static {
+        nodePropertyValuePattern = Pattern.compile(RE.NPV_PATTERN);
         nodeEdgeNodePattern = Pattern.compile(RE.NEN_PATTERN);
         starTripleCapture = Pattern.compile(RE.STAR_TRIPLE_CAPTURING);
         nestedTripleCapture = Pattern.compile(RE.NESTED_TRIPLE_CAPTURING);
         usedVarNames = new HashSet<>();
     }
 
-    static String getRandomVarName(){
+    static String getRandomVarName() {
         int randomNum;
         do {
             randomNum = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
@@ -71,7 +71,7 @@ public class SPARQLStarTranslator {
         return "?r" + String.valueOf(randomNum);
     }
 
-    public static String translate(String query){
+    public static String translate(String query) {
         StringBuffer queryBuffer = new StringBuffer(query);
         Matcher npvMatcher = nodePropertyValuePattern.matcher(queryBuffer);
         Matcher nenMatcher = nodeEdgeNodePattern.matcher(queryBuffer);

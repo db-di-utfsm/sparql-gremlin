@@ -1,0 +1,7 @@
+SELECT ?startTime WHERE {
+<< ?x np:name 'daniel' >> .
+<<?x np:location 'aachen'>> ;
+meta:startTime ?startTime .
+}
+===
+2009

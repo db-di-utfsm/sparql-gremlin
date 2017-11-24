@@ -1,0 +1,12 @@
+SELECT ?p WHERE {
+<<   ?x np:name 'asdasdas' >>.
+<<?x np:name 'asdas'>>;
+meta:asdasd 'asasda' ;
+meta:as 'a'   .
+?x ?p ?t .
+<< ?a np:this ?b >> ;
+meta:asd 'ASD' .
+<< ?x e:to ?y >> ;
+ep:cssssss ?p .
+}
+===

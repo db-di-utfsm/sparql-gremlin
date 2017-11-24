@@ -1,0 +1,6 @@
+SELECT ?x WHERE {
+<< ?x np:location 'san diego'>>;
+?p 2001 .
+}
+===
+v[1]

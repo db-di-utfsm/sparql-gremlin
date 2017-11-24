@@ -1,0 +1,10 @@
+SELECT ?y WHERE {
+<<?x e:to ?y >> ;
+e:label 'develops' .
+}
+===
+v[10]
+v[11]
+v[10]
+v[11]
+v[10]

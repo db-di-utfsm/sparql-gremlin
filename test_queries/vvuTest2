@@ -1,0 +1,12 @@
+SELECT ?y WHERE {
+?x n:label 'person' .
+<< ?x e:to ?y>> .
+?y ?p 11 .
+}
+===
+v[11]
+v[11]
+v[11]
+v[11]
+v[11]
+v[11]

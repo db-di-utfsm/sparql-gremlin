@@ -1,0 +1,5 @@
+SELECT ?x WHERE {
+?x n:id 1 .
+}
+===
+v[1]

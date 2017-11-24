@@ -1,0 +1,13 @@
+SELECT ?s WHERE {
+<< ?x e:to ?y>> ;
+ep:skill ?s .
+}
+===
+5
+4
+5
+4
+3
+3
+5
+3

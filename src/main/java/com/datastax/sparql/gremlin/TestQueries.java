@@ -31,13 +31,13 @@ public abstract class TestQueries {
                     + "?p meta:startTime ?s ."
                     + "}";
 
-    static public String simpleTest1 = // OK [v[test1]]
+    static public String simpleTest1 = // OK [v[1]]
             "SELECT ?x WHERE {" +
                     "?x np:name ?p . " +
                     "?p n:value 'marko' . " +
                     "}";
 
-    static public String simpleTestStar = // OK [v[test1]]
+    static public String simpleTestStar = // OK [v[1]]
             "SELECT ?x WHERE {" +
                     "<<?x np:name 'marko' >>. }";
 
@@ -86,17 +86,17 @@ public abstract class TestQueries {
                     "?x n:label ?label ." +
                     "}";
 
-    static public String labelTest2 = // ok  [v[test1], v[7], v[8], v[9]]
+    static public String labelTest2 = // ok  [v[1], v[7], v[8], v[9]]
             "SELECT ?x WHERE {" +
                     "?x n:label 'person' ." +
                     "}";
 
-    static public String idTest = //ok [v[test1]]
+    static public String idTest = //ok [v[1]]
             "SELECT ?x WHERE {" +
-                    "?x n:id test1 ." +
+                    "?x n:id 1 ." +
                     "}";
 
-    static public String idVarTest = //ok [{id=test1, x=v[test1]}, {id=7, x=v[7]}, {id=8, x=v[8]}, {id=9, x=v[9]}, {id=10, x=v[10]}, {id=11, x=v[11]}]
+    static public String idVarTest = //ok [{id=1, x=v[1]}, {id=7, x=v[7]}, {id=8, x=v[8]}, {id=9, x=v[9]}, {id=10, x=v[10]}, {id=11, x=v[11]}]
             "SELECT ?id ?x WHERE {" +
                     "?x n:id ?id ." +
                     "}";
@@ -143,7 +143,7 @@ public abstract class TestQueries {
                     "ep:skill ?s ." +
                     "}";
 
-    static public String vvuTest = // ok [v[test1], v[test1], v[7], v[7], v[8], v[9], v[10]]
+    static public String vvuTest = // ok [v[1], v[1], v[7], v[7], v[8], v[9], v[10]]
             "SELECT ?x WHERE {" +
                     "<< ?x e:to ?y>> ." +
                     "?y ?p 11 ." +
@@ -156,14 +156,14 @@ public abstract class TestQueries {
                     "?y ?p 11 ." +
                     "}";
 
-    static public String vvuTest3 = // ok [v[test1], v[7]]
+    static public String vvuTest3 = // ok [v[1], v[7]]
             "SELECT ?x WHERE {" +
                     "?x n:label 'person' ." +
                     "<< ?x e:to ?y>> ;" +
                     "?p 4 ." +
                     "}";
 
-    static public String vvuTest4 = // ok [v[test1]]
+    static public String vvuTest4 = // ok [v[1]]
             "SELECT ?x WHERE {" +
                     "<< ?x np:location 'san diego'>> ;" +
                     "?p 2001 ." +
@@ -190,5 +190,5 @@ public abstract class TestQueries {
                     "FILTER (?z > 3)" +
                     "}}";
 
-    static public String test = vvv1;
+    static public String test = edgesTest2;
 }

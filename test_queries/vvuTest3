@@ -1,0 +1,8 @@
+SELECT ?x WHERE {
+?x n:label 'person' .
+<< ?x e:to ?y>> ;
+?p 4 .
+}
+===
+v[1]
+v[7]

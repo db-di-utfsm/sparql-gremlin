@@ -1,0 +1,10 @@
+SELECT ?label WHERE {
+?x n:label ?label .
+}
+===
+person
+person
+person
+person
+software
+software

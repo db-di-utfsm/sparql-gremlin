@@ -1,0 +1,19 @@
+SELECT ?s WHERE {
+<< ?x e:to ?y>> ;
+e:label ?s .
+}
+===
+uses
+uses
+develops
+develops
+uses
+uses
+develops
+develops
+uses
+uses
+develops
+uses
+uses
+traverses

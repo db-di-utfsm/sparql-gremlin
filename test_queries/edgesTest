@@ -1,0 +1,7 @@
+SELECT ?x WHERE {
+?x e:out ?e .
+?e e:in ?y .
+?e e:id 17 .
+}
+===
+v[7]

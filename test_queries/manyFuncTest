@@ -1,0 +1,11 @@
+select distinct ?n where{
+?x n:label ?v .
+<< ?x e:to ?y >>;
+ep:skill ?v2.
+?x np:name ?n.
+FILTER (?v = 'person' && ?v2 > 3)
+}
+===
+vp[name->marko]
+vp[name->stephen]
+vp[name->daniel

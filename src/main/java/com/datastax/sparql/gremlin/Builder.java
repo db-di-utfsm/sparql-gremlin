@@ -2,6 +2,7 @@ package com.datastax.sparql.gremlin;
 
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.Triple;
+import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
@@ -29,15 +30,15 @@ public class Builder {
                 String oName = o.getName();
                 if (typifier.unknown(sStr)) {
                     if (typifier.unknown(pStr)) {
-                        if (typifier.unknown(oStr)) {
+                        if (typifier.unknown(oStr)) { // u u u
 
-                        } else {
+                        } else { // u u k
 
                         }
                     } else {
-                        if (typifier.unknown(oStr)) {
+                        if (typifier.unknown(oStr)) { // u k u
 
-                        } else {
+                        } else { // u k k
 
                         }
                     }
@@ -107,14 +108,14 @@ public class Builder {
                     case PROPERTY:
                         return traversal.properties().as(oName);
                     case VALUE:
-                        //return traversal.union(__.label(), __.id()).as
+                        return traversal.union((Traversal)__.label(), (Traversal)__.id()).as(oName);
                 }
             case EDGE:
                 switch (oType) {
                     case NODE:
                         return traversal.inV().as(oName);
                     case VALUE:
-                        //return traversal.union(__.label(), __.id()).as
+                        return traversal.union(__.properties().value(), (Traversal)__.label(), (Traversal) __.id()).as(oName);
                 }
 
             default: //case PROPERTY:

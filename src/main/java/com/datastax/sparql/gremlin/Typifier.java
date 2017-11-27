@@ -49,8 +49,7 @@ class Typifier extends HashMap<String, Variable.Type> {
                 if (p.isVariable()) {
                     if (o.isVariable()) { // var var var
                         newVariableType = newVariableType || assignVV(sStr, pStr, oStr);
-                    } else { // var var uri
-                        newVariableType = newVariableType || assignVU(sStr, pStr, oStr);
+                    } else { // var var uri, ipossible to know exact p type
                     }
                 } else {
                     if (o.isVariable()) { // var uri var
@@ -95,12 +94,6 @@ class Typifier extends HashMap<String, Variable.Type> {
         }
         return false;
     }
-
-    private boolean assignVU(String sStr, String pStr, String oStr) {
-        //TODO ?????
-        return false;
-    }
-
 
     private boolean assignVV(String sStr, String pStr, String oStr) {
         if (unknown(sStr)) {

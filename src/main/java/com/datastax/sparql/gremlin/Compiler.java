@@ -41,6 +41,7 @@ public class Compiler extends OpVisitorBase {
         typifier.exec();
         // printMap(typifier);
         final Op op = Algebra.compile(query);
+        OpWalker.walk(op, new VisitorAnalyzer());
         OpWalker.walk(op, this);
         // TODO COPIED AS IS FROM ORIGINAL CLASS
         if (!query.isQueryResultStar()) {

@@ -1,0 +1,7 @@
+select ?x ?y ?v where{
+?x n:label ?v .
+<< ?x e:to ?y >> .
+?y ?bla ?v .
+}
+===
+{x=v[10], y=v[11], v=software}

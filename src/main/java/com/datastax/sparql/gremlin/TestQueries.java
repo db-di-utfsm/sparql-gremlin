@@ -181,14 +181,34 @@ public abstract class TestQueries {
                     "?x np:name ?p ." +
                     "?y ?bla ?p " +
                     "}";
+
+    static String vvv2 =
+            "select ?x ?y ?v where{" +
+                    "?x n:label ?v ." +
+                    "<< ?x e:to ?y >> ." +
+                    "?y ?bla ?v " +
+                    "}";
+
+    static String manyFuncTest =
+            "select distinct ?n where{" +
+                    "?x n:label ?v ." +
+                    "<< ?x e:to ?y >>;" +
+                    "ep:skill ?v2." +
+                    "?x np:name ?n." +
+                    "FILTER (?v = 'person' && ?v2 > 3)" +
+                    "}";
+
     static String manyBlocks =
             "SELECT ?s WHERE {" +
                     "{<< ?x e:to ?y>> ;" +
                     "ep:skill ?s ." +
+                    "OPTIONAL {" +
+                    "?z ?t ?d ." +
+                    "}" +
                     "} UNION {" +
                     "?x ?y ?z ." +
                     "FILTER (?z > 3)" +
                     "}}";
 
-    static public String test = edgesTest2;
+    static public String test = manyBlocks;
 }

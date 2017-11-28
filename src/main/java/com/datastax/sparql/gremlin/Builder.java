@@ -9,9 +9,9 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 import java.util.ArrayList;
 
-public class Builder {
+public abstract class Builder {
 
-    public ArrayList<GraphTraversal<Vertex, ?>> transform(Triple triple, Typifier typifier) {
+    static ArrayList<GraphTraversal<Vertex, ?>> transform(Triple triple, Typifier typifier) {
 
         ArrayList<GraphTraversal<Vertex, ?>> result = new ArrayList<>();
         Node s, p, o;
@@ -99,7 +99,7 @@ public class Builder {
         return result;
     }
 
-    GraphTraversal<Vertex, ?> getVVVFromSOTypes(GraphTraversal<Vertex, ?> traversal, Variable.Type sType, Variable.Type oType, String oName) {
+    static GraphTraversal<Vertex, ?> getVVVFromSOTypes(GraphTraversal<Vertex, ?> traversal, Variable.Type sType, Variable.Type oType, String oName) {
         switch (sType) {
             case NODE:
                 switch (oType) {
@@ -108,14 +108,14 @@ public class Builder {
                     case PROPERTY:
                         return traversal.properties().as(oName);
                     case VALUE:
-                        return traversal.union((Traversal)__.label(), (Traversal)__.id()).as(oName);
+                        return traversal.union((Traversal) __.label(), (Traversal) __.id()).as(oName);
                 }
             case EDGE:
                 switch (oType) {
                     case NODE:
                         return traversal.inV().as(oName);
                     case VALUE:
-                        return traversal.union(__.properties().value(), (Traversal)__.label(), (Traversal) __.id()).as(oName);
+                        return traversal.union(__.properties().value(), (Traversal) __.label(), (Traversal) __.id()).as(oName);
                 }
 
             default: //case PROPERTY:
@@ -125,7 +125,7 @@ public class Builder {
 
     }
 
-    GraphTraversal<Vertex, ?> getVVVFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String oName) {
+    static GraphTraversal<Vertex, ?> getVVVFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String oName) {
         switch (pType) {
             case N_VALUE:
                 return traversal.value().as(oName);
@@ -150,8 +150,8 @@ public class Builder {
         }
     }
 
-    GraphTraversal<Vertex, ?> getVUVFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String pStr,
-                                              String oName) {
+    static GraphTraversal<Vertex, ?> getVUVFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String pStr,
+                                                     String oName) {
         String property;
         switch (pType) {
             case N_VALUE:
@@ -180,8 +180,8 @@ public class Builder {
         }
     }
 
-    GraphTraversal<Vertex, ?> getVUUFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String pStr,
-                                              Object oLit, String oStr) {
+    static GraphTraversal<Vertex, ?> getVUUFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String pStr,
+                                                     Object oLit, String oStr) {
         String property;
         switch (pType) {
             case N_VALUE:
@@ -207,8 +207,8 @@ public class Builder {
         }
     }
 
-    GraphTraversal<Vertex, ?> getVVUFromSType(GraphTraversal<Vertex, ?> traversal, Variable.Type sType,
-                                              String oStr, Object oLit) {
+    static GraphTraversal<Vertex, ?> getVVUFromSType(GraphTraversal<Vertex, ?> traversal, Variable.Type sType,
+                                                     String oStr, Object oLit) {
         switch (sType) {
             case NODE:
                 return traversal.or(__.hasLabel(oStr),
@@ -223,8 +223,8 @@ public class Builder {
         }
     }
 
-    GraphTraversal<Vertex, ?> getVVUFromPType(GraphTraversal<Vertex, ?> traversal, String pStr,
-                                              Variable.Type pType, String oStr, Object oLit) {
+    static GraphTraversal<Vertex, ?> getVVUFromPType(GraphTraversal<Vertex, ?> traversal, String pStr,
+                                                     Variable.Type pType, String oStr, Object oLit) {
         switch (pType) {
             case N_VALUE:
                 return traversal.hasValue(oLit);

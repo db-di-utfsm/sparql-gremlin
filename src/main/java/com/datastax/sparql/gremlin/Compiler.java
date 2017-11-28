@@ -13,6 +13,7 @@ import org.apache.jena.sparql.algebra.op.OpBGP;
 import org.apache.jena.sparql.algebra.op.OpFilter;
 import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 
 import java.util.*;
@@ -20,13 +21,11 @@ import java.util.*;
 public class Compiler extends OpVisitorBase {
 
     private GraphTraversal<?, ?> traversal;
-    private Builder builder;
     private Query query;
     private Typifier typifier;
 
     public Compiler(Graph g, String query) {
         this.traversal = g.traversal().V();
-        this.builder = new Builder();
         try {
             this.query = QueryFactory.create(Prefixes.preamblePrepend(query), Syntax.syntaxSPARQL);
         } catch (QueryParseException e) {
@@ -36,12 +35,33 @@ public class Compiler extends OpVisitorBase {
         }
     }
 
+    private static void printMap(HashMap<String, Variable.Type> map) {
+        for (Map.Entry<String, Variable.Type> kv : map.entrySet()) {
+            System.out.println(kv.getKey() + " : " + kv.getValue().name());
+        }
+    }
+
     public GraphTraversal<?, ?> convertToGremlinTraversal() {
         typifier = new Typifier(query);
         typifier.exec();
         // printMap(typifier);
         final Op op = Algebra.compile(query);
+        // ----------
+        UnionFinder unionFinder = new UnionFinder();
+
+        OpWalker.walk(op, unionFinder);
+
+        if (unionFinder.found()) {
+            Op leftUnionOp = unionFinder.getLeftOp();
+            Op rightUnionOp = unionFinder.getRightOp();
+            OpsFinder leftOps = new OpsFinder(typifier);
+            OpsFinder rightOps = new OpsFinder(typifier);
+            OpWalker.walk(leftUnionOp, leftOps);
+            OpWalker.walk(rightUnionOp, rightOps);
+            traversal = traversal.union(__.match(leftOps.getTraversalsArray()), __.match(rightOps.getTraversalsArray()));
+        }
         OpWalker.walk(op, new VisitorAnalyzer());
+        // -----------------------
         OpWalker.walk(op, this);
         // TODO COPIED AS IS FROM ORIGINAL CLASS
         if (!query.isQueryResultStar()) {
@@ -79,18 +99,12 @@ public class Compiler extends OpVisitorBase {
         return traversal;
     }
 
-    private static void printMap(HashMap<String, Variable.Type> map) {
-        for (Map.Entry<String, Variable.Type> kv : map.entrySet()) {
-            System.out.println(kv.getKey() + " : " + kv.getValue().name());
-        }
-    }
-
     @Override
     public void visit(final OpBGP opBGP) {
         final List<Triple> triples = opBGP.getPattern().getList();
         final ArrayList<Traversal> matchTraversalsList = new ArrayList<>();
         for (final Triple triple : triples) {
-            matchTraversalsList.addAll(builder.transform(triple, typifier));
+            matchTraversalsList.addAll(Builder.transform(triple, typifier));
         }
         int size = matchTraversalsList.size();
         final Traversal[] matchTraversalsArray = new Traversal[size];

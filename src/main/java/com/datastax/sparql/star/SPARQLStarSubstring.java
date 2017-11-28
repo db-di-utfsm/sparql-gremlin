@@ -6,11 +6,10 @@ import java.util.regex.Matcher;
 // TODO use RE contants
 abstract class SPARQLStarSubstring {
 
+    static int deltaLenght = 0;
     String s;
     int startIndex;
     int finalIndex;
-
-    static int deltaLenght = 0;
 
     SPARQLStarSubstring(Matcher matcher) {
         this.startIndex = matcher.start();

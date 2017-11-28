@@ -3,7 +3,7 @@ package com.datastax.sparql.gremlin;
 import java.util.HashMap;
 
 public class Prefixes {
-    // TODO erase everything that's not being used
+
     public final static String BASE_URI = "http://www.tinkerpop.com/traversal/";
     public final static String NODE = "n";
     public final static String EDGE = "e";

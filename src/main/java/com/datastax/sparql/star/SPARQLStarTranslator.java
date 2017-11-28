@@ -10,6 +10,45 @@ import java.util.regex.Pattern;
 
 public class SPARQLStarTranslator {
 
+    final static Pattern starTripleCapture;
+
+    // << >> SINTAX WILL NOT ALLOW SOMETHING DIFERENT IN PREDICATE THAN NP:_ AND E:TO,
+    // EVERYTHING ELSE WITH LEAD TO PARSING ERROR IN JENA
+    // super ad-hoc
+    // TODO allow use of variables in predicate
+    final static Pattern nestedTripleCapture;
+    final static private Pattern nodePropertyValuePattern;
+    final static private Pattern nodeEdgeNodePattern;
+    final private static HashSet<Integer> usedVarNames;
+
+    static {
+        nodePropertyValuePattern = Pattern.compile(RE.NPV_PATTERN);
+        nodeEdgeNodePattern = Pattern.compile(RE.NEN_PATTERN);
+        starTripleCapture = Pattern.compile(RE.STAR_TRIPLE_CAPTURING);
+        nestedTripleCapture = Pattern.compile(RE.NESTED_TRIPLE_CAPTURING);
+        usedVarNames = new HashSet<>();
+    }
+
+    static String getRandomVarName() {
+        int randomNum;
+        do {
+            randomNum = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
+        } while (usedVarNames.contains(randomNum)); // fast lookup, to ensure not collisions
+        usedVarNames.add(randomNum);
+        return "?r" + String.valueOf(randomNum);
+    }
+
+    public static String translate(String query) {
+        StringBuffer queryBuffer = new StringBuffer(query);
+        Matcher npvMatcher = nodePropertyValuePattern.matcher(queryBuffer);
+        Matcher nenMatcher = nodeEdgeNodePattern.matcher(queryBuffer);
+        ArrayList<SPARQLStarSubstring> substrings = new ArrayList<>();
+        substrings.addAll(SPARQLStarNPVSubstring.getSubstrings(npvMatcher));
+        substrings.addAll(SPARQLStarNENSubstring.getSubstrings(nenMatcher));
+        substrings.forEach((substring) -> substring.replace(queryBuffer));
+        return queryBuffer.toString();
+    }
+
     interface RE {
         String DOT = "\\.";
         String ANY_SPACES = "\\s*?";
@@ -41,45 +80,6 @@ public class SPARQLStarTranslator {
         String NESTED_TRIPLE_CAPTURING = ANY_SPACES + "(?<p>" + ANY_META_PROP + "|" + EDGE_ID + "|" + EDGE_LABEL + "|"
                 + ANY_EDGE_PROP + "|" + VAR + ")" + ONE_OR_MORE_SPACES + "(?<o>" + VAR + "|"
                 + VALUE + ")" + ANY_SPACES + DOT + "?";
-    }
-
-    // << >> SINTAX WILL NOT ALLOW SOMETHING DIFERENT IN PREDICATE THAN NP:_ AND E:TO,
-    // EVERYTHING ELSE WITH LEAD TO PARSING ERROR IN JENA
-    // super ad-hoc
-    // TODO allow use of variables in predicate
-
-    final static private Pattern nodePropertyValuePattern;
-    final static private Pattern nodeEdgeNodePattern;
-    final static Pattern starTripleCapture;
-    final private static HashSet<Integer> usedVarNames;
-    final static Pattern nestedTripleCapture;
-
-    static {
-        nodePropertyValuePattern = Pattern.compile(RE.NPV_PATTERN);
-        nodeEdgeNodePattern = Pattern.compile(RE.NEN_PATTERN);
-        starTripleCapture = Pattern.compile(RE.STAR_TRIPLE_CAPTURING);
-        nestedTripleCapture = Pattern.compile(RE.NESTED_TRIPLE_CAPTURING);
-        usedVarNames = new HashSet<>();
-    }
-
-    static String getRandomVarName() {
-        int randomNum;
-        do {
-            randomNum = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
-        } while (usedVarNames.contains(randomNum)); // fast lookup, to ensure not collisions
-        usedVarNames.add(randomNum);
-        return "?r" + String.valueOf(randomNum);
-    }
-
-    public static String translate(String query) {
-        StringBuffer queryBuffer = new StringBuffer(query);
-        Matcher npvMatcher = nodePropertyValuePattern.matcher(queryBuffer);
-        Matcher nenMatcher = nodeEdgeNodePattern.matcher(queryBuffer);
-        ArrayList<SPARQLStarSubstring> substrings = new ArrayList<>();
-        substrings.addAll(SPARQLStarNPVSubstring.getSubstrings(npvMatcher));
-        substrings.addAll(SPARQLStarNENSubstring.getSubstrings(nenMatcher));
-        substrings.forEach((substring) -> substring.replace(queryBuffer));
-        return queryBuffer.toString();
     }
 
 }

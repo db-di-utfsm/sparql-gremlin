@@ -23,11 +23,10 @@ public class Input {
         options.addOption("g", "graph", true, "the graph that's used to execute the query [classic|modern|crew|kryo file]");
         final CommandLineParser parser = new DefaultParser();
         final CommandLine commandLine;
-        if(args.length == 0){
+        if (args.length == 0) {
             setNormalExec();
             isTest = false;
-        }
-        else {
+        } else {
             try {
                 commandLine = parser.parse(options, args);
                 setTestExec(commandLine);

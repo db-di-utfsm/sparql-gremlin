@@ -28,6 +28,9 @@ import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
  * @author Daniel Kuppitz (http://gremlin.guru)
  */
 class WhereTraversalBuilder {
+    // TODO check all this
+
+    static Typifier typifier;
 
     public static GraphTraversal<?, ?> transform(final E_Equals expression) {
         final Object value = expression.getArg2().getConstant().getNode().getLiteralValue();
@@ -71,12 +74,13 @@ class WhereTraversalBuilder {
                 transform(expression.getArg2()));
     }
 
-    /*
+/* TODO check this
+
         public static GraphTraversal<?, ?> transform(final E_Exists expression) {
             final OpBGP opBGP = (OpBGP) expression.getGraphPattern();
             final List<Triple> triples = opBGP.getPattern().getList();
-            if (triples.size() != test1) throw new IllegalStateException("Unhandled EXISTS pattern");
-            final GraphTraversal<?, ?> traversal = TraversalBuilder.transform(triples.get(0));
+            if (triples.size() != 1) throw new IllegalStateException("Unhandled EXISTS pattern");
+            final GraphTraversal<Vertex, ?> traversal = Builder.transform(triples.get(0), typifier);
             final Step endStep = traversal.asAdmin().getEndStep();
             final String label = (String) endStep.getLabels().iterator().next();
             endStep.removeLabel(label);
@@ -86,7 +90,7 @@ class WhereTraversalBuilder {
         public static GraphTraversal<?, ?> transform(final E_NotExists expression) {
             final OpBGP opBGP = (OpBGP) expression.getGraphPattern();
             final List<Triple> triples = opBGP.getPattern().getList();
-            if (triples.size() != test1) throw new IllegalStateException("Unhandled NOT EXISTS pattern");
+            if (triples.size() != 1) throw new IllegalStateException("Unhandled NOT EXISTS pattern");
             final GraphTraversal<?, ?> traversal = TraversalBuilder.transform(triples.get(0));
             final Step endStep = traversal.asAdmin().getEndStep();
             final String label = (String) endStep.getLabels().iterator().next();
@@ -94,6 +98,7 @@ class WhereTraversalBuilder {
             return __.not(traversal);
         }
     */
+
     public static GraphTraversal<?, ?> transform(final Expr expression) {
         if (expression instanceof E_Equals) return transform((E_Equals) expression);
         if (expression instanceof E_NotEquals) return transform((E_NotEquals) expression);

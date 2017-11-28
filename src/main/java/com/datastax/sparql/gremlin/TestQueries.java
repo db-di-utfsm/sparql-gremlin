@@ -198,7 +198,7 @@ public abstract class TestQueries {
                     "FILTER (?v = 'person' && ?v2 > 3)" +
                     "}";
 
-    static String manyBlocks =
+    static String manyBlocks = // TODO test when optional is done
             "SELECT ?s WHERE {" +
                     "{<< ?x e:to ?y>> ;" +
                     "ep:skill ?s ." +
@@ -210,5 +210,16 @@ public abstract class TestQueries {
                     "FILTER (?z > 3)" +
                     "}}";
 
-    static public String test = manyBlocks;
+    static String manyBlocks2 = // ok
+            "SELECT ?x WHERE {" +
+                    "{<< ?x e:to ?y>> ;" +
+                    "ep:skill ?s ." +
+                    "FILTER (?s > 3)" +
+                    "} UNION {" +
+                    "<<?x e:to ?f>>;" +
+                    "ep:since ?t." +
+                    "FILTER (?t > 2009)" +
+                    "}}";
+
+    static public String test = manyBlocks2;
 }

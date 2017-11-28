@@ -41,25 +41,6 @@ public abstract class Variable {
         SOtoP.put(Type.EDGE, Type.NODE, Type.E_IN);
     }
 
-    public enum Type {
-        // RDF NODES
-        NODE,
-        EDGE,
-        PROPERTY,
-        VALUE,
-        // RDF EDGES
-        N_VALUE,
-        NP,
-        META,
-        N_ID,
-        N_LABEL,
-        E_IN,
-        E_OUT,
-        E_ID,
-        E_LABEL,
-        EP,
-    }
-
     public static Type[] getSOTypesFromP(String p) {
         Type pType = PredicateCheck.getType(p);
         return PtoSO.get(pType);
@@ -97,6 +78,25 @@ public abstract class Variable {
     public static Type[] getSOTypesFromPType(HashMap<String, Type> typesMap, String pStr) {
         Type pType = typesMap.get(pStr);
         return PtoSO.get(pType);
+    }
+
+    public enum Type {
+        // RDF NODES
+        NODE,
+        EDGE,
+        PROPERTY,
+        VALUE,
+        // RDF EDGES
+        N_VALUE,
+        NP,
+        META,
+        N_ID,
+        N_LABEL,
+        E_IN,
+        E_OUT,
+        E_ID,
+        E_LABEL,
+        EP,
     }
 
 

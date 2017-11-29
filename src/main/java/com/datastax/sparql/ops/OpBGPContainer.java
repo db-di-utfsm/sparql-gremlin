@@ -1,5 +1,7 @@
-package com.datastax.sparql.gremlin;
+package com.datastax.sparql.ops;
 
+import com.datastax.sparql.gremlin.Builder;
+import com.datastax.sparql.gremlin.Typifier;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.sparql.algebra.Op;
 import org.apache.jena.sparql.algebra.op.OpBGP;

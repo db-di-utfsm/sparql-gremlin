@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public abstract class Builder {
 
-    static ArrayList<GraphTraversal<Vertex, ?>> transform(Triple triple, Typifier typifier) {
+    public static ArrayList<GraphTraversal<Vertex, ?>> transform(Triple triple, Typifier typifier) {
 
         ArrayList<GraphTraversal<Vertex, ?>> result = new ArrayList<>();
         Node s, p, o;

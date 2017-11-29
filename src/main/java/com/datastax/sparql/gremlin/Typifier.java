@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-class Typifier extends HashMap<String, Variable.Type> {
+public class Typifier extends HashMap<String, Variable.Type> {
 
     private ArrayList<Triple> allTriples;
 

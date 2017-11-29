@@ -1,5 +1,6 @@
-package com.datastax.sparql.gremlin;
+package com.datastax.sparql.ops;
 
+import com.datastax.sparql.gremlin.Typifier;
 import org.apache.jena.sparql.algebra.Op;
 import org.apache.jena.sparql.algebra.OpVisitorBase;
 import org.apache.jena.sparql.algebra.op.OpBGP;
@@ -14,12 +15,12 @@ public class OpsFinder extends OpVisitorBase {
     private final ArrayList<OpContainer> containersList;
     private final Typifier typifier;
 
-    OpsFinder(Typifier typifier) {
+    public OpsFinder(Typifier typifier) {
         containersList = new ArrayList<>();
         this.typifier = typifier;
     }
 
-    Traversal[] getTraversalsArray() {
+    public Traversal[] getTraversalsArray() {
         ArrayList<Traversal> traversals = new ArrayList<>();
         containersList.forEach((container) -> {
             traversals.addAll(container.getTraversals());

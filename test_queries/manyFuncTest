@@ -8,4 +8,4 @@ FILTER (?v = 'person' && ?v2 > 3)
 ===
 vp[name->marko]
 vp[name->stephen]
-vp[name->daniel
+vp[name->daniel]

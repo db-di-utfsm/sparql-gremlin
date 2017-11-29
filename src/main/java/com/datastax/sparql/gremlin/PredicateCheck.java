@@ -11,43 +11,43 @@ public abstract class PredicateCheck {
     private static final String EDGE_ID_P = Prefixes.EDGE_URI + "#id";
     private static final String EDGE_LABEL_P = Prefixes.EDGE_URI + "#label";
 
-    static boolean isNValue(String p) {
+    static private boolean isNValue(String p) {
         return p.equals(VALUE_P);
     }
 
-    static boolean isNodeProperty(String p) {
+    static private boolean isNodeProperty(String p) {
         return p.split("#")[0].equals(Prefixes.NODE_PROPERTY_URI);
     }
 
-    static boolean isNodeLabel(String p) {
+    static private boolean isNodeLabel(String p) {
         return p.equals(NODE_LABEL_P);
     }
 
-    static boolean isNodeId(String p) {
+    static private boolean isNodeId(String p) {
         return p.equals(NODE_ID_P);
     }
 
-    static boolean isMeta(String p) {
+    static private boolean isMeta(String p) {
         return p.split("#")[0].equals(Prefixes.METAPROPERTY_URI);
     }
 
-    static boolean isEdgeIn(String p) {
+    static private boolean isEdgeIn(String p) {
         return p.equals(EDGE_IN_P);
     }
 
-    static boolean isEdgeOut(String p) {
+    static private boolean isEdgeOut(String p) {
         return p.equals(EDGE_OUT_P);
     }
 
-    static boolean isEdgeId(String p) {
+    static private boolean isEdgeId(String p) {
         return p.equals(EDGE_ID_P);
     }
 
-    static boolean isEdgeLabel(String p) {
+    static private boolean isEdgeLabel(String p) {
         return p.equals(EDGE_LABEL_P);
     }
 
-    static boolean isEdgeProperty(String p) {
+    static private boolean isEdgeProperty(String p) {
         return p.split("#")[0].equals(Prefixes.EDGE_PROPERTY_URI);
     }
 

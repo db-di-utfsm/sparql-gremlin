@@ -1,5 +1,6 @@
-package com.datastax.sparql.gremlin;
+package com.datastax.sparql.ops;
 
+import com.datastax.sparql.gremlin.Typifier;
 import org.apache.jena.sparql.algebra.Op;
 import org.apache.jena.sparql.algebra.op.OpBGP;
 import org.apache.tinkerpop.gremlin.process.traversal.Traversal;

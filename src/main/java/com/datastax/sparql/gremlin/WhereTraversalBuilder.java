@@ -27,7 +27,7 @@ import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
 /**
  * @author Daniel Kuppitz (http://gremlin.guru)
  */
-class WhereTraversalBuilder {
+public class WhereTraversalBuilder {
     // TODO check all this
 
     static Typifier typifier;

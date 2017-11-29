@@ -189,7 +189,7 @@ public abstract class TestQueries {
                     "?y ?bla ?v " +
                     "}";
 
-    static String manyFuncTest =
+    static String manyFuncTest = // ok
             "select distinct ?n where{" +
                     "?x n:label ?v ." +
                     "<< ?x e:to ?y >>;" +
@@ -197,7 +197,7 @@ public abstract class TestQueries {
                     "?x np:name ?n." +
                     "FILTER (?v = 'person' && ?v2 > 3)" +
                     "}";
-
+    static public String test = manyFuncTest;
     static String manyBlocks = // TODO test when optional is done
             "SELECT ?s WHERE {" +
                     "{<< ?x e:to ?y>> ;" +
@@ -209,7 +209,6 @@ public abstract class TestQueries {
                     "?x ?y ?z ." +
                     "FILTER (?z > 3)" +
                     "}}";
-
     static String manyBlocks2 = // ok
             "SELECT ?x WHERE {" +
                     "{<< ?x e:to ?y>> ;" +
@@ -220,6 +219,4 @@ public abstract class TestQueries {
                     "ep:since ?t." +
                     "FILTER (?t > 2009)" +
                     "}}";
-
-    static public String test = manyBlocks2;
 }

@@ -9,7 +9,7 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 import java.util.ArrayList;
 
-public abstract class Builder {
+public abstract class BGPBuilder {
 
     public static ArrayList<GraphTraversal<Vertex, ?>> transform(Triple triple, Typifier typifier) {
 
@@ -24,7 +24,7 @@ public abstract class Builder {
         sStr = s.toString();
         pStr = p.toString();
         oStr = o.toString();
-        final GraphTraversal<Vertex, ?> traversal = __.as(s.getName());
+        final GraphTraversal<Vertex, ?> traversal = __.as(s.getName() + Randomizer.dup());
         if (p.isVariable()) {
             if (o.isVariable()) { // v v v
                 String oName = o.getName();
@@ -100,6 +100,7 @@ public abstract class Builder {
     }
 
     static GraphTraversal<Vertex, ?> getVVVFromSOTypes(GraphTraversal<Vertex, ?> traversal, Variable.Type sType, Variable.Type oType, String oName) {
+        oName += Randomizer.dup();
         switch (sType) {
             case NODE:
                 switch (oType) {
@@ -126,6 +127,7 @@ public abstract class Builder {
     }
 
     static GraphTraversal<Vertex, ?> getVVVFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String oName) {
+        oName +=  Randomizer.dup();
         switch (pType) {
             case N_VALUE:
                 return traversal.value().as(oName);
@@ -153,6 +155,7 @@ public abstract class Builder {
     static GraphTraversal<Vertex, ?> getVUVFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String pStr,
                                                      String oName) {
         String property;
+        oName +=  Randomizer.dup();
         switch (pType) {
             case N_VALUE:
                 return traversal.value().as(oName);

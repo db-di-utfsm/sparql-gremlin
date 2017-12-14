@@ -49,19 +49,16 @@ public class Compiler extends OpVisitorBase {
         if (unionFinder.found()) {
             Op leftUnionOp = unionFinder.getLeftOp();
             Op rightUnionOp = unionFinder.getRightOp();
-            OpsFinder leftOps = new OpsFinder(typifier);
-            OpsFinder rightOps = new OpsFinder(typifier);
+            OpsFinder leftOps = new OpsFinder(typifier, false);
+            OpsFinder rightOps = new OpsFinder(typifier, true);
             OpWalker.walk(leftUnionOp, leftOps);
             OpWalker.walk(rightUnionOp, rightOps);
             traversal = traversal.union(__.match(leftOps.getTraversalsArray()), __.match(rightOps.getTraversalsArray()));
         } else {
-            OpsFinder ops = new OpsFinder(typifier);
+            OpsFinder ops = new OpsFinder(typifier, false);
             OpWalker.walk(op, ops);
             traversal = traversal.match(ops.getTraversalsArray());
         }
-        //OpWalker.walk(op, new VisitorAnalyzer());
-        // -----------------------
-        //OpWalker.walk(op, this);
         // TODO COPIED AS IS FROM ORIGINAL CLASS
         if (!query.isQueryResultStar()) {
             final List<String> vars = query.getResultVars();

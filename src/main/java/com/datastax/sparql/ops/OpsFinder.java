@@ -1,5 +1,6 @@
 package com.datastax.sparql.ops;
 
+import com.datastax.sparql.gremlin.Randomizer;
 import com.datastax.sparql.gremlin.Typifier;
 import org.apache.jena.sparql.algebra.Op;
 import org.apache.jena.sparql.algebra.OpVisitorBase;
@@ -14,17 +15,20 @@ public class OpsFinder extends OpVisitorBase {
 
     private final ArrayList<OpContainer> containersList;
     private final Typifier typifier;
+    private final boolean isRightUnionOps;
 
-    public OpsFinder(Typifier typifier) {
+    public OpsFinder(Typifier typifier, boolean isRightUnionOps) {
         containersList = new ArrayList<>();
         this.typifier = typifier;
+        this.isRightUnionOps = isRightUnionOps;
     }
 
     public Traversal[] getTraversalsArray() {
+        if(isRightUnionOps){
+            Randomizer.setDuplicatedVariable();
+        }
         ArrayList<Traversal> traversals = new ArrayList<>();
-        containersList.forEach((container) -> {
-            traversals.addAll(container.getTraversals());
-        });
+        containersList.forEach((container) -> traversals.addAll(container.getTraversals()));
         int size = traversals.size();
         final Traversal[] matchTraversalsArray = new Traversal[size];
         for (int i = 0; i < size; i++) { // because match needs an array
@@ -49,7 +53,7 @@ public class OpsFinder extends OpVisitorBase {
             Op optionalBGP = opLeftJoin.getRight();
             if (optionalBGP.toString().equals(container.op.toString())) {
                 containersList.set(containersList.indexOf(container),
-                        new OpBGPOptionalContainer(container, typifier));
+                        new OpBGPOptionalContainer(optionalBGP, typifier));
                 return;
             }
         }

@@ -197,20 +197,16 @@ public abstract class TestQueries {
                     "?x np:name ?n." +
                     "FILTER (?v = 'person' && ?v2 > 3)" +
                     "}";
-    static public String test = manyFuncTest;
-    static String manyBlocks = // TODO test when optional is done
-            "SELECT ?s WHERE {" +
-                    "{<< ?x e:to ?y>> ;" +
-                    "ep:skill ?s ." +
+    static String opt1 = // ok [{x=v[8], d=p[since->2012]}, {x=v[8], d=p[since->2012]}, {x=v[9], d=}]
+            "SELECT ?x ?d WHERE {" +
+                    "<< ?x e:to ?y>> ;" +
+                    "ep:skill 3 ." +
                     "OPTIONAL {" +
-                    "?z ?t ?d ." +
-                    "}" +
-                    "} UNION {" +
-                    "?x ?y ?z ." +
-                    "FILTER (?z > 3)" +
-                    "}}";
-    static String manyBlocks2 = // ok
-            "SELECT ?x WHERE {" +
+                    "?x e:out ?e ." +
+                    "?e ep:since ?d." +
+                    "}}" ;
+    static String manyBlocks2 = // ok, but as AND
+            "SELECT * WHERE {" +
                     "{<< ?x e:to ?y>> ;" +
                     "ep:skill ?s ." +
                     "FILTER (?s > 3)" +
@@ -219,4 +215,6 @@ public abstract class TestQueries {
                     "ep:since ?t." +
                     "FILTER (?t > 2009)" +
                     "}}";
+    static public String test = manyBlocks2;
+
 }

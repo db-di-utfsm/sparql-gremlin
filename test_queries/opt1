@@ -1,0 +1,11 @@
+SELECT ?x ?d WHERE {
+<< ?x e:to ?y>> ;
+ep:skill 3 .
+OPTIONAL {
+?x e:out ?e .
+?e ep:since ?d.
+}}
+===
+{x=v[8], d=p[since->2012]}
+{x=v[8], d=p[since->2012]}
+{x=v[9], d=}

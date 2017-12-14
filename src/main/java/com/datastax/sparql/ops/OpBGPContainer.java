@@ -1,6 +1,6 @@
 package com.datastax.sparql.ops;
 
-import com.datastax.sparql.gremlin.Builder;
+import com.datastax.sparql.gremlin.BGPBuilder;
 import com.datastax.sparql.gremlin.Typifier;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.sparql.algebra.Op;
@@ -21,7 +21,7 @@ public class OpBGPContainer extends OpContainer {
         List<Triple> triples = ((OpBGP) op).getPattern().getList();
         ArrayList<Traversal> matchTraversalsList = new ArrayList<>();
         for (final Triple triple : triples) {
-            matchTraversalsList.addAll(Builder.transform(triple, typifier));
+            matchTraversalsList.addAll(BGPBuilder.transform(triple, typifier));
         }
         return matchTraversalsList;
     }

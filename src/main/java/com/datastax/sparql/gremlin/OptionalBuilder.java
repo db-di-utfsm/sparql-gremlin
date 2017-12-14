@@ -9,23 +9,26 @@ import java.util.List;
 public abstract class OptionalBuilder {
 
     public static GraphTraversal transform(List<Triple> triples) {
-        GraphTraversal traversal = null;
+        GraphTraversal traversal1 = null, traversal2 = null;
         Triple triple = null;
         GraphTraversal result = null;
         for (int i = 0; i < triples.size(); i++) {
             triple = triples.get(i);
             if (i == 0) {
-                result = __.as(triple.getSubject().toString());
-            } else {
-                String p = triple.getPredicate().toString();
-                traversal = buildTraversalFromPredicate(traversal, p);
+                result = __.as(triple.getSubject().getName() + Randomizer.dup());
             }
+            String p = triple.getPredicate().toString();
+            traversal1 = buildTraversalFromPredicate(traversal1, p);
+            traversal2 = buildTraversalFromPredicate(traversal2, p);
         }
-        result = result.choose(traversal, __.constant("")).as(triple.getObject().toString());
+        result = result.choose(traversal1, traversal2,  __.constant("")).as(triple.getObject().getName() + Randomizer.dup());
         return result;
     }
 
     private static GraphTraversal buildTraversalFromPredicate(GraphTraversal traversal, String p) {
+        if(traversal == null){
+            traversal = __.__();
+        }
         switch (PredicateCheck.getType(p)) {
             case N_VALUE:
                 return traversal.value();

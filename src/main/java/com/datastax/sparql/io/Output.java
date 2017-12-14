@@ -1,5 +1,6 @@
 package com.datastax.sparql.io;
 
+import com.datastax.sparql.gremlin.Randomizer;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 
 import java.io.BufferedReader;
@@ -26,6 +27,7 @@ public class Output {
 
     public void print() {
         ArrayList<String> result = (ArrayList<String>) traversal.toStream().map(Object::toString).collect(Collectors.toList());
+        deleteDupSufixes(result);
         if (isTest) {
             int resultSize = result.size();
             int expectedResultSize = expectedResult.size();
@@ -51,6 +53,14 @@ public class Output {
                 printWithHeadline("Result", result);
             } catch (IOException e) {
                 System.out.println("Error in output");
+            }
+        }
+    }
+
+    private void deleteDupSufixes(ArrayList<String> result) {
+        if(!Randomizer.dup().equals("")) {
+            for( int i = 0 ; i < result.size(); i++){
+                result.set(i, result.get(i).replace(Randomizer.dup(), ""));
             }
         }
     }

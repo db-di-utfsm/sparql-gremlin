@@ -1,5 +1,7 @@
 package com.datastax.sparql.star;
 
+import com.datastax.sparql.gremlin.Randomizer;
+
 import java.util.regex.Matcher;
 
 
@@ -27,7 +29,7 @@ abstract class SPARQLStarSubstring {
 
     String getSPARQLTriples() {
         StringBuilder builder = new StringBuilder();
-        String newVariable = SPARQLStarTranslator.getRandomVarName();
+        String newVariable = Randomizer.getRandomVarName();
         if (isMultiple()) {
             String[] parts = s.split(";");
             String main = parts[0].trim();

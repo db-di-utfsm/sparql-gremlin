@@ -34,32 +34,32 @@ public class WhereTraversalBuilder {
 
     public static GraphTraversal<?, ?> transform(final E_Equals expression) {
         final Object value = expression.getArg2().getConstant().getNode().getLiteralValue();
-        return __.as(expression.getArg1().getVarName()).is(P.eq(value));
+        return __.as(expression.getArg1().getVarName() + Randomizer.dup()).is(P.eq(value));
     }
 
     public static GraphTraversal<?, ?> transform(final E_NotEquals expression) {
         final Object value = expression.getArg2().getConstant().getNode().getLiteralValue();
-        return __.as(expression.getArg1().getVarName()).is(P.neq(value));
+        return __.as(expression.getArg1().getVarName() + Randomizer.dup()).is(P.neq(value));
     }
 
     public static GraphTraversal<?, ?> transform(final E_LessThan expression) {
         final Object value = expression.getArg2().getConstant().getNode().getLiteralValue();
-        return __.as(expression.getArg1().getVarName()).is(P.lt(value));
+        return __.as(expression.getArg1().getVarName() + Randomizer.dup()).is(P.lt(value));
     }
 
     public static GraphTraversal<?, ?> transform(final E_LessThanOrEqual expression) {
         final Object value = expression.getArg2().getConstant().getNode().getLiteralValue();
-        return __.as(expression.getArg1().getVarName()).is(P.lte(value));
+        return __.as(expression.getArg1().getVarName() + Randomizer.dup()).is(P.lte(value));
     }
 
     public static GraphTraversal<?, ?> transform(final E_GreaterThan expression) {
         final Object value = expression.getArg2().getConstant().getNode().getLiteralValue();
-        return __.as(expression.getArg1().getVarName()).is(P.gt(value));
+        return __.as(expression.getArg1().getVarName() + Randomizer.dup()).is(P.gt(value));
     }
 
     public static GraphTraversal<?, ?> transform(final E_GreaterThanOrEqual expression) {
         final Object value = expression.getArg2().getConstant().getNode().getLiteralValue();
-        return __.as(expression.getArg1().getVarName()).is(P.gte(value));
+        return __.as(expression.getArg1().getVarName() + Randomizer.dup()).is(P.gte(value));
     }
 
     public static GraphTraversal<?, ?> transform(final E_LogicalAnd expression) {
@@ -80,7 +80,7 @@ public class WhereTraversalBuilder {
             final OpBGP opBGP = (OpBGP) expression.getGraphPattern();
             final List<Triple> triples = opBGP.getPattern().getList();
             if (triples.size() != 1) throw new IllegalStateException("Unhandled EXISTS pattern");
-            final GraphTraversal<Vertex, ?> traversal = Builder.transform(triples.get(0), typifier);
+            final GraphTraversal<Vertex, ?> traversal = BGPBuilder.transform(triples.get(0), typifier);
             final Step endStep = traversal.asAdmin().getEndStep();
             final String label = (String) endStep.getLabels().iterator().next();
             endStep.removeLabel(label);

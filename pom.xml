@@ -148,31 +148,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.7</version>
-                <executions>
-                    <execution>
-                        <id>copy-sparql-queries</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/examples</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${project.basedir}/src/test/resources/queries</directory>
-                                    <includes>
-                                        <include>*.sparql</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.4</version>
                 <executions>

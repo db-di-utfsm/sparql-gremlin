@@ -205,7 +205,9 @@ public abstract class TestQueries {
                     "?x e:out ?e ." +
                     "?e ep:since ?d." +
                     "}}" ;
-    static String manyBlocks2 = // ok, but as AND
+
+    static String manyBlocks2 = // [{s=5, x=v[1], y=v[11], r80257=e[16][1-uses->11]}, {s=4, x=v[1], y=v[10], r80257=e[15][1-uses->10]}, {x=v[1], f=v[11], t=2010, r52033=e[14][1-develops->11]}, {s=5, x=v[7], y=v[10], r80257=e[19][7-uses->10]}, {s=4, x=v[7], y=v[11], r80257=e[20][7-uses->11]}, {x=v[7], f=v[10], t=2010, r52033=e[17][7-develops->10]}, {x=v[7], f=v[11], t=2011, r52033=e[18][7-develops->11]}, {x=v[8], f=v[10], t=2012, r52033=e[21][8-develops->10]}, {s=5, x=v[9], y=v[10], r80257=e[24][9-uses->10]}]
+                                // ok, UNION just working with *
             "SELECT * WHERE {" +
                     "{<< ?x e:to ?y>> ;" +
                     "ep:skill ?s ." +
@@ -215,6 +217,49 @@ public abstract class TestQueries {
                     "ep:since ?t." +
                     "FILTER (?t > 2009)" +
                     "}}";
-    static public String test = manyBlocks2;
+
+    static String optFilter =
+            "SELECT ?s ?d WHERE {" +
+                    "<< ?x e:to ?y>> ;" +
+                    "ep:skill ?s ." +
+                    "FILTER (?s > 4) ." +
+                    "OPTIONAL {" +
+                    "?x e:out ?e ." +
+                    "?e ep:since ?d." +
+                    "}" +
+                    "}";
+
+    static String distinct1 = // [v[11], v[11]] ???
+            "SELECT DISTINCT ?y WHERE {" +
+            "?x n:label 'person' ." +
+            "<< ?x e:to ?y>> ." +
+            "?y ?p 11 ." +
+            "}";
+
+    static String exist = // no se si sirve mucho
+            "SELECT ?x WHERE {" +
+                    "?x n:label 'person' ." +
+                    "?x e:out ?e ." +
+                    " FILTER NOT EXISTS { ?e e:label ?s .}" +
+                    "}";
+
+    static public String order = // OK [{s=3, n=daniel}, {s=3, n=matthias}, {s=3, n=matthias}, {s=4, n=marko}, {s=4, n=stephen}, {s=5, n=daniel}, {s=5, n=marko}, {s=5, n=stephen}]
+            "SELECT ?s ?n WHERE {" +
+                    "<< ?x e:to ?y >> ;" +
+                    "ep:skill ?s ." +
+                    "?x np:name ?p ." +
+                    "?p n:value ?n ." +
+                    "} ORDER BY (?s)";
+
+    static public String orderDes = // OK [{s=5, n=daniel}, {s=5, n=marko}, {s=5, n=stephen}, {s=4, n=marko}, {s=4, n=stephen}, {s=3, n=daniel}, {s=3, n=matthias}, {s=3, n=matthias}]
+            "SELECT ?s ?n WHERE {" +
+                    "<< ?x e:to ?y >> ;" +
+                    "ep:skill ?s ." +
+                    "?x np:name ?p ." +
+                    "?p n:value ?n ." +
+                    "} ORDER BY DESC(?s)";
+
+
+    static public String test = order;
 
 }

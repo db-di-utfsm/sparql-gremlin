@@ -232,7 +232,7 @@ public abstract class BGPBuilder {
             case N_VALUE:
                 return traversal.hasValue(oLit);
             case META:
-                String metaProperty = pStr.split("#")[1];
+                String metaProperty = pStr.split("#")[1]; // TODO this is wrong !!!
                 return traversal.values(metaProperty).is(oLit);
             case N_ID:
                 return traversal.hasId(oLit);

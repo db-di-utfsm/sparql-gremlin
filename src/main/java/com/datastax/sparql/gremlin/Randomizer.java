@@ -30,8 +30,6 @@ public class Randomizer {
         return  duplicatedVariableSufix;
     }
 
-
-
     public static void setDuplicatedVariable() {
         int randomNum = getRandomNumber();
         duplicatedVariableSufix = "_" + String.valueOf(randomNum);

@@ -1,7 +1,7 @@
 package com.datastax.sparql.ops;
 
+import com.datastax.sparql.gremlin.FilterBuilder;
 import com.datastax.sparql.gremlin.Typifier;
-import com.datastax.sparql.gremlin.WhereTraversalBuilder;
 import org.apache.jena.sparql.algebra.op.OpFilter;
 import org.apache.jena.sparql.expr.Expr;
 import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
@@ -21,7 +21,7 @@ public class OpFilterContainer extends OpContainer {
         ArrayList<Traversal> whereTraversalsList = new ArrayList<>();
         for (Expr expr : ((OpFilter) op).getExprs().getList()) {
             if (expr != null) {
-                traversal = __.where(WhereTraversalBuilder.transform(expr));
+                traversal = __.where(FilterBuilder.transform(expr));
                 whereTraversalsList.add(traversal);
             }
         }

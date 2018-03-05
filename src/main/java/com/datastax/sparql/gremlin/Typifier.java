@@ -49,7 +49,7 @@ public class Typifier extends HashMap<String, Variable.Type> {
                 if (p.isVariable()) {
                     if (o.isVariable()) { // var var var
                         newVariableType = newVariableType || assignVV(sStr, pStr, oStr);
-                    } else { // var var uri, ipossible to know exact p type
+                    } else { // var var uri, impossible to know exact p type
                     }
                 } else {
                     if (o.isVariable()) { // var uri var

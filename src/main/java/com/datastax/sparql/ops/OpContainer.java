@@ -6,7 +6,7 @@ import org.apache.tinkerpop.gremlin.process.traversal.Traversal;
 
 import java.util.ArrayList;
 
-abstract class OpContainer  {
+abstract class OpContainer {
 
     Op op;
     Typifier typifier;

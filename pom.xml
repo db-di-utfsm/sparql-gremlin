@@ -122,7 +122,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.datastax.sparql.ConsoleCompiler</mainClass>
+                            <mainClass>com.datastax.sparql.SPARQL2GREMLIN</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

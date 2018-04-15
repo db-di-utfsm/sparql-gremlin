@@ -58,8 +58,8 @@ public class Output {
     }
 
     private void deleteDupSufixes(ArrayList<String> result) {
-        if(!Randomizer.dup().equals("")) {
-            for( int i = 0 ; i < result.size(); i++){
+        if (!Randomizer.dup().equals("")) {
+            for (int i = 0; i < result.size(); i++) {
                 result.set(i, result.get(i).replace(Randomizer.dup(), ""));
             }
         }

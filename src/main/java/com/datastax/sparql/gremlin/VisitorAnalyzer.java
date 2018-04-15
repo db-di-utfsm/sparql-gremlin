@@ -6,7 +6,7 @@ import org.apache.jena.sparql.algebra.op.OpFilter;
 import org.apache.jena.sparql.algebra.op.OpLeftJoin;
 import org.apache.jena.sparql.algebra.op.OpUnion;
 
-// Just for testing purpuse
+// Just for testing
 public class VisitorAnalyzer extends OpVisitorBase {
 
     @Override

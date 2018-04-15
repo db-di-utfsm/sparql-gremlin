@@ -19,16 +19,10 @@
 
 package com.datastax.sparql.gremlin;
 
-import org.apache.jena.graph.Triple;
-import org.apache.jena.sparql.algebra.op.OpBGP;
 import org.apache.jena.sparql.expr.*;
 import org.apache.tinkerpop.gremlin.process.traversal.P;
-import org.apache.tinkerpop.gremlin.process.traversal.Step;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
-import org.apache.tinkerpop.gremlin.structure.Vertex;
-
-import java.util.List;
 
 
 public class FilterBuilder {
@@ -77,28 +71,6 @@ public class FilterBuilder {
                 transform(expression.getArg2()));
     }
 
-    private static GraphTraversal<?, ?> transform(final E_Exists expression) {
-        final OpBGP opBGP = (OpBGP) expression.getGraphPattern();
-        final List<Triple> triples = opBGP.getPattern().getList();
-        if (triples.size() != 1) throw new IllegalStateException("Unhandled EXISTS pattern");
-        final GraphTraversal<Vertex, ?> traversal = BGPBuilder.transform(triples.get(0), typifier).get(0);
-        final Step endStep = traversal.asAdmin().getEndStep();
-        final String label = (String) endStep.getLabels().iterator().next();
-        endStep.removeLabel(label);
-        return traversal;
-    }
-
-    private static GraphTraversal<?, ?> transform(final E_NotExists expression) {
-        final OpBGP opBGP = (OpBGP) expression.getGraphPattern();
-        final List<Triple> triples = opBGP.getPattern().getList();
-        if (triples.size() != 1) throw new IllegalStateException("Unhandled NOT EXISTS pattern");
-        final GraphTraversal<?, ?> traversal = BGPBuilder.transform(triples.get(0),typifier).get(0);
-        final Step endStep = traversal.asAdmin().getEndStep();
-        final String label = (String) endStep.getLabels().iterator().next();
-        endStep.removeLabel(label);
-        return __.not(traversal);
-    }
-
     public static GraphTraversal<?, ?> transform(final Expr expression) {
         if (expression instanceof E_Equals) return transform((E_Equals) expression);
         if (expression instanceof E_NotEquals) return transform((E_NotEquals) expression);
@@ -108,8 +80,6 @@ public class FilterBuilder {
         if (expression instanceof E_GreaterThanOrEqual) return transform((E_GreaterThanOrEqual) expression);
         if (expression instanceof E_LogicalAnd) return transform((E_LogicalAnd) expression);
         if (expression instanceof E_LogicalOr) return transform((E_LogicalOr) expression);
-        if (expression instanceof E_Exists) return transform((E_Exists) expression);
-        if (expression instanceof E_NotExists) return transform((E_NotExists) expression);
         throw new IllegalStateException(String.format("Unhandled expression: %s", expression));
     }
 }

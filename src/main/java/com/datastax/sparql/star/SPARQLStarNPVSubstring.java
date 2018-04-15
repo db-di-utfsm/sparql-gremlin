@@ -1,9 +1,11 @@
 package com.datastax.sparql.star;
 
+import com.datastax.sparql.constants.Uri;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
-class SPARQLStarNPVSubstring extends SPARQLStarSubstring {
+class SPARQLStarNPVSubstring extends SPARQLStarSubstring implements Uri {
 
     SPARQLStarNPVSubstring(Matcher matcher) {
         super(matcher);
@@ -23,9 +25,9 @@ class SPARQLStarNPVSubstring extends SPARQLStarSubstring {
         String p = splitted[1];
         String o = splitted[2];
         builder.append(s).append(" ").append(p).append(" ").append(newVariable).append(" .").
-                append(System.lineSeparator()).append(newVariable).append(" n:value ").append(o).append(" .").
+                append(System.lineSeparator()).append(newVariable).append(" ")
+                .append(NODE).append(":").append(VALUE_SUFIX).append(" ").append(o).append(" .").
                 append(System.lineSeparator());
     }
-
 
 }

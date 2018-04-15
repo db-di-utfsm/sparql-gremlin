@@ -73,7 +73,7 @@ public abstract class BGPBuilder {
                                 __.hasValue(oLit)));
                     } else {
                         pType = typifier.get(pStr);
-                        result.add(getVVUFromPType(traversal, pStr, pType, oStr, oLit));
+                        result.add(getVVUFromPType(traversal, pType, oStr, oLit));
                     }
                 } else {
                     if (typifier.unknown(pStr)) {
@@ -81,7 +81,7 @@ public abstract class BGPBuilder {
                         result.add(getVVUFromSType(traversal, sType, oStr, oLit));
                     } else {
                         pType = typifier.get(pStr);
-                        result.add(getVVUFromPType(traversal, pStr, pType, oStr, oLit));
+                        result.add(getVVUFromPType(traversal, pType, oStr, oLit));
                     }
                 }
             }
@@ -127,7 +127,7 @@ public abstract class BGPBuilder {
     }
 
     static GraphTraversal<Vertex, ?> getVVVFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String oName) {
-        oName +=  Randomizer.dup();
+        oName += Randomizer.dup();
         switch (pType) {
             case N_VALUE:
                 return traversal.value().as(oName);
@@ -155,7 +155,7 @@ public abstract class BGPBuilder {
     static GraphTraversal<Vertex, ?> getVUVFromPType(GraphTraversal<Vertex, ?> traversal, Variable.Type pType, String pStr,
                                                      String oName) {
         String property;
-        oName +=  Randomizer.dup();
+        oName += Randomizer.dup();
         switch (pType) {
             case N_VALUE:
                 return traversal.value().as(oName);
@@ -226,14 +226,14 @@ public abstract class BGPBuilder {
         }
     }
 
-    static GraphTraversal<Vertex, ?> getVVUFromPType(GraphTraversal<Vertex, ?> traversal, String pStr,
+    // TODO check again
+    static GraphTraversal<Vertex, ?> getVVUFromPType(GraphTraversal<Vertex, ?> traversal,
                                                      Variable.Type pType, String oStr, Object oLit) {
         switch (pType) {
             case N_VALUE:
                 return traversal.hasValue(oLit);
             case META:
-                String metaProperty = pStr.split("#")[1]; // TODO this is wrong !!!
-                return traversal.values(metaProperty).is(oLit);
+                return traversal.values().is(oLit);
             case N_ID:
                 return traversal.hasId(oLit);
             case E_ID:
@@ -242,9 +242,8 @@ public abstract class BGPBuilder {
                 return traversal.hasLabel(oStr);
             case E_LABEL:
                 return traversal.hasLabel(oStr);
-            default: // case EP:
-                String property = pStr.split("#")[1];
-                return traversal.values(property).is(oLit);
+            default: // case EP
+                return traversal.values().is(oLit);
             // Impossible:
             // E_IN
             // E_OUT

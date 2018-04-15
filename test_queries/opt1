@@ -6,6 +6,6 @@ OPTIONAL {
 ?e ep:since ?d.
 }}
 ===
-{x=v[8], d=p[since->2012]}
-{x=v[8], d=p[since->2012]}
+{x=v[8], d=2012}
+{x=v[8], d=2012}
 {x=v[9], d=}

@@ -24,7 +24,7 @@ public class OpsFinder extends OpVisitorBase {
     }
 
     public Traversal[] getTraversalsArray() {
-        if(isRightUnionOps){
+        if (isRightUnionOps) {
             Randomizer.setDuplicatedVariable();
         }
         ArrayList<Traversal> traversals = new ArrayList<>();

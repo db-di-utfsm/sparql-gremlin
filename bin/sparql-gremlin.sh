@@ -35,5 +35,5 @@ if [ "${FN##*.}" != "class" ]; then
 fi
 
 args=(${@// /\\ })
-LAST_COMMAND=${LC} mvn -q exec:java -e -Dexec.mainClass="com.datastax.sparql.ConsoleCompiler" -Dexec.args="${args[*]}" 2> /dev/null
+LAST_COMMAND=${LC} mvn -q exec:java -e -Dexec.mainClass="com.datastax.sparql.SPARQL2GREMLIN" -Dexec.args="${args[*]}" 2> /dev/null
 

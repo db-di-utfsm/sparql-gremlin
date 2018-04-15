@@ -1,21 +1,12 @@
 package com.datastax.sparql.gremlin;
 
+import com.datastax.sparql.constants.Prefix;
+
 import java.util.HashMap;
 
-public class Prefixes {
+public class PreambleBuilder implements Prefix {
 
-    public final static String BASE_URI = "http://www.tinkerpop.com/traversal/";
-    public final static String NODE = "n";
-    public final static String EDGE = "e";
-    public final static String NODE_PROPERTY = "np";
-    public final static String EDGE_PROPERTY = "ep";
-    public final static String METAPROPERTY = "meta";
-    public final static String NODE_URI = BASE_URI + "node";
-    public final static String EDGE_URI = BASE_URI + "edge";
-    public final static String NODE_PROPERTY_URI = NODE_URI + "/property";
-    public final static String EDGE_PROPERTY_URI = EDGE_URI + "/property";
-    public final static String METAPROPERTY_URI = NODE_URI + "/metaproperty";
-    final static String PREFIXES_PREAMBLE;
+    private final static String PREAMBLE;
 
     static {
         HashMap<String, String> prefixesMap = new HashMap<>();
@@ -33,11 +24,11 @@ public class Prefixes {
                         .append("#")
                         .append(">")
                         .append(System.lineSeparator()));
-        PREFIXES_PREAMBLE = builder.toString();
+        PREAMBLE = builder.toString();
     }
 
     public static String preamblePrepend(String query) {
-        return PREFIXES_PREAMBLE + query;
+        return PREAMBLE + query;
     }
 
 }

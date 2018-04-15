@@ -8,11 +8,11 @@ public class Randomizer {
     final private static HashSet<Integer> usedVarNames;
     private static String duplicatedVariableSufix = "";
 
-    static{
+    static {
         usedVarNames = new HashSet<>();
     }
 
-    private static int getRandomNumber(){
+    private static int getRandomNumber() {
         int randomNum;
         do {
             randomNum = ThreadLocalRandom.current().nextInt(10000, 99999 + 1);
@@ -26,8 +26,8 @@ public class Randomizer {
         return "?r" + String.valueOf(randomNum);
     }
 
-    public static String dup(){
-        return  duplicatedVariableSufix;
+    public static String dup() {
+        return duplicatedVariableSufix;
     }
 
     public static void setDuplicatedVariable() {

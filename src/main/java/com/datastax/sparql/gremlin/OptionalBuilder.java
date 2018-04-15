@@ -21,12 +21,12 @@ public abstract class OptionalBuilder {
             traversal1 = buildTraversalFromPredicate(traversal1, p);
             traversal2 = buildTraversalFromPredicate(traversal2, p);
         }
-        result = result.choose(traversal1, traversal2,  __.constant("")).as(triple.getObject().getName() + Randomizer.dup());
+        result = result.choose(traversal1, traversal2, __.constant("")).as(triple.getObject().getName() + Randomizer.dup());
         return result;
     }
 
     private static GraphTraversal buildTraversalFromPredicate(GraphTraversal traversal, String p) {
-        if(traversal == null){
+        if (traversal == null) {
             traversal = __.__();
         }
         switch (PredicateCheck.getType(p)) {
@@ -35,7 +35,7 @@ public abstract class OptionalBuilder {
             case NP:
                 return traversal.properties(p.split("#")[1]);
             case META:
-                return traversal.properties(p.split("#")[1]);
+                return traversal.values(p.split("#")[1]);
             case N_ID:
                 return traversal.id();
             case N_LABEL:
@@ -49,7 +49,7 @@ public abstract class OptionalBuilder {
             case E_LABEL:
                 return traversal.label();
             default: //case EP: TODO throws error as default
-                return traversal.properties(p.split("#")[1]);
+                return traversal.values(p.split("#")[1]);
         }
     }
 }

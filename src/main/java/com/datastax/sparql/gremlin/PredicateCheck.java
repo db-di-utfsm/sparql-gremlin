@@ -1,22 +1,15 @@
 package com.datastax.sparql.gremlin;
 
-public abstract class PredicateCheck {
+import com.datastax.sparql.constants.Uri;
 
-    // TODO use constants for this values, extract them in another class or interface
-    private static final String VALUE_P = Prefixes.NODE_URI + "#value";
-    private static final String NODE_LABEL_P = Prefixes.NODE_URI + "#label";
-    private static final String NODE_ID_P = Prefixes.NODE_URI + "#id";
-    private static final String EDGE_IN_P = Prefixes.EDGE_URI + "#in";
-    private static final String EDGE_OUT_P = Prefixes.EDGE_URI + "#out";
-    private static final String EDGE_ID_P = Prefixes.EDGE_URI + "#id";
-    private static final String EDGE_LABEL_P = Prefixes.EDGE_URI + "#label";
+public abstract class PredicateCheck implements Uri {
 
     static private boolean isNValue(String p) {
         return p.equals(VALUE_P);
     }
 
     static private boolean isNodeProperty(String p) {
-        return p.split("#")[0].equals(Prefixes.NODE_PROPERTY_URI);
+        return p.split("#")[0].equals(PreambleBuilder.NODE_PROPERTY_URI);
     }
 
     static private boolean isNodeLabel(String p) {
@@ -28,7 +21,7 @@ public abstract class PredicateCheck {
     }
 
     static private boolean isMeta(String p) {
-        return p.split("#")[0].equals(Prefixes.METAPROPERTY_URI);
+        return p.split("#")[0].equals(PreambleBuilder.METAPROPERTY_URI);
     }
 
     static private boolean isEdgeIn(String p) {
@@ -48,7 +41,7 @@ public abstract class PredicateCheck {
     }
 
     static private boolean isEdgeProperty(String p) {
-        return p.split("#")[0].equals(Prefixes.EDGE_PROPERTY_URI);
+        return p.split("#")[0].equals(PreambleBuilder.EDGE_PROPERTY_URI);
     }
 
     static Variable.Type getType(String p) {

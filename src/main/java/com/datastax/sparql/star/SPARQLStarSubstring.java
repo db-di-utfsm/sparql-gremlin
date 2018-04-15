@@ -4,14 +4,12 @@ import com.datastax.sparql.gremlin.Randomizer;
 
 import java.util.regex.Matcher;
 
-
-// TODO use RE contants
 abstract class SPARQLStarSubstring {
 
-    static int deltaLenght = 0;
-    String s;
-    int startIndex;
-    int finalIndex;
+    private static int deltaLenght = 0;
+    private String s;
+    private int startIndex;
+    private int finalIndex;
 
     SPARQLStarSubstring(Matcher matcher) {
         this.startIndex = matcher.start();

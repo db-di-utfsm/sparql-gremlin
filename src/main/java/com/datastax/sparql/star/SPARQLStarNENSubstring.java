@@ -1,9 +1,11 @@
 package com.datastax.sparql.star;
 
+import com.datastax.sparql.constants.Uri;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
-class SPARQLStarNENSubstring extends SPARQLStarSubstring {
+class SPARQLStarNENSubstring extends SPARQLStarSubstring implements Uri{
 
     SPARQLStarNENSubstring(Matcher matcher) {
         super(matcher);
@@ -17,15 +19,14 @@ class SPARQLStarNENSubstring extends SPARQLStarSubstring {
         return list;
     }
 
-    // TODO constants!!
-
     @Override
     void buildMainTriples(String main, StringBuilder builder, String newVariable) {
         String[] splitted = splitStarTriple(main);
         String s = splitted[0];
         String o = splitted[2];
-        builder.append(s).append(" e:out ").append(newVariable).append(" .").
-                append(System.lineSeparator()).append(newVariable).append(" e:in ").append(o).append(" .").
-                append(System.lineSeparator());
+        builder.append(s).append(" ").append(EDGE).append(":").append(OUT_EDGE_SUFIX).append(" ")
+                .append(newVariable).append(" .").append(System.lineSeparator()).append(newVariable)
+                .append(" ").append(EDGE).append(":").append(IN_EDGE_SUFIX).append(" ").append(o)
+                .append(" .").append(System.lineSeparator());
     }
 }

@@ -7,11 +7,9 @@ import com.datastax.sparql.star.SPARQLStarTranslator;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 
-import java.io.IOException;
+class SPARQL2GREMLIN {
 
-class ConsoleCompiler {
-
-    public static void main(final String[] args) throws IOException {
+    public static void main(final String[] args){
         Input input = new Input(args);
         Graph graph = input.getGraph();
         String originalQuery = input.getQuery();

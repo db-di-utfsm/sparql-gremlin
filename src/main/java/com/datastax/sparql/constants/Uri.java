@@ -6,6 +6,7 @@ public interface Uri extends Prefix {
      String ID_SUFIX = "id";
      String IN_EDGE_SUFIX = "in";
      String OUT_EDGE_SUFIX = "out";
+     String TO_SUFIX = "to";
      String VALUE_P = NODE_URI + "#" + VALUE_SUFIX;
      String NODE_LABEL_P = NODE_URI + "#" + LABEL_SUFIX;
      String NODE_ID_P = NODE_URI + "#" + ID_SUFIX;

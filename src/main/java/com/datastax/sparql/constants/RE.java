@@ -1,23 +1,21 @@
 package com.datastax.sparql.constants;
 
-import com.datastax.sparql.gremlin.PreambleBuilder;
-
-public interface RE {
+public interface RE extends Uri{
     String DOT = "\\.";
     String ANY_SPACES = "\\s*?";
     String ONE_OR_MORE_SPACES = "\\s+?";
     String NAME = "(\\w|_)+";
     String VAR = "\\?" + NAME;
-    String ANY_NODE_PROP = PreambleBuilder.NODE_PROPERTY + ":" + NAME;
-    String ANY_META_PROP = PreambleBuilder.METAPROPERTY + ":" + NAME;
+    String ANY_NODE_PROP = NODE_PROPERTY + ":" + NAME;
+    String ANY_META_PROP = METAPROPERTY + ":" + NAME;
     String VALUE = "[^<.;>]+"; // depends on delimeters
     String NESTED_NODE_PROP = "(" + ANY_META_PROP + "|" + VAR + ")" + ONE_OR_MORE_SPACES + "(" + VAR + "|" + VALUE + ")";
     String SPARQL_STAR_LEFT_DELIMITER = "<<";
     String SPARQL_STAR_RIGHT_DELIMITER = ">>";
-    String TO = PreambleBuilder.EDGE + ":to";
-    String EDGE_ID = PreambleBuilder.EDGE + ":id";
-    String EDGE_LABEL = PreambleBuilder.EDGE + ":label";
-    String ANY_EDGE_PROP = PreambleBuilder.EDGE_PROPERTY + ":" + NAME;
+    String TO = EDGE + ":" + TO_SUFIX;
+    String EDGE_ID = EDGE + ":" + ID_SUFIX;
+    String EDGE_LABEL = EDGE + ":" + LABEL_SUFIX;
+    String ANY_EDGE_PROP = EDGE_PROPERTY + ":" + NAME;
     String NESTED_EDGE_PROP = "(" + EDGE_ID + "|" + EDGE_LABEL + "|" + ANY_EDGE_PROP + "|" + VAR + ")"
             + ONE_OR_MORE_SPACES + "(" + VAR + "|" + VALUE + ")";
     String NPV_PATTERN = SPARQL_STAR_LEFT_DELIMITER + ANY_SPACES + VAR + ONE_OR_MORE_SPACES +

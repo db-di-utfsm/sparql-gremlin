@@ -1,6 +1,5 @@
 package com.datastax.sparql.io;
 
-import com.datastax.sparql.gremlin.TestQueries;
 import org.apache.commons.cli.*;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.io.IoCore;
@@ -15,22 +14,28 @@ public class Input {
     private Graph graph;
     private String query;
     private ArrayList<String> expectedResult;
-    private boolean isTest;
+    private boolean isTest = false;
+    private boolean isRegular = false;
 
     public Input(final String[] args) {
         final Options options = new Options();
         options.addOption("f", "file", true, "a file that contains a SPARQL query");
         options.addOption("g", "graph", true, "the graph that's used to execute the query [classic|modern|crew|kryo file]");
+        options.addOption("t", "test", false, "set test query, with expected result");
         final CommandLineParser parser = new DefaultParser();
         final CommandLine commandLine;
         if (args.length == 0) {
-            setNormalExec();
+            setDevExec();
             isTest = false;
         } else {
             try {
                 commandLine = parser.parse(options, args);
-                setTestExec(commandLine);
-                isTest = true;
+                if (commandLine.hasOption("test")) {
+                    isTest = true;
+                } else {
+                    isRegular = true;
+                }
+                setExec(commandLine);
             } catch (ParseException e) {
                 System.out.println("Error parsing arguments");
                 System.exit(1);
@@ -38,12 +43,12 @@ public class Input {
         }
     }
 
-    private void setNormalExec() {
+    private void setDevExec() {
         graph = TinkerFactory.createTheCrew();
         query = TestQueries.test;
     }
 
-    private void setTestExec(CommandLine commandLine) {
+    private void setExec(CommandLine commandLine) {
         try {
             final InputStream inputStream;
             if (commandLine.hasOption("file")) {
@@ -54,16 +59,25 @@ public class Input {
             }
             final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             final StringBuilder queryBuilder = new StringBuilder();
-            expectedResult = new ArrayList<>();
+
             String line;
-            while (null != (line = reader.readLine())) {
-                if (line.equals("===")) break;
-                queryBuilder.append(System.lineSeparator()).append(line);
-            }
-            while (null != (line = reader.readLine())) {
-                expectedResult.add(line);
+
+            if (this.isRegular) {
+                while (null != (line = reader.readLine())) {
+                    queryBuilder.append(System.lineSeparator()).append(line);
+                }
+            } else {
+                while (null != (line = reader.readLine())) {
+                    if (line.equals("===")) break;
+                    queryBuilder.append(System.lineSeparator()).append(line);
+                }
+                expectedResult = new ArrayList<>();
+                while (null != (line = reader.readLine())) {
+                    expectedResult.add(line);
+                }
             }
             query = queryBuilder.toString();
+
             if (commandLine.hasOption("graph")) {
                 switch (commandLine.getOptionValue("graph").toLowerCase()) {
                     case "classic":

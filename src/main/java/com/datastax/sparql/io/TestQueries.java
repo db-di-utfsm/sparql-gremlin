@@ -1,4 +1,4 @@
-package com.datastax.sparql.gremlin;
+package com.datastax.sparql.io;
 
 public abstract class TestQueries {
 
@@ -247,14 +247,12 @@ public abstract class TestQueries {
                     "?e ep:since ?d." +
                     "}" +
                     "}";
-
+    static public String test = optFilter;
     static String distinct1 = // [v[11], v[11]] ???
             "SELECT DISTINCT ?y WHERE {" +
                     "?x n:label 'person' ." +
                     "<< ?x e:to ?y>> ." +
                     "?y ?p 11 ." +
                     "}";
-
-    static public String test = optFilter;
 
 }

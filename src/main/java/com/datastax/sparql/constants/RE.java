@@ -1,6 +1,6 @@
 package com.datastax.sparql.constants;
 
-public interface RE extends Uri{
+public interface RE extends Uri {
     String DOT = "\\.";
     String ANY_SPACES = "\\s*?";
     String ONE_OR_MORE_SPACES = "\\s+?";

@@ -59,7 +59,7 @@ public class example {
 
         GraphTraversalSource s = graph.traversal();
         //s.V().where(__.is(P.eq(2)))
-        System.out.println(s.V().has("name","Hugo Weaving").out("acts_in").values("title").toSet());
+        System.out.println(s.V().has("name", "Hugo Weaving").out("acts_in").values("title").toSet());
 
     }
 }

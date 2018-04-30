@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class Output {
 
     private boolean isTest;
+    private boolean isVerbose;
     private ArrayList<String> expectedResult;
     private String originalQuery;
     private String translatedQuery;
@@ -19,6 +20,7 @@ public class Output {
 
     public Output(Input input, String originalQuery, String translatedQuery, GraphTraversal<?, ?> traversal) {
         this.isTest = input.getIsTest();
+        this.isVerbose = input.getIsVerbose();
         this.expectedResult = input.getExpectedResult();
         this.originalQuery = originalQuery;
         this.translatedQuery = translatedQuery;
@@ -43,14 +45,19 @@ public class Output {
             testOk();
         } else {
             try {
-                if (!translatedQuery.equals(originalQuery)) {
-                    printWithHeadline("SPARQL* Query", originalQuery);
-                    printWithHeadline("SPARQL Query", translatedQuery);
-                } else {
-                    printWithHeadline("SPARQL Query", originalQuery);
+                if(isVerbose){
+                    if (!translatedQuery.equals(originalQuery)) {
+                        printWithHeadline("SPARQL* Query", originalQuery);
+                        printWithHeadline("SPARQL Query", translatedQuery);
+                    } else {
+                        printWithHeadline("SPARQL Query", originalQuery);
+                    }
+                    printWithHeadline("Traversal (prior execution)", traversal);
+                    printWithHeadline("Result", result);
                 }
-                printWithHeadline("Traversal (prior execution)", traversal);
-                printWithHeadline("Result", result);
+                else{
+                    System.out.println(result);
+                }
             } catch (IOException e) {
                 System.out.println("Error in output");
             }
@@ -67,14 +74,12 @@ public class Output {
 
     private void testOk() {
         System.out.println("OK");
-        System.exit(0);
     }
 
     private void testFail(ArrayList<String> result) {
         System.out.println("FAIL");
         System.out.println("EXPECTED " + expectedResult);
         System.out.println("GOT " + result);
-        System.exit(0);
     }
 
     private void printWithHeadline(final String headline, final Object content) throws IOException {

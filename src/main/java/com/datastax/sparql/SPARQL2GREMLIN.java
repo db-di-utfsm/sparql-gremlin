@@ -9,7 +9,7 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 
 class SPARQL2GREMLIN {
 
-    public static void main(final String[] args){
+    public static void main(final String[] args) {
         Input input = new Input(args);
         Graph graph = input.getGraph();
         String originalQuery = input.getQuery();

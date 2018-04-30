@@ -16,20 +16,26 @@ public class Input {
     private ArrayList<String> expectedResult;
     private boolean isTest = false;
     private boolean isRegular = false;
+    private boolean isVerbose = false;
 
     public Input(final String[] args) {
         final Options options = new Options();
         options.addOption("f", "file", true, "a file that contains a SPARQL query");
         options.addOption("g", "graph", true, "the graph that's used to execute the query [classic|modern|crew|kryo file]");
         options.addOption("t", "test", false, "set test query, with expected result");
+        options.addOption("v","verbose", false, "verbose output");
         final CommandLineParser parser = new DefaultParser();
         final CommandLine commandLine;
         if (args.length == 0) {
             setDevExec();
+            isVerbose = true;
             isTest = false;
         } else {
             try {
                 commandLine = parser.parse(options, args);
+                if(commandLine.hasOption("verbose")){
+                    isVerbose = true;
+                }
                 if (commandLine.hasOption("test")) {
                     isTest = true;
                 } else {
@@ -114,6 +120,10 @@ public class Input {
 
     boolean getIsTest() {
         return isTest;
+    }
+
+    boolean getIsVerbose(){
+        return isVerbose;
     }
 
     ArrayList<String> getExpectedResult() {

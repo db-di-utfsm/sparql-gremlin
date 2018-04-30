@@ -5,7 +5,7 @@ import com.datastax.sparql.constants.Uri;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
-class SPARQLStarNENSubstring extends SPARQLStarSubstring implements Uri{
+class SPARQLStarNENSubstring extends SPARQLStarSubstring implements Uri {
 
     SPARQLStarNENSubstring(Matcher matcher) {
         super(matcher);

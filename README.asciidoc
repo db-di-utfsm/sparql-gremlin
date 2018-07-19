@@ -1,7 +1,7 @@
 SPARQL*-Gremlin
 ==============
 
-Alternate way to query Tinkerpop 3 graphs using SPARQL*-like syntax, a model that maps Tinkerpop to RDF, and a translator from it to Gremlin.
+Alternate way to query Tinkerpop 3 graphs using SPARQL* syntax, a model that maps Tinkerpop to RDF, and a translator from it to Gremlin.
 
 This is part of my Final Degree Project
 
@@ -10,5 +10,3 @@ Based on:
 - SPARLQ-Gremlin https://github.com/dkuppitz/sparql-gremlin
 - O. Harting, “Foundations of RDF* and SPARQL* (An Alternative Approach to Statement-Level Metadata in RDF)”
 Proceedings of the 11th Alberto Mendelzon International Workshop on Foundations of Data Management and the Web, 2017
-
-IN DEVELOPMENT

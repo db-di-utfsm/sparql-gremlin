@@ -1,0 +1,13 @@
+SELECT ?s ?d WHERE {
+<< ?x e:to ?y>> ;
+ep:skill ?s .
+FILTER (?s > 4) .
+OPTIONAL {
+?x e:out ?e .?e ep:since ?d.}
+}
+===
+{s=5, d=2009}
+{s=5, d=2010}
+{s=5, d=2010}
+{s=5, d=2011}
+{s=5, d=}

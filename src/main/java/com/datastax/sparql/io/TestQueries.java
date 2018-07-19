@@ -17,7 +17,7 @@ public abstract class TestQueries {
                     + "?p ?what 'gremlin' ."
                     + "}";
 
-    static public String test3 =
+    static public String test3 = // nop
             "SELECT ?x WHERE {" +
                     "?p ?what 3 ." +
                     "?p ?np ?n ." +
@@ -63,15 +63,15 @@ public abstract class TestQueries {
 
     static public String starQuery4 = // ok []
             "SELECT ?p WHERE {" +
-                    "<<   ?x np:name 'asdasdas' >>." +
-                    "<<?x np:name 'asdas'>>;" +
-                    " meta:asdasd 'asasda' ;" +
-                    " meta:as 'a'   ." +
+                    "<<   ?x np:name 'a' >>." +
+                    "<<?x np:name 'b'>>;" +
+                    "meta:p1 'c' ;" +
+                    "meta:p2 'd'." +
                     "?x ?p ?t ." +
-                    "<< ?a np:this ?b >> ;" +
-                    "meta:asd 'ASD' ." +
+                    "<< ?a np:p3 ?b >> ;" +
+                    "meta:mp4 'e' ." +
                     "<< ?x e:to ?y >> ;" +
-                    " ep:cssssss ?p ." +
+                    "ep:p6 ?p ." +
                     "}";
 
     static public String metaTest = // ok [2009]
@@ -173,34 +173,20 @@ public abstract class TestQueries {
             "SELECT ?v WHERE {" +
                     "?v ?p 16 ." +
                     "}";
-    static public String order = // OK [{s=3, n=daniel}, {s=3, n=matthias}, {s=3, n=matthias}, {s=4, n=marko}, {s=4, n=stephen}, {s=5, n=daniel}, {s=5, n=marko}, {s=5, n=stephen}]
-            "SELECT ?s ?n WHERE {" +
-                    "<< ?x e:to ?y >> ;" +
-                    "ep:skill ?s ." +
-                    "?x np:name ?p ." +
-                    "?p n:value ?n ." +
-                    "} ORDER BY (?s)";
-    static public String orderDes = // OK [{s=5, n=daniel}, {s=5, n=marko}, {s=5, n=stephen}, {s=4, n=marko}, {s=4, n=stephen}, {s=3, n=daniel}, {s=3, n=matthias}, {s=3, n=matthias}]
-            "SELECT ?s ?n WHERE {" +
-                    "<< ?x e:to ?y >> ;" +
-                    "ep:skill ?s ." +
-                    "?x np:name ?p ." +
-                    "?p n:value ?n ." +
-                    "} ORDER BY DESC(?s)";
+
     static String vvv1 =
-            "select ?p where{" +
+            "select ?v where{" +
                     "?x n:label 'person' ." +
-                    "<< ?x e:to ?y >> ." +
                     "?x np:name ?p ." +
-                    "?y ?bla ?p " +
+                    "?p ?m ?v " +
                     "}";
-    static String vvv2 =
+    static String vvv2 = // ok {x=v[10], y=v[11], v=software}
             "select ?x ?y ?v where{" +
                     "?x n:label ?v ." +
                     "<< ?x e:to ?y >> ." +
                     "?y ?bla ?v " +
                     "}";
-    static String manyFuncTest = // ok
+    static String manyFuncTest = // ok vp[name->marko] vp[name->stephen] vp[name->daniel]
             "select distinct ?n where{" +
                     "?x n:label ?v ." +
                     "<< ?x e:to ?y >>;" +
@@ -208,15 +194,22 @@ public abstract class TestQueries {
                     "?x np:name ?n." +
                     "FILTER (?v = 'person' && ?v2 > 3)" +
                     "}";
-    static String opt1 = // ok [{x=v[8], d=2012}, {x=v[8], d=2012}, {x=v[9], d=}]
-            "SELECT ?x ?d WHERE {" +
+    static String opt1 = // ok [{x=v[8], d=2012}, {x=v[9], d=}]
+            "SELECT DISTINCT ?x ?d WHERE {" +
                     "<< ?x e:to ?y>> ;" +
                     "ep:skill 3 ." +
                     "OPTIONAL {" +
                     "?x e:out ?e ." +
                     "?e ep:since ?d." +
                     "}}";
+
     static String opt2 =
+    /*{name=marko, y=2009}
+    {name=marko, y=2010}
+    {name=stephen, y=2010}
+    {name=stephen, y=2011}
+    {name=matthias, y=2012}
+    {name=daniel, y=}*/
             "SELECT ?name ?y WHERE {" +
                     "?x n:label 'person' ." +
                     "<< ?x np:name ?name >> ." +
@@ -247,12 +240,5 @@ public abstract class TestQueries {
                     "?e ep:since ?d." +
                     "}" +
                     "}";
-    static public String test = optFilter;
-    static String distinct1 = // [v[11], v[11]] ???
-            "SELECT DISTINCT ?y WHERE {" +
-                    "?x n:label 'person' ." +
-                    "<< ?x e:to ?y>> ." +
-                    "?y ?p 11 ." +
-                    "}";
-
+    static public String test = manyBlocks2;
 }

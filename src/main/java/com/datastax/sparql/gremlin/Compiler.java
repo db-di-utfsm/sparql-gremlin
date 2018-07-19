@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Compiler{
+public class Compiler {
 
     private GraphTraversal<?, ?> traversal;
     private Query query;
@@ -55,13 +55,12 @@ public class Compiler{
             OpWalker.walk(leftUnionOp, leftOps);
             OpWalker.walk(rightUnionOp, rightOps);
             traversal = traversal.union(__.match(leftOps.getTraversalsArray()), __.match(rightOps.getTraversalsArray()));
-
+            // TODO UNION just working with *
         } else {
             OpsFinder ops = new OpsFinder(typifier, false);
             OpWalker.walk(op, ops);
             traversal = traversal.match(ops.getTraversalsArray());
         }
-
 
         final List<String> vars = query.getResultVars();
         if (!query.isQueryResultStar()) {
@@ -91,7 +90,6 @@ public class Compiler{
                     break;
             }
         }
-
         return traversal;
     }
 }

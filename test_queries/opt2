@@ -1,0 +1,14 @@
+SELECT ?name ?y WHERE {
+?x n:label 'person' .
+<< ?x np:name ?name >> .
+OPTIONAL {
+?x e:out ?e .
+?e ep:since ?y .
+}}
+===
+{name=marko, y=2009}
+{name=marko, y=2010}
+{name=stephen, y=2010}
+{name=stephen, y=2011}
+{name=matthias, y=2012}
+{name=daniel, y=}

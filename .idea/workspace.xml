@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66a35dd9-fb93-40dd-83a2-9c03ca6cab53" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/test_queries/opt2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/test_queries/optFilter" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/SPARQL2GREMLIN.java" afterPath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/SPARQL2GREMLIN.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/RE.java" afterPath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/RE.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/Uri.java" afterPath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/Uri.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/BGPBuilder.java" afterPath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/BGPBuilder.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Compiler.java" afterPath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Compiler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/example.java" afterPath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/example.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/Input.java" afterPath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/Input.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/Output.java" afterPath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/Output.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/star/SPARQLStarNENSubstring.java" afterPath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/star/SPARQLStarNENSubstring.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/TestQueries.java" afterPath="$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/TestQueries.java" />
+      <change beforePath="$PROJECT_DIR$/test_queries/opt1" afterPath="$PROJECT_DIR$/test_queries/opt1" />
+      <change beforePath="$PROJECT_DIR$/test_queries/starQuery4" afterPath="$PROJECT_DIR$/test_queries/starQuery4" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,71 +20,306 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7075209">
+    <splitter split-orientation="horizontal" split-proportion="0.78100777">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="TestQueries.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/TestQueries.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="34">
-                  <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+                <state relative-caret-position="-3507">
+                  <caret line="0" column="29" lean-forward="true" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="gremlin_test.cmd" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/gremlin_test.cmd">
+          <file leaf-file-name="JAVA/com.datastax.sparql.gremlin" pinned="false" current-in-tab="false">
+            <entry file="uml://JAVA/com.datastax.sparql.gremlin">
+              <provider selected="true" editor-type-id="UmlEditorProvider">
+                <state>
+                  <ID>JAVA</ID>
+                  <OriginalElement>com.datastax.sparql.gremlin</OriginalElement>
+                  <nodes>
+                    <node x="416.0" y="316.0">com.datastax.sparql.gremlin.BGPBuilder</node>
+                    <node x="239.37916666666666" y="0.0">com.datastax.sparql.gremlin.PreambleBuilder</node>
+                    <node x="257.25" y="237.0">com.datastax.sparql.gremlin.Randomizer</node>
+                    <node x="134.0" y="316.0">com.datastax.sparql.gremlin.OptionalBuilder</node>
+                    <node x="285.0" y="316.0">com.datastax.sparql.gremlin.FilterBuilder</node>
+                    <node x="0.0" y="316.0">com.datastax.sparql.gremlin.UnionFinder</node>
+                    <node x="188.6833333333333" y="405.0">com.datastax.sparql.gremlin.Compiler</node>
+                    <node x="409.1583333333333" y="79.0">com.datastax.sparql.gremlin.PredicateCheck</node>
+                    <node x="480.99999999999994" y="237.0">com.datastax.sparql.gremlin.Typifier</node>
+                    <node x="480.0" y="158.0">com.datastax.sparql.gremlin.Variable</node>
+                  </nodes>
+                  <notes />
+                  <edges>
+                    <edge source="com.datastax.sparql.gremlin.BGPBuilder" target="com.datastax.sparql.gremlin.Typifier">
+                      <point x="35.666666666666686" y="-14.5" />
+                      <point x="505.1666666666667" y="296.0" />
+                      <point x="514.0" y="296.0" />
+                      <point x="-11.0" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.BGPBuilder" target="com.datastax.sparql.gremlin.PredicateCheck">
+                      <point x="0.0" y="-14.5" />
+                      <point x="469.5" y="133.0" />
+                      <point x="457.9083333333333" y="133.0" />
+                      <point x="-16.25" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.FilterBuilder" target="com.datastax.sparql.gremlin.Randomizer">
+                      <point x="-27.75" y="-14.5" />
+                      <point x="0.0" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.Compiler" target="com.datastax.sparql.gremlin.Typifier">
+                      <point x="40.41666666666663" y="-14.5" />
+                      <point x="277.5999999999999" y="385.0" />
+                      <point x="552.5" y="385.0" />
+                      <point x="552.5" y="296.0" />
+                      <point x="558.0" y="296.0" />
+                      <point x="33.0" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.Compiler" target="com.datastax.sparql.gremlin.PreambleBuilder">
+                      <point x="-8.083333333333314" y="-14.5" />
+                      <point x="229.1" y="365.0" />
+                      <point x="123.5" y="365.0" />
+                      <point x="123.5" y="54.0" />
+                      <point x="273.12916666666666" y="54.0" />
+                      <point x="-33.75" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.Typifier" target="com.datastax.sparql.gremlin.Variable">
+                      <point x="5.6843418860808015E-14" y="-14.5" />
+                      <point x="0.0" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.OptionalBuilder" target="com.datastax.sparql.gremlin.Randomizer">
+                      <point x="32.75" y="-14.5" />
+                      <point x="232.25" y="296.0" />
+                      <point x="275.75" y="296.0" />
+                      <point x="-37.0" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.PredicateCheck" target="com.datastax.sparql.gremlin.PreambleBuilder">
+                      <point x="0.0" y="-14.5" />
+                      <point x="474.1583333333333" y="54.0" />
+                      <point x="340.62916666666666" y="54.0" />
+                      <point x="33.75" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.Compiler" target="com.datastax.sparql.gremlin.FilterBuilder">
+                      <point x="8.083333333333314" y="-14.5" />
+                      <point x="245.26666666666662" y="365.0" />
+                      <point x="340.5" y="365.0" />
+                      <point x="0.0" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.Variable" target="com.datastax.sparql.gremlin.PredicateCheck">
+                      <point x="-22.5" y="-14.5" />
+                      <point x="502.5" y="133.0" />
+                      <point x="490.4083333333333" y="133.0" />
+                      <point x="16.25" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.OptionalBuilder" target="com.datastax.sparql.gremlin.PredicateCheck">
+                      <point x="-32.75" y="-14.5" />
+                      <point x="166.75" y="133.0" />
+                      <point x="425.4083333333333" y="133.0" />
+                      <point x="-48.75" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.BGPBuilder" target="com.datastax.sparql.gremlin.Randomizer">
+                      <point x="-35.666666666666686" y="-14.5" />
+                      <point x="433.8333333333333" y="286.0" />
+                      <point x="349.75" y="286.0" />
+                      <point x="37.0" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.PredicateCheck" target="com.datastax.sparql.gremlin.Variable">
+                      <point x="48.75" y="14.5" />
+                      <point x="522.9083333333333" y="133.0" />
+                      <point x="547.5" y="133.0" />
+                      <point x="22.5" y="-14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.FilterBuilder" target="com.datastax.sparql.gremlin.Typifier">
+                      <point x="27.75" y="-14.5" />
+                      <point x="368.25" y="296.0" />
+                      <point x="491.99999999999994" y="296.0" />
+                      <point x="-33.0" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.gremlin.Compiler" target="com.datastax.sparql.gremlin.UnionFinder">
+                      <point x="-24.25" y="-14.5" />
+                      <point x="212.9333333333333" y="375.0" />
+                      <point x="84.75" y="375.0" />
+                      <point x="28.25" y="14.5" />
+                    </edge>
+                  </edges>
+                  <settings layout="Hierarchic Group" zoom="1.3301158301158305" x="152.56045858016782" y="235.0413412386454" />
+                  <SelectedNodes />
+                  <Categories />
+                  <SCOPE>All</SCOPE>
+                  <VISIBILITY>private</VISIBILITY>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="JAVA/com.datastax.sparql.io" pinned="false" current-in-tab="false">
+            <entry file="uml://JAVA/com.datastax.sparql.io">
+              <provider selected="true" editor-type-id="UmlEditorProvider">
+                <state>
+                  <ID>JAVA</ID>
+                  <OriginalElement>com.datastax.sparql.io</OriginalElement>
+                  <nodes>
+                    <node x="0.0" y="0.0">com.datastax.sparql.io.TestQueries</node>
+                    <node x="12.0" y="158.0">com.datastax.sparql.io.Output</node>
+                    <node x="17.0" y="79.0">com.datastax.sparql.io.Input</node>
+                  </nodes>
+                  <notes />
+                  <edges>
+                    <edge source="com.datastax.sparql.io.Output" target="com.datastax.sparql.io.Input">
+                      <point x="0.0" y="-14.5" />
+                      <point x="0.0" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.io.Input" target="com.datastax.sparql.io.TestQueries">
+                      <point x="0.0" y="-14.5" />
+                      <point x="0.0" y="14.5" />
+                    </edge>
+                  </edges>
+                  <settings layout="Hierarchic Group" zoom="1.0" x="-109.5" y="211.0" />
+                  <SelectedNodes>
+                    <node>com.datastax.sparql.io.TestQueries</node>
+                  </SelectedNodes>
+                  <Categories />
+                  <SCOPE>All</SCOPE>
+                  <VISIBILITY>private</VISIBILITY>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="JAVA/com.datastax.sparql.constants" pinned="false" current-in-tab="false">
+            <entry file="uml://JAVA/com.datastax.sparql.constants">
+              <provider selected="true" editor-type-id="UmlEditorProvider">
+                <state>
+                  <ID>JAVA</ID>
+                  <OriginalElement>com.datastax.sparql.constants</OriginalElement>
+                  <nodes>
+                    <node x="8.0" y="158.0">com.datastax.sparql.constants.RE</node>
+                    <node x="7.0" y="79.0">com.datastax.sparql.constants.Uri</node>
+                    <node x="0.0" y="0.0">com.datastax.sparql.constants.Prefix</node>
+                  </nodes>
+                  <notes />
+                  <edges>
+                    <edge source="com.datastax.sparql.constants.Uri" target="com.datastax.sparql.constants.Prefix">
+                      <point x="0.0" y="-14.5" />
+                      <point x="0.0" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.constants.RE" target="com.datastax.sparql.constants.Uri">
+                      <point x="0.0" y="-14.5" />
+                      <point x="0.0" y="14.5" />
+                    </edge>
+                  </edges>
+                  <settings layout="Hierarchic Group" zoom="1.2000000000000002" x="-96.91666666666666" y="114.33333333333331" />
+                  <SelectedNodes />
+                  <Categories />
+                  <SCOPE>All</SCOPE>
+                  <VISIBILITY>private</VISIBILITY>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="JAVA/com.datastax.sparql.ops" pinned="false" current-in-tab="false">
+            <entry file="uml://JAVA/com.datastax.sparql.ops">
+              <provider selected="true" editor-type-id="UmlEditorProvider">
+                <state>
+                  <ID>JAVA</ID>
+                  <OriginalElement>com.datastax.sparql.ops</OriginalElement>
+                  <nodes>
+                    <node x="0.0" y="153.0">com.datastax.sparql.ops.OpsFinder</node>
+                    <node x="204.0" y="79.0">com.datastax.sparql.ops.OpBGPContainer</node>
+                    <node x="215.0" y="0.0">com.datastax.sparql.ops.OpContainer</node>
+                    <node x="362.0" y="79.0">com.datastax.sparql.ops.OpFilterContainer</node>
+                    <node x="0.0" y="79.0">com.datastax.sparql.ops.OpBGPOptionalContainer</node>
+                  </nodes>
+                  <notes />
+                  <edges>
+                    <edge source="com.datastax.sparql.ops.OpFilterContainer" target="com.datastax.sparql.ops.OpContainer">
+                      <point x="0.0" y="-14.5" />
+                      <point x="433.0" y="54.0" />
+                      <point x="311.66666666666663" y="54.0" />
+                      <point x="38.66666666666663" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.ops.OpBGPContainer" target="com.datastax.sparql.ops.OpContainer">
+                      <point x="0.0" y="-14.5" />
+                      <point x="0.0" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.ops.OpBGPOptionalContainer" target="com.datastax.sparql.ops.OpContainer">
+                      <point x="0.0" y="-14.5" />
+                      <point x="92.0" y="54.0" />
+                      <point x="234.33333333333334" y="54.0" />
+                      <point x="-38.66666666666666" y="14.5" />
+                    </edge>
+                  </edges>
+                  <settings layout="Hierarchic Group" zoom="1.0" x="89.5" y="116.0" />
+                  <SelectedNodes />
+                  <Categories />
+                  <SCOPE>All</SCOPE>
+                  <VISIBILITY>private</VISIBILITY>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="JAVA/com.datastax.sparql.star" pinned="false" current-in-tab="true">
+            <entry file="uml://JAVA/com.datastax.sparql.star">
+              <provider selected="true" editor-type-id="UmlEditorProvider">
+                <state>
+                  <ID>JAVA</ID>
+                  <OriginalElement>com.datastax.sparql.star</OriginalElement>
+                  <nodes>
+                    <node x="204.0" y="79.0">com.datastax.sparql.star.SPARQLStarNENSubstring</node>
+                    <node x="0.0" y="153.0">com.datastax.sparql.star.SPARQLStarTranslator</node>
+                    <node x="113.75" y="0.0">com.datastax.sparql.star.SPARQLStarSubstring</node>
+                    <node x="0.0" y="79.0">com.datastax.sparql.star.SPARQLStarNPVSubstring</node>
+                  </nodes>
+                  <notes />
+                  <edges>
+                    <edge source="com.datastax.sparql.star.SPARQLStarNENSubstring" target="com.datastax.sparql.star.SPARQLStarSubstring">
+                      <point x="0.0" y="-14.5" />
+                      <point x="296.5" y="54.0" />
+                      <point x="234.5" y="54.0" />
+                      <point x="40.25" y="14.5" />
+                    </edge>
+                    <edge source="com.datastax.sparql.star.SPARQLStarNPVSubstring" target="com.datastax.sparql.star.SPARQLStarSubstring">
+                      <point x="0.0" y="-14.5" />
+                      <point x="92.0" y="54.0" />
+                      <point x="154.0" y="54.0" />
+                      <point x="-40.25" y="14.5" />
+                    </edge>
+                  </edges>
+                  <settings layout="Hierarchic Group" zoom="1.0" x="194.5" y="91.0" />
+                  <SelectedNodes />
+                  <Categories />
+                  <SCOPE>All</SCOPE>
+                  <VISIBILITY>private</VISIBILITY>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="OpsFinder.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/ops/OpsFinder.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+                <state relative-caret-position="527">
+                  <caret line="40" column="12" lean-forward="false" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Input.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/Input.java">
+          <file leaf-file-name="BGPBuilder.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/BGPBuilder.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="30" column="29" lean-forward="false" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
-                  <folding>
-                    <element signature="e#4211#4212#0" expanded="true" />
-                    <element signature="e#4239#4240#0" expanded="true" />
-                    <element signature="e#4271#4272#0" expanded="true" />
-                    <element signature="e#4299#4300#0" expanded="true" />
-                    <element signature="e#4326#4327#0" expanded="true" />
-                    <element signature="e#4355#4356#0" expanded="true" />
-                    <element signature="e#4384#4385#0" expanded="true" />
-                    <element signature="e#4416#4417#0" expanded="true" />
-                    <element signature="e#4461#4462#0" expanded="true" />
-                    <element signature="e#4498#4499#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="595">
+                  <caret line="42" column="24" lean-forward="false" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Output.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/Output.java">
+          <file leaf-file-name="OptionalBuilder.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/OptionalBuilder.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="22" column="40" lean-forward="true" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
-                  <folding>
-                    <element signature="e#2683#2684#0" expanded="true" />
-                    <element signature="e#2723#2724#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SPARQL2GREMLIN.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/SPARQL2GREMLIN.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="320">
-                  <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
+                <state relative-caret-position="323">
+                  <caret line="23" column="70" lean-forward="false" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="70" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -94,73 +328,71 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="PreambleBuilder.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/PreambleBuilder.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="6" column="46" lean-forward="false" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="46" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Compiler.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Compiler.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1020">
-                  <caret line="75" column="72" lean-forward="false" selection-start-line="75" selection-start-column="72" selection-end-line="75" selection-end-column="72" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Prefix.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/Prefix.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Uri.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/Uri.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="RE.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/RE.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SPARQLStarTranslator.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/star/SPARQLStarTranslator.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="40">
-                  <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="OpBGPOptionalContainer.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/ops/OpBGPOptionalContainer.java">
+          <file leaf-file-name="vvuTest2" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test_queries/vvuTest2">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="187">
-                  <caret line="21" column="53" lean-forward="false" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="53" />
+                  <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="vvuTest3" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test_queries/vvuTest3">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="vvuTest4" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test_queries/vvuTest4">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="85">
+                  <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="opt2" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test_queries/opt2">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="136">
+                  <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="13" selection-end-column="17" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="optFilter" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test_queries/optFilter">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="187">
+                  <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="opt1" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test_queries/opt1">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="9" column="10" lean-forward="false" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="manyFuncTest" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/test_queries/manyFuncTest">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
+                  <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -204,7 +436,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Typifier.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/WhereTraversalBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/OptionalBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/BGPBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/example.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/FilterBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Prefixes.java" />
@@ -212,21 +443,28 @@
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/PredicateCheck.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/star/SPARQLStarSubstring.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/star/SPARQLStarNPVSubstring.java" />
-        <option value="$PROJECT_DIR$/test_queries/opt1" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/TestQueries.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/ConsoleCompiler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/SPARQL2GREMLIN.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/star/SPARQLStarTranslator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/star/SPARQLStarNENSubstring.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/VisitorAnalyzer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Compiler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/Prefix.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/Uri.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/RE.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/TestQueries.java" />
         <option value="$PROJECT_DIR$/gremlin_test.cmd" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/Output.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/Input.java" />
+        <option value="$PROJECT_DIR$/test_queries/starQuery4" />
+        <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/BGPBuilder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Compiler.java" />
+        <option value="$PROJECT_DIR$/test_queries/manyFuncTest" />
+        <option value="$PROJECT_DIR$/test_queries/vvuTest5" />
+        <option value="$PROJECT_DIR$/test_queries/vvv2" />
+        <option value="$PROJECT_DIR$/test_queries/opt1" />
+        <option value="$PROJECT_DIR$/test_queries/optFilter" />
+        <option value="$PROJECT_DIR$/test_queries/opt2" />
+        <option value="$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/TestQueries.java" />
       </list>
     </option>
   </component>
@@ -244,8 +482,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="456" />
-    <option name="y" value="-21" />
+    <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="745" />
   </component>
@@ -264,9 +501,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -360,13 +594,16 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sparql-to-gremlin-ext" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -383,7 +620,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.Compile">
+  <component name="RunManager" selected="Application.Compile &amp; Run">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -668,11 +905,22 @@
       <workItem from="1524705588062" duration="587000" />
       <workItem from="1524782427317" duration="602000" />
       <workItem from="1524936722118" duration="10986000" />
+      <workItem from="1525047261725" duration="614000" />
+      <workItem from="1525739154740" duration="594000" />
+      <workItem from="1527208895798" duration="3305000" />
+      <workItem from="1527451126099" duration="15576000" />
+      <workItem from="1527637295699" duration="11033000" />
+      <workItem from="1527729436316" duration="4234000" />
+      <workItem from="1528252475304" duration="717000" />
+      <workItem from="1528554787284" duration="1192000" />
+      <workItem from="1529451861326" duration="1183000" />
+      <workItem from="1529535522034" duration="1190000" />
+      <workItem from="1531878387192" duration="1833000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153194000" />
+    <option name="totallyTimeSpent" value="194665000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -685,23 +933,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12783171" sideWeight="0.48335856" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2249191" sideWeight="0.2322239" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22006473" sideWeight="0.25588697" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2249191" sideWeight="0.7677761" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22331691" sideWeight="0.744113" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18154311" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2193646" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.48789713" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24886535" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -712,8 +959,10 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="554" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.48789713" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,355 +978,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/uiDesigner.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/dictionaries/eddox.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-33">
-          <caret line="253" column="24" lean-forward="false" selection-start-line="253" selection-start-column="24" selection-end-line="253" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/jena/jena-arq/3.5.0/jena-arq-3.5.0.jar!/org/apache/jena/sparql/expr/Expr.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="40" column="11" lean-forward="false" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tinkerpop/gremlin-core/3.3.0/gremlin-core-3.3.0.jar!/org/apache/tinkerpop/gremlin/process/traversal/Step.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="39" column="9" lean-forward="false" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/jena/jena-core/3.5.0/jena-core-3.5.0.jar!/org/apache/jena/rdf/model/Resource.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/jena/jena-arq/3.5.0/jena-arq-3.5.0.jar!/org/apache/jena/query/QueryExecution.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tinkerpop/gremlin-core/3.3.0/gremlin-core-3.3.0.jar!/org/apache/tinkerpop/gremlin/process/traversal/dsl/graph/GraphTraversal.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6817">
-          <caret line="542" column="33" lean-forward="false" selection-start-line="542" selection-start-column="33" selection-end-line="542" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/example.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="66" column="10" lean-forward="false" selection-start-line="66" selection-start-column="10" selection-end-line="66" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2938">
-          <caret line="18" column="2" lean-forward="true" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_queries/opt1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/star/SPARQLStarSubstring.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/star/SPARQLStarNENSubstring.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/star/SPARQLStarNPVSubstring.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="e#258#259#0" expanded="false" />
-            <element signature="e#288#289#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/jena/jena-arq/3.5.0/jena-arq-3.5.0.jar!/org/apache/jena/sparql/algebra/OpVisitorBase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="917">
-          <caret line="93" column="16" lean-forward="false" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/UnionFinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Typifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="80" column="19" lean-forward="false" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
-          <folding>
-            <element signature="e#5074#5075#0" expanded="false" />
-            <element signature="e#5112#5113#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Variable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/PredicateCheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="30" column="46" lean-forward="false" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/BGPBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3740">
-          <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/OptionalBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/FilterBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="56" column="13" lean-forward="false" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/ops/OpContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/ops/OpBGPOptionalContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="21" column="53" lean-forward="false" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Compiler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="75" column="72" lean-forward="false" selection-start-line="75" selection-start-column="72" selection-end-line="75" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/PreambleBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="46" lean-forward="false" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/RE.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="29" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/Uri.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sparql-gremlin.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/constants/Prefix.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/star/SPARQLStarTranslator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/services/org.apache.tinkerpop.gremlin.groovy.plugin.GremlinPlugin">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assembly/standalone.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assembly/distribution.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Randomizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/VisitorAnalyzer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tinkerpop/gremlin-core/3.3.0/gremlin-core-3.3.0.jar!/org/apache/tinkerpop/gremlin/structure/io/gryo/GryoIo.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-680">
-          <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/tinkerpop/gremlin-core/3.3.0/gremlin-core-3.3.0.jar!/org/apache/tinkerpop/gremlin/structure/io/IoCore.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_queries/edgesTest">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/ops/OpBGPContainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/ops/OpsFinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="40" column="12" lean-forward="false" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
-          <folding>
-            <element signature="e#1490#1491#0" expanded="false" />
-            <element signature="e#1561#1562#0" expanded="false" />
-            <element signature="e#1625#1626#0" expanded="false" />
-            <element signature="e#1702#1703#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1085,67 +989,617 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="22" column="26" lean-forward="false" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#492#493#0" expanded="false" />
-            <element signature="e#527#528#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/TestQueries.java">
+    <entry file="file://$PROJECT_DIR$/test_queries/test7">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/simpleTestStar">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/simpleTest1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/test2">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/starQuery4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/metaTest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/labelTest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/idVarTest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/labelTest2">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="7" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/edgesTest3">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="5" lean-forward="true" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/edgesTest4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/edgesTest5">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/edgesTest6">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="18" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/SPARQL2GREMLIN.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/edgesTest7">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/idTest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="3" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/vvuTest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/test1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="7" lean-forward="true" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/edgesTest2">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/edgesTest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/vvuTest2">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/Input.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-          <folding />
+          <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gremlin_test.cmd">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/SPARQL2GREMLIN.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/Output.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" column="40" lean-forward="true" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+        <state relative-caret-position="17">
+          <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/example.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/vvuTest3">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Typifier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="68" column="49" lean-forward="false" selection-start-line="68" selection-start-column="49" selection-end-line="68" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Compiler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="42" column="8" lean-forward="false" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/vvv2">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/vvuTest5">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/vvuTest4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/Variable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding>
-            <element signature="e#2683#2684#0" expanded="true" />
-            <element signature="e#2723#2724#0" expanded="true" />
+            <element signature="e#1963#1964#0" expanded="false" />
+            <element signature="e#2007#2008#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/Input.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/OptionalBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="30" column="29" lean-forward="false" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
-          <folding>
-            <element signature="e#4211#4212#0" expanded="true" />
-            <element signature="e#4239#4240#0" expanded="true" />
-            <element signature="e#4271#4272#0" expanded="true" />
-            <element signature="e#4299#4300#0" expanded="true" />
-            <element signature="e#4326#4327#0" expanded="true" />
-            <element signature="e#4355#4356#0" expanded="true" />
-            <element signature="e#4384#4385#0" expanded="true" />
-            <element signature="e#4416#4417#0" expanded="true" />
-            <element signature="e#4461#4462#0" expanded="true" />
-            <element signature="e#4498#4499#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="323">
+          <caret line="23" column="70" lean-forward="false" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/BGPBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="42" column="24" lean-forward="false" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/opt2">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="13" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/opt1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="10" lean-forward="false" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/optFilter">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_queries/manyFuncTest">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/io/TestQueries.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3507">
+          <caret line="0" column="29" lean-forward="true" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin/VisitorAnalyzer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/com.datastax.sparql.gremlin">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>com.datastax.sparql.gremlin</OriginalElement>
+          <nodes>
+            <node x="416.0" y="316.0">com.datastax.sparql.gremlin.BGPBuilder</node>
+            <node x="239.37916666666666" y="0.0">com.datastax.sparql.gremlin.PreambleBuilder</node>
+            <node x="257.25" y="237.0">com.datastax.sparql.gremlin.Randomizer</node>
+            <node x="134.0" y="316.0">com.datastax.sparql.gremlin.OptionalBuilder</node>
+            <node x="285.0" y="316.0">com.datastax.sparql.gremlin.FilterBuilder</node>
+            <node x="0.0" y="316.0">com.datastax.sparql.gremlin.UnionFinder</node>
+            <node x="188.6833333333333" y="405.0">com.datastax.sparql.gremlin.Compiler</node>
+            <node x="409.1583333333333" y="79.0">com.datastax.sparql.gremlin.PredicateCheck</node>
+            <node x="480.99999999999994" y="237.0">com.datastax.sparql.gremlin.Typifier</node>
+            <node x="480.0" y="158.0">com.datastax.sparql.gremlin.Variable</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="com.datastax.sparql.gremlin.BGPBuilder" target="com.datastax.sparql.gremlin.Typifier">
+              <point x="35.666666666666686" y="-14.5" />
+              <point x="505.1666666666667" y="296.0" />
+              <point x="514.0" y="296.0" />
+              <point x="-11.0" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.BGPBuilder" target="com.datastax.sparql.gremlin.PredicateCheck">
+              <point x="0.0" y="-14.5" />
+              <point x="469.5" y="133.0" />
+              <point x="457.9083333333333" y="133.0" />
+              <point x="-16.25" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.FilterBuilder" target="com.datastax.sparql.gremlin.Randomizer">
+              <point x="-27.75" y="-14.5" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.Compiler" target="com.datastax.sparql.gremlin.Typifier">
+              <point x="40.41666666666663" y="-14.5" />
+              <point x="277.5999999999999" y="385.0" />
+              <point x="552.5" y="385.0" />
+              <point x="552.5" y="296.0" />
+              <point x="558.0" y="296.0" />
+              <point x="33.0" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.Compiler" target="com.datastax.sparql.gremlin.PreambleBuilder">
+              <point x="-8.083333333333314" y="-14.5" />
+              <point x="229.1" y="365.0" />
+              <point x="123.5" y="365.0" />
+              <point x="123.5" y="54.0" />
+              <point x="273.12916666666666" y="54.0" />
+              <point x="-33.75" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.Typifier" target="com.datastax.sparql.gremlin.Variable">
+              <point x="5.6843418860808015E-14" y="-14.5" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.OptionalBuilder" target="com.datastax.sparql.gremlin.Randomizer">
+              <point x="32.75" y="-14.5" />
+              <point x="232.25" y="296.0" />
+              <point x="275.75" y="296.0" />
+              <point x="-37.0" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.PredicateCheck" target="com.datastax.sparql.gremlin.PreambleBuilder">
+              <point x="0.0" y="-14.5" />
+              <point x="474.1583333333333" y="54.0" />
+              <point x="340.62916666666666" y="54.0" />
+              <point x="33.75" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.Compiler" target="com.datastax.sparql.gremlin.FilterBuilder">
+              <point x="8.083333333333314" y="-14.5" />
+              <point x="245.26666666666662" y="365.0" />
+              <point x="340.5" y="365.0" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.Variable" target="com.datastax.sparql.gremlin.PredicateCheck">
+              <point x="-22.5" y="-14.5" />
+              <point x="502.5" y="133.0" />
+              <point x="490.4083333333333" y="133.0" />
+              <point x="16.25" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.OptionalBuilder" target="com.datastax.sparql.gremlin.PredicateCheck">
+              <point x="-32.75" y="-14.5" />
+              <point x="166.75" y="133.0" />
+              <point x="425.4083333333333" y="133.0" />
+              <point x="-48.75" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.BGPBuilder" target="com.datastax.sparql.gremlin.Randomizer">
+              <point x="-35.666666666666686" y="-14.5" />
+              <point x="433.8333333333333" y="286.0" />
+              <point x="349.75" y="286.0" />
+              <point x="37.0" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.PredicateCheck" target="com.datastax.sparql.gremlin.Variable">
+              <point x="48.75" y="14.5" />
+              <point x="522.9083333333333" y="133.0" />
+              <point x="547.5" y="133.0" />
+              <point x="22.5" y="-14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.FilterBuilder" target="com.datastax.sparql.gremlin.Typifier">
+              <point x="27.75" y="-14.5" />
+              <point x="368.25" y="296.0" />
+              <point x="491.99999999999994" y="296.0" />
+              <point x="-33.0" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.gremlin.Compiler" target="com.datastax.sparql.gremlin.UnionFinder">
+              <point x="-24.25" y="-14.5" />
+              <point x="212.9333333333333" y="375.0" />
+              <point x="84.75" y="375.0" />
+              <point x="28.25" y="14.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.3301158301158305" x="152.56045858016782" y="235.0413412386454" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram/C:/Users/eddox/Documents/GitHub/sparql-gremlin/src/main/java/com/datastax/sparql/gremlin">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/src/main/java/com/datastax/sparql/gremlin</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="402.5" y="215.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://MODULES/mdl-sparql-gremlin">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MODULES</ID>
+          <OriginalElement>mdl-sparql-gremlin</OriginalElement>
+          <nodes>
+            <node x="" y="">mdl-sparql-gremlin</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.8" x="75.0" y="14.5" />
+          <SelectedNodes />
+          <Categories />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/com.datastax.sparql.io">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>com.datastax.sparql.io</OriginalElement>
+          <nodes>
+            <node x="0.0" y="0.0">com.datastax.sparql.io.TestQueries</node>
+            <node x="12.0" y="158.0">com.datastax.sparql.io.Output</node>
+            <node x="17.0" y="79.0">com.datastax.sparql.io.Input</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="com.datastax.sparql.io.Output" target="com.datastax.sparql.io.Input">
+              <point x="0.0" y="-14.5" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.io.Input" target="com.datastax.sparql.io.TestQueries">
+              <point x="0.0" y="-14.5" />
+              <point x="0.0" y="14.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="-109.5" y="211.0" />
+          <SelectedNodes>
+            <node>com.datastax.sparql.io.TestQueries</node>
+          </SelectedNodes>
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/com.datastax.sparql.constants">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>com.datastax.sparql.constants</OriginalElement>
+          <nodes>
+            <node x="8.0" y="158.0">com.datastax.sparql.constants.RE</node>
+            <node x="7.0" y="79.0">com.datastax.sparql.constants.Uri</node>
+            <node x="0.0" y="0.0">com.datastax.sparql.constants.Prefix</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="com.datastax.sparql.constants.Uri" target="com.datastax.sparql.constants.Prefix">
+              <point x="0.0" y="-14.5" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.constants.RE" target="com.datastax.sparql.constants.Uri">
+              <point x="0.0" y="-14.5" />
+              <point x="0.0" y="14.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.2000000000000002" x="-96.91666666666666" y="114.33333333333331" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/datastax/sparql/ops/OpsFinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="40" column="12" lean-forward="false" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/com.datastax.sparql">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>com.datastax.sparql</OriginalElement>
+          <nodes>
+            <node x="" y="">com.datastax.sparql.constants</node>
+            <node x="" y="">com.datastax.sparql.SPARQL2GREMLIN</node>
+            <node x="" y="">com.datastax.sparql.io</node>
+            <node x="" y="">com.datastax.sparql.gremlin</node>
+            <node x="" y="">com.datastax.sparql.ops</node>
+            <node x="" y="">com.datastax.sparql.star</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="119.0" y="128.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/com.datastax.sparql.ops">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>com.datastax.sparql.ops</OriginalElement>
+          <nodes>
+            <node x="0.0" y="153.0">com.datastax.sparql.ops.OpsFinder</node>
+            <node x="204.0" y="79.0">com.datastax.sparql.ops.OpBGPContainer</node>
+            <node x="215.0" y="0.0">com.datastax.sparql.ops.OpContainer</node>
+            <node x="362.0" y="79.0">com.datastax.sparql.ops.OpFilterContainer</node>
+            <node x="0.0" y="79.0">com.datastax.sparql.ops.OpBGPOptionalContainer</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="com.datastax.sparql.ops.OpFilterContainer" target="com.datastax.sparql.ops.OpContainer">
+              <point x="0.0" y="-14.5" />
+              <point x="433.0" y="54.0" />
+              <point x="311.66666666666663" y="54.0" />
+              <point x="38.66666666666663" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.ops.OpBGPContainer" target="com.datastax.sparql.ops.OpContainer">
+              <point x="0.0" y="-14.5" />
+              <point x="0.0" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.ops.OpBGPOptionalContainer" target="com.datastax.sparql.ops.OpContainer">
+              <point x="0.0" y="-14.5" />
+              <point x="92.0" y="54.0" />
+              <point x="234.33333333333334" y="54.0" />
+              <point x="-38.66666666666666" y="14.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="89.5" y="116.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/com.datastax.sparql.star">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>com.datastax.sparql.star</OriginalElement>
+          <nodes>
+            <node x="204.0" y="79.0">com.datastax.sparql.star.SPARQLStarNENSubstring</node>
+            <node x="0.0" y="153.0">com.datastax.sparql.star.SPARQLStarTranslator</node>
+            <node x="113.75" y="0.0">com.datastax.sparql.star.SPARQLStarSubstring</node>
+            <node x="0.0" y="79.0">com.datastax.sparql.star.SPARQLStarNPVSubstring</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="com.datastax.sparql.star.SPARQLStarNENSubstring" target="com.datastax.sparql.star.SPARQLStarSubstring">
+              <point x="0.0" y="-14.5" />
+              <point x="296.5" y="54.0" />
+              <point x="234.5" y="54.0" />
+              <point x="40.25" y="14.5" />
+            </edge>
+            <edge source="com.datastax.sparql.star.SPARQLStarNPVSubstring" target="com.datastax.sparql.star.SPARQLStarSubstring">
+              <point x="0.0" y="-14.5" />
+              <point x="92.0" y="54.0" />
+              <point x="154.0" y="54.0" />
+              <point x="-40.25" y="14.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="194.5" y="91.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>
     </entry>

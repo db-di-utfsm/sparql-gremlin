@@ -31,33 +31,28 @@ public abstract class BGPBuilder {
                 if (typifier.unknown(sStr)) {
                     if (typifier.unknown(pStr)) {
                         if (typifier.unknown(oStr)) { // u u u
-
+                            // not implemented
                         } else { // u u k
-
+                            // not implemented
                         }
                     } else {
-                        if (typifier.unknown(oStr)) { // u k u
-
-                        } else { // u k k
-
-                        }
+                        pType = typifier.get(pStr);
+                        // uku or ukk
+                        result.add(getVVVFromPType(traversal, pType, oName));
                     }
                 } else {
                     sType = typifier.get(sStr);
                     if (typifier.unknown(pStr)) {
                         if (typifier.unknown(oStr)) { // k u u
-
+                            // not implemented
                         } else { // k u k
                             oType = typifier.get(oStr);
                             result.add(getVVVFromSOTypes(traversal, sType, oType, oName));
                         }
                     } else {
                         pType = typifier.get(pStr);
-                        if (typifier.unknown(oStr)) { // k k u
-                            result.add(getVVVFromPType(traversal, pType, oName));
-                        } else { // k k k
-                            result.add(getVVVFromPType(traversal, pType, oName));
-                        }
+                        // kku or kkk
+                        result.add(getVVVFromPType(traversal, pType, oName));
                     }
                 }
             } else { // v v u
@@ -65,12 +60,7 @@ public abstract class BGPBuilder {
                 oStr = oLit.toString();
                 if (typifier.unknown(sStr)) {
                     if (typifier.unknown(pStr)) {
-                        // TODO - NOT WORKING, USSUME ONE OF THEM IS KNOWN? check again
-                        result.add(traversal.or(
-                                __.hasId(oLit),
-                                __.hasLabel(oStr),
-                                __.properties().value().is(oLit),
-                                __.hasValue(oLit)));
+                        result.add(getVVUFromO(traversal,oLit,oStr));
                     } else {
                         pType = typifier.get(pStr);
                         result.add(getVVUFromPType(traversal, pType, oStr, oLit));
@@ -97,6 +87,14 @@ public abstract class BGPBuilder {
             }
         }
         return result;
+    }
+
+    private static GraphTraversal<Vertex, ?> getVVUFromO(GraphTraversal<Vertex, ?> traversal, Object oLit, String oStr) {
+        return traversal.or(
+                __.hasId(oLit),
+                __.hasLabel(oStr),
+                __.properties().value().is(oLit),
+                __.hasValue(oLit));
     }
 
     static GraphTraversal<Vertex, ?> getVVVFromSOTypes(GraphTraversal<Vertex, ?> traversal, Variable.Type sType, Variable.Type oType, String oName) {

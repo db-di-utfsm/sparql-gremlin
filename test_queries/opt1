@@ -1,4 +1,4 @@
-SELECT ?x ?d WHERE {
+SELECT distinct ?x ?d WHERE {
 << ?x e:to ?y>> ;
 ep:skill 3 .
 OPTIONAL {
@@ -6,6 +6,5 @@ OPTIONAL {
 ?e ep:since ?d.
 }}
 ===
-{x=v[8], d=2012}
 {x=v[8], d=2012}
 {x=v[9], d=}
